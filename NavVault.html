@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Categories — NavVault</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <style>
+    /* ============================================================
+       NavVault — Categories Page
+       Shared design language with navbar-gallery
+    ============================================================ */
+    :root {
+      --bg: #0b0d12;
+      --bg-card: #11141c;
+      --bg-card2: #171b26;
+      --border: rgba(255, 255, 255, 0.07);
+      --border-h: rgba(255, 255, 255, 0.13);
+      --text-1: #eef0f8;
+      --text-2: #8890aa;
+      --text-3: #50566e;
+      --accent: #5b8def;
+      --accent-2: #ef5b8d;
+      --accent-3: #3de89a;
+      --accent-g: rgba(91, 141, 239, 0.35);
+      --header-h: 66px;
+      --radius: 14px;
+      --radius-sm: 8px;
+      --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.5);
+      --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.6);
+      --trans: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      --fh: 'Syne', sans-serif;
+      --fb: 'DM Sans', sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--fb);
+      background: var(--bg);
+      color: var(--text-1);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(91, 141, 239, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(91, 141, 239, 0.025) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* ── Header ─────────────────────────────── */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-h);
+      z-index: 1000;
+      background: rgba(11, 13, 18, 0.84);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 40px rgba(0, 0, 0, 0.4);
+      transition: box-shadow .3s;
+    }
+
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      height: 100%;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-icon {
+      font-size: 21px;
+      color: var(--accent);
+      filter: drop-shadow(0 0 8px var(--accent-g));
+      animation: logoSpin 8s linear infinite;
+    }
+
+    @keyframes logoSpin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .logo-text {
+      font-family: var(--fh);
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-1);
+      letter-spacing: -.02em;
+    }
+
+    .logo-text em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .nav {
+      display: flex;
+      gap: 4px;
+      margin-left: 12px;
+    }
+
+    .nav-link {
+      font-size: .86rem;
+      font-weight: 500;
+      color: var(--text-2);
+      text-decoration: none;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      transition: var(--trans);
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      right: 50%;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: var(--trans);
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--text-1);
+      background: rgba(91, 141, 239, .1);
+    }
+
+    .nav-link.active::after,
+    .nav-link:hover::after {
+      left: 14px;
+      right: 14px;
+    }
+
+    .header-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-cta {
+      padding: 8px 20px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 100px;
+      font-size: .82rem;
+      font-weight: 600;
+      transition: var(--trans);
+      white-space: nowrap;
+    }
+
+    .header-cta:hover {
+      background: #7aa5f5;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(91, 141, 239, .4);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 38px;
+      height: 38px;
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .hamburger span {
+      display: block;
+      height: 2px;
+      background: var(--text-2);
+      border-radius: 2px;
+      transition: var(--trans);
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* ── Container ───────────────────────────── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .alt-section {
+      background: rgba(255, 255, 255, .015);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── Page Hero ───────────────────────────── */
+    .page-hero {
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      padding-top: calc(var(--header-h) + 60px);
+      padding-bottom: 60px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(91, 141, 239, .12) 0%, rgba(61, 232, 154, .05) 50%, rgba(239, 91, 141, .08) 100%);
+    }
+
+    .hero-shapes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .hshape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.18;
+      animation: shapeFloat 8s ease-in-out infinite;
+    }
+
+    .hshape-1 {
+      width: 420px;
+      height: 420px;
+      background: var(--accent);
+      top: -120px;
+      right: -60px;
+    }
+
+    .hshape-2 {
+      width: 300px;
+      height: 300px;
+      background: var(--accent-2);
+      bottom: -80px;
+      left: 8%;
+      animation-duration: 11s;
+      animation-direction: reverse;
+    }
+
+    .hshape-3 {
+      width: 240px;
+      height: 240px;
+      background: var(--accent-3);
+      top: 25%;
+      left: 58%;
+      animation-duration: 13s;
+    }
+
+    @keyframes shapeFloat {
+
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-28px) scale(1.05);
+      }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(91, 141, 239, .12);
+      border: 1px solid rgba(91, 141, 239, .25);
+      color: var(--accent);
+      font-size: .78rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+      letter-spacing: .06em;
+    }
+
+    .hero-title {
+      font-family: var(--fh);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .hero-title em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      color: var(--text-2);
+      font-size: 1.05rem;
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* ── Categories Grid ─────────────────────── */
+    .cats-section {
+      padding: 64px 0 80px;
+    }
+
+    .cats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
+      gap: 22px;
+    }
+
+    .cat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+      transition: var(--trans);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      animation: cardIn .4s ease both;
+    }
+
+    .cat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(91, 141, 239, .05), transparent 60%);
+      opacity: 0;
+      transition: var(--trans);
+      pointer-events: none;
+    }
+
+    .cat-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-h);
+      box-shadow: var(--shadow-md);
+    }
+
+    .cat-card:hover::before {
+      opacity: 1;
+    }
+
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    /* Per-category accent on hover */
+    .cat-minimal:hover {
+      border-color: rgba(140, 140, 160, .4);
+    }
+
+    .cat-glass:hover {
+      border-color: rgba(255, 255, 255, .25);
+    }
+
+    .cat-gradient:hover {
+      border-color: rgba(239, 91, 141, .35);
+    }
+
+    .cat-dark:hover {
+      border-color: rgba(91, 141, 239, .4);
+    }
+
+    .cat-animated:hover {
+      border-color: rgba(253, 160, 133, .35);
+    }
+
+    .cat-neon:hover {
+      border-color: rgba(0, 245, 255, .35);
+    }
+
+    .cat-threed:hover {
+      border-color: rgba(255, 101, 132, .35);
+    }
+
+    .cat-mega:hover {
+      border-color: rgba(61, 232, 154, .35);
+    }
+
+    .cat-creative:hover {
+      border-color: rgba(255, 215, 0, .35);
+    }
+
+    .cat-mobile:hover {
+      border-color: rgba(191, 90, 242, .35);
+    }
+
+    .cat-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cat-icon-wrap {
+      width: 40px;
+      height: 40px;
+      background: rgba(91, 141, 239, .1);
+      border: 1px solid rgba(91, 141, 239, .2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .cat-count {
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--text-3);
+      background: rgba(255, 255, 255, .05);
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    .cat-card h3 {
+      font-family: var(--fh);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-1);
+      letter-spacing: -.01em;
+    }
+
+    .cat-card p {
+      font-size: .87rem;
+      color: var(--text-2);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .cat-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .cat-tags span {
+      font-size: .7rem;
+      font-weight: 600;
+      color: var(--text-3);
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid var(--border);
+      padding: 2px 9px;
+      border-radius: 100px;
+    }
+
+    /* ── Mini Nav Preview ─── */
+    .cat-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 58px;
+      background: rgba(255, 255, 255, .02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      overflow: hidden;
+    }
+
+    .cat-preview.dark-prev {
+      background: #080a10;
+    }
+
+    .cat-preview.light-prev {
+      background: #f5f5f0;
+    }
+
+    .cat-preview.void-prev {
+      background: #050507;
+    }
+
+    .cat-preview.mid-prev {
+      background: #1a1d2a;
+    }
+
+    .cat-preview.glass-prev {
+      background: linear-gradient(135deg, rgba(91, 141, 239, .35), rgba(61, 232, 154, .25));
+    }
+
+    .cat-preview.neu-prev {
+      background: #1e2030;
+    }
+
+    .cat-preview.brut-prev {
+      background: #f0e840;
+    }
+
+    .cat-preview.sticker-prev {
+      background: linear-gradient(135deg, #ffe0f0, #e0f4ff);
+    }
+
+    /* Mini nav resets */
+    .mnav {
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .mnav ul {
+      list-style: none;
+      display: flex;
+    }
+
+    .mnav a {
+      text-decoration: none;
+    }
+
+    /* ── Minimal mini ── */
+    .mn-minimal {
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .mn-minimal .ml {
+      font-family: var(--fh);
+      font-size: .72rem;
+      font-weight: 800;
+      color: #111;
+    }
+
+    .mn-minimal .mlinks {
+      display: flex;
+      gap: 12px;
+    }
+
+    .mn-minimal .mlinks a {
+      font-size: .68rem;
+      color: #888;
+      font-weight: 500;
+    }
+
+    .mn-minimal .mlinks a.act {
+      color: #111;
+      border-bottom: 1.5px solid #111;
+    }
+
+    .mn-minimal .mbtn {
+      padding: 4px 10px;
+      background: #111;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: .66rem;
+      font-weight: 700;
+      cursor: default;
+    }
+
+    /* ── Glass mini ── */
+    .mn-glass {
+      justify-content: space-between;
+      background: rgba(255, 255, 255, .15);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, .3);
+      border-radius: 8px;
+      padding: 6px 12px;
+    }
+
+    .mn-glass .ml {
+      font-family: var(--fh);
+      font-size: .72rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .mn-glass .mlinks {
+      display: flex;
+      gap: 10px;
+    }
+
+    .mn-glass .mlinks a {
+      font-size: .65rem;
+      color: rgba(255, 255, 255, .7);
+    }
+
+    .mn-glass .mlinks a.act {
+      color: #fff;
+    }
+
+    .mn-glass .mbtn {
+      padding: 3px 9px;
+      background: rgba(255, 255, 255, .25);
+      border: 1px solid rgba(255, 255, 255, .4);
+      border-radius: 100px;
+      color: #fff;
+      font-size: .64rem;
+      font-weight: 600;
+      cursor: default;
+    }
+
+    /* ── Gradient mini ── */
+    .mn-gradient {
+      justify-content: space-between;
+      background: linear-gradient(90deg, #f093fb, #f5576c);
+      border-radius: 7px;
+      padding: 7px 12px;
+    }
+
+    .mn-gradient .ml {
+      font-family: var(--fh);
+      font-size: .72rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .mn-gradient .mlinks {
+      display: flex;
+      gap: 10px;
+    }
+
+    .mn-gradient .mlinks a {
+      font-size: .65rem;
+      color: rgba(255, 255, 255, .75);
+      font-weight: 600;
+    }
+
+    .mn-gradient .mlinks a.act {
+      color: #fff;
+    }
+
+    .mn-gradient .mbtn {
+      padding: 3px 9px;
+      background: rgba(255, 255, 255, .25);
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      font-size: .64rem;
+      font-weight: 700;
+      cursor: default;
+    }
+
+    /* ── Dark mini ── */
+    .mn-dark {
+      justify-content: space-between;
+      padding: 6px 0;
+    }
+
+    .mn-dark .ml {
+      font-family: var(--fh);
+      font-size: .72rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .mn-dark .mlinks {
+      display: flex;
+      gap: 10px;
+    }
+
+    .mn-dark .mlinks a {
+      font-size: .65rem;
+      color: rgba(255, 255, 255, .4);
+    }
+
+    .mn-dark .mlinks a.act {
+      color: #fff;
+    }
+
+    .mn-dark .mbtn {
+      padding: 3px 9px;
+      background: #5b8def;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      font-size: .64rem;
+      font-weight: 700;
+      cursor: default;
+    }
+
+    /* ── Animated mini ── */
+    .mn-animated {
+      justify-content: space-between;
+      padding: 6px 0;
+    }
+
+    .mn-animated .ml {
+      font-family: var(--fh);
+      font-size: .72rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .mn-animated .mlinks {
+      display: flex;
+      gap: 10px;
+    }
+
+    .mn-animated .mlinks a {
+      font-size: .65rem;
+      color: rgba(255, 255, 255, .45);
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .mn-animated .mlinks a.act {
+      color: #fff;
+    }
+
+    .mn-animated .mlinks a.act::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1.5px;
+      background: linear-gradient(90deg, #5b8def, #ef5b8d);
+      border-radius: 2px;
+    }
+
+    .mn-animated .mpulse {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(91, 141, 239, .15);
+      border: 1.5px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: mPulse 1.8s infinite;
+    }
+
+    @keyframes mPulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(91, 141, 239, .4)
+      }
+
+      70% {
+        box-shadow: 0 0 0 6px rgba(91, 141, 239, 0)
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(91, 141, 239, 0)
+      }
+    }
+
+    .mn-animated .mpulse span {
+      font-size: .6rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── Neon mini ── */
+    .mn-neon {
+      justify-content: space-between;
+      padding: 6px 0;
+    }
+
+    .mn-neon .ml {
+      font-family: var(--fh);
+      font-size: .72rem;
+      font-weight: 800;
+      color: #00f5ff;
+      text-shadow: 0 0 8px #00f5ff;
+      letter-spacing: .1em;
+    }
+
+    .mn-neon .mlinks {
+      display: flex;
+      gap: 10px;
+    }
+
+    .mn-neon .mlinks a {
+      font-size: .65rem;
+      color: rgba(0, 245, 255, .45);
+      transition: all .2s;
+    }
+
+    .mn-neon .mlinks a.act {
+      color: #00f5ff;
+      text-shadow: 0 0 6px #00f5ff;
+    }
+
+    .mn-neon .mbtn {
+      padding: 3px 9px;
+      background: transparent;
+      border: 1px solid #00f5ff;
+      border-radius: 3px;
+      color: #00f5ff;
+      font-size: .64rem;
+      font-weight: 700;
+      cursor: default;
+      box-shadow: 0 0 8px rgba(0, 245, 255, .2);
+    }
+
+    /* ── 3D mini ── */
+    .mn-3d {
+      justify-content: space-between;
+      background: #e8e8ec;
+      border-radius: 6px;
+      padding: 6px 12px;
+      box-shadow: 0 3px 0 #b0b0b8;
+    }
+
+    .mn-3d .ml {
+      font-family: var(--fh);
+      font-size: .72rem;
+      font-weight: 800;
+      color: #111;
+    }
+
+    .mn-3d .mlinks {
+      display: flex;
+      gap: 8px;
+    }
+
+    .mn-3d .mlinks a {
+      font-size: .65rem;
+      color: #666;
+      padding: 3px 7px;
+      border-radius: 3px;
+    }
+
+    .mn-3d .mlinks a.act {
+      background: #fff;
+      color: #111;
+      box-shadow: 0 2px 0 #bbb;
+    }
+
+    .mn-3d .mbtn {
+      padding: 3px 9px;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: .64rem;
+      font-weight: 700;
+      cursor: default;
+      box-shadow: 0 2px 0 #111;
+    }
+
+    /* ── Mega mini ── */
+    .mn-mega-wrap {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .mn-mega-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 0;
+    }
+
+    .mn-mega-bar .ml {
+      font-family: var(--fh);
+      font-size: .72rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .mn-mega-bar .mlinks {
+      display: flex;
+      gap: 10px;
+    }
+
+    .mn-mega-bar .mlinks a {
+      font-size: .65rem;
+      color: rgba(255, 255, 255, .45);
+    }
+
+    .mn-mega-bar .mlinks a.act {
+      color: #fff;
+    }
+
+    .mn-mega-drop {
+      background: #13161f;
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 6px;
+      padding: 8px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .mn-mega-col span {
+      font-size: .58rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .mn-mega-col a {
+      font-size: .6rem;
+      color: rgba(255, 255, 255, .4);
+      display: block;
+      margin-bottom: 1px;
+    }
+
+    /* ── Creative mini ── */
+    .mn-creative {
+      justify-content: space-between;
+      border-top: 2px solid #111;
+      background: #fafaf5;
+      padding: 6px 0;
+    }
+
+    .mn-creative .ml {
+      font-family: var(--fh);
+      font-size: .82rem;
+      font-weight: 800;
+      color: #111;
+      letter-spacing: .04em;
+    }
+
+    .mn-creative .mlinks {
+      display: flex;
+      gap: 10px;
+    }
+
+    .mn-creative .mlinks a {
+      font-size: .65rem;
+      color: #666;
+    }
+
+    .mn-creative .mlinks a.act {
+      color: #111;
+      font-style: italic;
+    }
+
+    /* ── Mobile mini ── */
+    .mn-mobile-wrap {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .mn-mobile-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 0 6px;
+    }
+
+    .mn-mobile-bar .ml {
+      font-family: var(--fh);
+      font-size: .72rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .mn-mobile-tabs {
+      display: flex;
+      justify-content: space-around;
+      background: #0e1018;
+      border-top: 1px solid rgba(255, 255, 255, .07);
+      border-radius: 0 0 6px 6px;
+      padding: 6px 4px 4px;
+    }
+
+    .mn-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      flex: 1;
+      font-size: .6rem;
+      color: rgba(255, 255, 255, .35);
+    }
+
+    .mn-tab.act {
+      color: #5b8def;
+    }
+
+    .mn-tab-ico {
+      font-size: .75rem;
+    }
+
+    /* ── Card footer ── */
+    .cat-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--text-3);
+      padding-top: 6px;
+      border-top: 1px solid var(--border);
+      transition: var(--trans);
+    }
+
+    .cat-card:hover .cat-card-footer {
+      color: var(--accent);
+    }
+
+    .cat-card-footer .arrow {
+      transition: var(--trans);
+    }
+
+    .cat-card:hover .cat-card-footer .arrow {
+      transform: translateX(4px);
+    }
+
+    /* ── Stats Bar ───────────────────────────── */
+    .stats-bar {
+      background: rgba(91, 141, 239, .06);
+      border-top: 1px solid rgba(91, 141, 239, .15);
+      border-bottom: 1px solid rgba(91, 141, 239, .15);
+      padding: 40px 0;
+    }
+
+    .stats-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 0 48px;
+    }
+
+    .stat-num {
+      font-family: var(--fh);
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -.05em;
+      line-height: 1;
+    }
+
+    .stat-lbl {
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .stat-div {
+      width: 1px;
+      height: 50px;
+      background: var(--border);
+    }
+
+    /* ── CTA Section ─────────────────────────── */
+    .cta-section {
+      padding: 60px 0 80px;
+    }
+
+    .cta-card {
+      background: linear-gradient(135deg, rgba(91, 141, 239, .12), rgba(61, 232, 154, .06) 50%, rgba(239, 91, 141, .08));
+      border: 1px solid rgba(91, 141, 239, .2);
+      border-radius: var(--radius);
+      padding: 64px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      height: 200px;
+      background: radial-gradient(ellipse, rgba(91, 141, 239, .15), transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-card h2 {
+      font-family: var(--fh);
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      margin-bottom: 12px;
+    }
+
+    .cta-card p {
+      color: var(--text-2);
+      margin-bottom: 28px;
+      font-size: 1rem;
+    }
+
+    .cta-btn-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      font-family: var(--fb);
+      font-size: .92rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--trans);
+    }
+
+    .cta-btn-main:hover {
+      background: #7aa5f5;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(91, 141, 239, .4);
+    }
+
+    .cta-btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: transparent;
+      color: var(--text-1);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-family: var(--fb);
+      font-size: .92rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--trans);
+    }
+
+    .cta-btn-ghost:hover {
+      background: rgba(255, 255, 255, .05);
+      border-color: var(--border-h);
+    }
+
+    /* ── Footer ──────────────────────────────── */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 0;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      font-size: .8rem;
+      color: var(--text-3);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-size: .82rem;
+      color: var(--text-3);
+      text-decoration: none;
+      transition: var(--trans);
+    }
+
+    .footer-links a:hover {
+      color: var(--text-1);
+    }
+
+    /* ── Section label / title helpers ── */
+    .section-label {
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: var(--fh);
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .section-title em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .section-sub {
+      color: var(--text-2);
+      font-size: 1rem;
+      max-width: 520px;
+      margin-bottom: 48px;
+    }
+
+    /* ── Responsive ──────────────────────────── */
+    @media (max-width:900px) {
+      .nav {
+        display: none;
+      }
+
+      .nav.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: var(--header-h);
+        left: 0;
+        right: 0;
+        background: rgba(11, 13, 18, .97);
+        backdrop-filter: blur(20px);
+        padding: 14px;
+        border-bottom: 1px solid var(--border);
+        gap: 4px;
+        z-index: 999;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    @media (max-width:768px) {
+      .container {
+        padding: 0 20px;
+      }
+
+      .section {
+        padding: 48px 0;
+      }
+
+      .cats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page-hero {
+        min-height: 320px;
+        padding-top: calc(var(--header-h) + 36px);
+        padding-bottom: 40px;
+      }
+
+      .header-inner {
+        padding: 0 20px;
+        gap: 16px;
+      }
+
+      .stat-item {
+        padding: 0 24px;
+      }
+    }
+
+    @media (max-width:480px) {
+      .stat-div {
+        display: none;
+      }
+
+      .stats-inner {
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .cta-card {
+        padding: 40px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════ HEADER ══════════ -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="navbar-gallery.html" class="logo">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">Nav<em>Vault</em></span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="navbar-gallery.html" class="nav-link">Home</a>
+        <a href="nav-categories.html" class="nav-link active">Categories</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="header-right">
+        <a href="navbar-gallery.html" class="header-cta">Open Gallery →</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════ PAGE HERO ══════════ -->
+  <section class="page-hero">
+    <div class="hero-shapes">
+      <div class="hshape hshape-1"></div>
+      <div class="hshape hshape-2"></div>
+      <div class="hshape hshape-3"></div>
+    </div>
+    <div class="container">
+      <div class="hero-badge">✦ 10 Categories · 50 Navbars</div>
+      <h1 class="hero-title">Browse by <em>Style</em></h1>
+      <p class="hero-sub">Every navbar style, organised for quick discovery. From clean minimalist headers to full mega
+        menus — find the perfect navigation for your project.</p>
+    </div>
+  </section>
+
+  <!-- ══════════ CATEGORIES GRID ══════════ -->
+  <section class="section cats-section">
+    <div class="container">
+      <div class="cats-grid">
+
+        <!-- 1: Minimal -->
+        <a href="navbar-gallery.html" class="cat-card cat-minimal">
+          <div class="cat-card-top">
+            <div class="cat-icon-wrap"><span>—</span></div>
+            <span class="cat-count">5 navbars</span>
+          </div>
+          <h3>Minimal</h3>
+          <p>Clean, distraction-free headers with subtle active states, underline indicators and floating pill
+            navigations.</p>
+          <div class="cat-tags">
+            <span>Clean White</span><span>Underline Active</span><span>Floating Pill</span>
+          </div>
+          <div class="cat-preview light-prev">
+            <nav class="mnav mn-minimal">
+              <span class="ml">Brand</span>
+              <ul class="mlinks">
+                <li><a href="#">Home</a></li>
+                <li><a href="#" class="act">About</a></li>
+                <li><a href="#">Work</a></li>
+              </ul>
+              <button class="mbtn">Hire Me</button>
+            </nav>
+          </div>
+          <div class="cat-card-footer">
+            <span>View in Gallery</span><span class="arrow">→</span>
+          </div>
+        </a>
+
+        <!-- 2: Glassmorphism -->
+        <a href="navbar-gallery.html" class="cat-card cat-glass">
+          <div class="cat-card-top">
+            <div class="cat-icon-wrap"><span>◈</span></div>
+            <span class="cat-count">5 navbars</span>
+          </div>
+          <h3>Glassmorphism</h3>
+          <p>Frosted blur, tinted crystal and dark glass bars using backdrop-filter and translucent fills over rich
+            backgrounds.</p>
+          <div class="cat-tags">
+            <span>Frosted Glass</span><span>Tinted Bar</span><span>Glass Pill</span>
+          </div>
+          <div class="cat-preview glass-prev">
+            <nav class="mnav mn-glass">
+              <span class="ml">⬡ Frost</span>
+              <ul class="mlinks">
+                <li><a href="#" class="act">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Docs</a></li>
+              </ul>
+              <button class="mbtn">Sign Up</button>
+            </nav>
+          </div>
+          <div class="cat-card-footer">
+            <span>View in Gallery</span><span class="arrow">→</span>
+          </div>
+        </a>
+
+        <!-- 3: Gradient -->
+        <a href="navbar-gallery.html" class="cat-card cat-gradient">
+          <div class="cat-card-top">
+            <div class="cat-icon-wrap"><span>◉</span></div>
+            <span class="cat-count">5 navbars</span>
+          </div>
+          <h3>Gradient</h3>
+          <p>Aurora greens, sunset pinks, ocean blues and rainbow animated borders — navbars that become the hero of
+            your page.</p>
+          <div class="cat-tags">
+            <span>Aurora</span><span>Sunset Bar</span><span>Rainbow Border</span>
+          </div>
+          <div class="cat-preview">
+            <nav class="mnav mn-gradient">
+              <span class="ml">Dusk</span>
+              <ul class="mlinks">
+                <li><a href="#" class="act">Discover</a></li>
+                <li><a href="#">Create</a></li>
+                <li><a href="#">Pro</a></li>
+              </ul>
+              <button class="mbtn">Try Free</button>
+            </nav>
+          </div>
+          <div class="cat-card-footer">
+            <span>View in Gallery</span><span class="arrow">→</span>
+          </div>
+        </a>
+
+        <!-- 4: Dark & Bold -->
+        <a href="navbar-gallery.html" class="cat-card cat-dark">
+          <div class="cat-card-top">
+            <div class="cat-icon-wrap"><span>◍</span></div>
+            <span class="cat-count">5 navbars</span>
+          </div>
+          <h3>Dark &amp; Bold</h3>
+          <p>Obsidian blacks, carbon solids, void transparencies and terminal monospace — premium dark-mode navigation
+            bars.</p>
+          <div class="cat-tags">
+            <span>Obsidian</span><span>Carbon Bold</span><span>Terminal</span>
+          </div>
+          <div class="cat-preview dark-prev">
+            <nav class="mnav mn-dark">
+              <span class="ml">⬡ OBS</span>
+              <ul class="mlinks">
+                <li><a href="#" class="act">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Blog</a></li>
+              </ul>
+              <button class="mbtn">Sign Up ↗</button>
+            </nav>
+          </div>
+          <div class="cat-card-footer">
+            <span>View in Gallery</span><span class="arrow">→</span>
+          </div>
+        </a>
+
+        <!-- 5: Animated -->
+        <a href="navbar-gallery.html" class="cat-card cat-animated">
+          <div class="cat-card-top">
+            <div class="cat-icon-wrap"><span>◎</span></div>
+            <span class="cat-count">5 navbars</span>
+          </div>
+          <h3>Animated</h3>
+          <p>Slide reveals, shimmer sweeps, pulse dot indicators, animated underlines and marquee scrolling navigation
+            bars.</p>
+          <div class="cat-tags">
+            <span>Slide Reveal</span><span>Shimmer Links</span><span>Marquee Bar</span>
+          </div>
+          <div class="cat-preview dark-prev">
+            <nav class="mnav mn-animated">
+              <span class="ml">LUMINA</span>
+              <ul class="mlinks">
+                <li><a href="#" class="act">Discover</a></li>
+                <li><a href="#">Create</a></li>
+                <li><a href="#">Share</a></li>
+              </ul>
+              <div class="mpulse"><span>▶</span></div>
+            </nav>
+          </div>
+          <div class="cat-card-footer">
+            <span>View in Gallery</span><span class="arrow">→</span>
+          </div>
+        </a>
+
+        <!-- 6: Neon -->
+        <a href="navbar-gallery.html" class="cat-card cat-neon">
+          <div class="cat-card-top">
+            <div class="cat-icon-wrap"><span>⊛</span></div>
+            <span class="cat-count">5 navbars</span>
+          </div>
+          <h3>Neon</h3>
+          <p>Glowing cyan, pink, green and purple outlines with text-shadow pulses, flicker animations and RGB
+            multi-colour effects.</p>
+          <div class="cat-tags">
+            <span>Neon Cyan</span><span>Neon Pink</span><span>Multi Neon</span>
+          </div>
+          <div class="cat-preview void-prev">
+            <nav class="mnav mn-neon">
+              <span class="ml">CYBER</span>
+              <ul class="mlinks">
+                <li><a href="#" class="act">Grid</a></li>
+                <li><a href="#">Matrix</a></li>
+                <li><a href="#">Nodes</a></li>
+              </ul>
+              <button class="mbtn">CONNECT</button>
+            </nav>
+          </div>
+          <div class="cat-card-footer">
+            <span>View in Gallery</span><span class="arrow">→</span>
+          </div>
+        </a>
+
+        <!-- 7: 3D & Depth -->
+        <a href="navbar-gallery.html" class="cat-card cat-threed">
+          <div class="cat-card-top">
+            <div class="cat-icon-wrap"><span>⊞</span></div>
+            <span class="cat-count">5 navbars</span>
+          </div>
+          <h3>3D &amp; Depth</h3>
+          <p>Raised blocks, extruded link buttons, layered colour shadows, perspective hover transforms and neumorphic
+            inset styles.</p>
+          <div class="cat-tags">
+            <span>Raised 3D</span><span>Extruded Links</span><span>Neumorphic</span>
+          </div>
+          <div class="cat-preview mid-prev">
+            <nav class="mnav mn-3d">
+              <span class="ml">SOLID</span>
+              <ul class="mlinks">
+                <li><a href="#" class="act">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+              </ul>
+              <button class="mbtn">Buy Now</button>
+            </nav>
+          </div>
+          <div class="cat-card-footer">
+            <span>View in Gallery</span><span class="arrow">→</span>
+          </div>
+        </a>
+
+        <!-- 8: Mega Menu -->
+        <a href="navbar-gallery.html" class="cat-card cat-mega">
+          <div class="cat-card-top">
+            <div class="cat-icon-wrap"><span>⊕</span></div>
+            <span class="cat-count">5 navbars</span>
+          </div>
+          <h3>Mega Menu</h3>
+          <p>Classic columns, icon cards, full-width featured panels and sidebar-tab mega menus for content-rich
+            applications.</p>
+          <div class="cat-tags">
+            <span>Classic Mega</span><span>Card Mega</span><span>Sidebar Mega</span>
+          </div>
+          <div class="cat-preview dark-prev" style="flex-direction:column;align-items:flex-start;padding:8px 12px;">
+            <div class="mn-mega-wrap">
+              <div class="mn-mega-bar">
+                <span class="ml">MEGA</span>
+                <ul class="mlinks" style="display:flex;gap:10px;list-style:none;">
+                  <li><a href="#" style="font-size:.65rem;color:rgba(255,255,255,.45);text-decoration:none;">Home</a>
+                  </li>
+                  <li><a href="#" class="act" style="font-size:.65rem;color:#fff;text-decoration:none;">Products ▾</a>
+                  </li>
+                  <li><a href="#" style="font-size:.65rem;color:rgba(255,255,255,.45);text-decoration:none;">Blog</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="mn-mega-drop">
+                <div class="mn-mega-col"><span>Design</span><a href="#">UI Kit</a><a href="#">Icons</a></div>
+                <div class="mn-mega-col"><span>Dev</span><a href="#">Components</a><a href="#">APIs</a></div>
+                <div class="mn-mega-col"><span>Tools</span><a href="#">Figma</a><a href="#">CLI</a></div>
+              </div>
+            </div>
+          </div>
+          <div class="cat-card-footer">
+            <span>View in Gallery</span><span class="arrow">→</span>
+          </div>
+        </a>
+
+        <!-- 9: Creative -->
+        <a href="navbar-gallery.html" class="cat-card cat-creative">
+          <div class="cat-card-top">
+            <div class="cat-icon-wrap"><span>◻</span></div>
+            <span class="cat-count">5 navbars</span>
+          </div>
+          <h3>Creative</h3>
+          <p>Split halves, editorial layouts, brutalist type, sticker-style pills and vertical side navigations for bold
+            creative projects.</p>
+          <div class="cat-tags">
+            <span>Split Half</span><span>Editorial</span><span>Brutalist</span>
+          </div>
+          <div class="cat-preview" style="background:#fafaf5;border-top:2px solid #111;padding:6px 12px;">
+            <nav class="mnav mn-creative">
+              <span class="ml">THE PRESS</span>
+              <ul class="mlinks">
+                <li><a href="#" class="act">Front Page</a></li>
+                <li><a href="#">Culture</a></li>
+                <li><a href="#">Tech</a></li>
+              </ul>
+            </nav>
+          </div>
+          <div class="cat-card-footer">
+            <span>View in Gallery</span><span class="arrow">→</span>
+          </div>
+        </a>
+
+        <!-- 10: Mobile-First -->
+        <a href="navbar-gallery.html" class="cat-card cat-mobile">
+          <div class="cat-card-top">
+            <div class="cat-icon-wrap"><span>◈</span></div>
+            <span class="cat-count">5 navbars</span>
+          </div>
+          <h3>Mobile-First</h3>
+          <p>Bottom tab bars, hamburger slide-outs, fullscreen overlays, dot indicators and sticky shrink headers built
+            for touch devices.</p>
+          <div class="cat-tags">
+            <span>Bottom Tab Bar</span><span>Hamburger Slide</span><span>Fullscreen</span>
+          </div>
+          <div class="cat-preview dark-prev" style="flex-direction:column;padding:0;overflow:hidden;">
+            <div class="mn-mobile-wrap">
+              <div class="mn-mobile-bar" style="padding:6px 12px;background:#0d0f14;">
+                <span class="ml">APP</span>
+                <span style="color:rgba(255,255,255,.4);font-size:.75rem;">☰</span>
+              </div>
+              <div class="mn-mobile-tabs">
+                <div class="mn-tab act"><span class="mn-tab-ico">⌂</span><span>Home</span></div>
+                <div class="mn-tab"><span class="mn-tab-ico">⊕</span><span>Explore</span></div>
+                <div class="mn-tab"
+                  style="width:32px;height:32px;background:linear-gradient(135deg,#5b8def,#3de89a);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:-10px;font-size:.85rem;color:#fff;">
+                  +</div>
+                <div class="mn-tab"><span class="mn-tab-ico">◈</span><span>Save</span></div>
+                <div class="mn-tab"><span class="mn-tab-ico">◉</span><span>Profile</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="cat-card-footer">
+            <span>View in Gallery</span><span class="arrow">→</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ STATS BAR ══════════ -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="stats-inner">
+        <div class="stat-item"><span class="stat-num">50</span><span class="stat-lbl">Unique Navbars</span></div>
+        <div class="stat-div"></div>
+        <div class="stat-item"><span class="stat-num">10</span><span class="stat-lbl">Style Categories</span></div>
+        <div class="stat-div"></div>
+        <div class="stat-item"><span class="stat-num">0</span><span class="stat-lbl">Frameworks Needed</span></div>
+        <div class="stat-div"></div>
+        <div class="stat-item"><span class="stat-num">∞</span><span class="stat-lbl">Customisable</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ CTA ══════════ -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-glow"></div>
+        <h2>Ready to copy your first navbar?</h2>
+        <p>Head to the gallery, pick a style, and grab the HTML + CSS in one click.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <a href="navbar-gallery.html" class="cta-btn-main">Open Navbar Gallery →</a>
+          <a href="contact.html" class="cta-btn-ghost">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="logo">
+          <span class="logo-icon">⬡</span>
+          <span class="logo-text">Nav<em>Vault</em></span>
+        </div>
+        <p class="footer-copy">Built with pure HTML · CSS · Vanilla JS &nbsp;·&nbsp; No frameworks &nbsp;·&nbsp;
+          Copy-paste ready</p>
+        <div class="footer-links">
+          <a href="navbar-gallery.html">Home</a>
+          <a href="nav-categories.html">Categories</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ── Header hamburger ── */
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('nav');
+    const header = document.getElementById('header');
+
+    hamburger && hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      nav.classList.toggle('open');
+    });
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.header-inner') && nav.classList.contains('open')) {
+        nav.classList.remove('open');
+        hamburger && hamburger.classList.remove('open');
+      }
+    });
+    window.addEventListener('scroll', () => {
+      if (header) header.style.boxShadow = window.scrollY > 10
+        ? '0 2px 40px rgba(0,0,0,.6)' : '0 1px 40px rgba(0,0,0,.4)';
+    });
+
+    /* ── Stagger card animations ── */
+    document.querySelectorAll('.cat-card').forEach((card, i) => {
+      card.style.animationDelay = (i * 0.06) + 's';
+    });
+  </script>
+
+</body>
+
+</html>

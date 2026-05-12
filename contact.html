@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — ButtonVault</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+
+<body>
+
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">Button<em>Vault</em></span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="categories.html" class="nav-link">Categories</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+      </nav>
+      <div class="header-right">
+        <a href="index.html" class="header-cta">Open Gallery →</a>
+        <button class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero contact-hero">
+    <div class="hero-bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+    </div>
+    <div class="container">
+      <div class="page-hero-badge">✦ Say Hello</div>
+      <h1 class="page-hero-title">Get in <em>Touch</em></h1>
+      <p class="page-hero-sub">Have a question, a feature request, or just want to share what you built? We'd love to
+        hear from you.</p>
+    </div>
+  </section>
+
+  <section class="section contact-section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- FORM -->
+        <div class="contact-form-wrap">
+          <h2>Send a Message</h2>
+          <p>Fill in the form and we'll get back to you within 24 hours.</p>
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" placeholder="John" required />
+                <span class="form-error" id="fnameErr">Please enter your first name.</span>
+              </div>
+              <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" placeholder="Doe" required />
+                <span class="form-error" id="lnameErr">Please enter your last name.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="john@example.com" required />
+              <span class="form-error" id="emailErr">Please enter a valid email address.</span>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject">
+                <option value="">Select a topic…</option>
+                <option>Feature Request</option>
+                <option>Bug Report</option>
+                <option>General Question</option>
+                <option>Collaboration</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" rows="5" placeholder="Tell us what's on your mind…" required></textarea>
+              <span class="form-error" id="msgErr">Please enter a message.</span>
+              <div class="char-count"><span id="charCount">0</span> / 500</div>
+            </div>
+            <button type="submit" class="form-submit-btn" id="submitBtn">
+              <span id="submitLabel">Send Message →</span>
+              <span id="submitSpinner" style="display:none;">Sending…</span>
+            </button>
+          </form>
+
+          <!-- SUCCESS STATE -->
+          <div class="form-success" id="formSuccess" style="display:none;">
+            <div class="success-icon">✓</div>
+            <h3>Message Sent!</h3>
+            <p>Thanks for reaching out. We'll reply within 24 hours.</p>
+            <button class="cta-btn-ghost" id="resetForm">Send Another →</button>
+          </div>
+        </div>
+
+        <!-- SIDEBAR INFO -->
+        <div class="contact-info">
+          <div class="contact-info-card">
+            <h3>Other Ways to Connect</h3>
+            <div class="contact-info-items">
+              <div class="ci-item">
+                <div class="ci-icon">✉</div>
+                <div>
+                  <span class="ci-label">Email</span>
+                  <span class="ci-value">hello@buttonvault.dev</span>
+                </div>
+              </div>
+              <div class="ci-item">
+                <div class="ci-icon">⌨</div>
+                <div>
+                  <span class="ci-label">GitHub</span>
+                  <span class="ci-value">github.com/buttonvault</span>
+                </div>
+              </div>
+              <div class="ci-item">
+                <div class="ci-icon">✦</div>
+                <div>
+                  <span class="ci-label">Twitter / X</span>
+                  <span class="ci-value">@buttonvault</span>
+                </div>
+              </div>
+              <div class="ci-item">
+                <div class="ci-icon">◈</div>
+                <div>
+                  <span class="ci-label">CodePen</span>
+                  <span class="ci-value">codepen.io/buttonvault</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <h3>Quick Links</h3>
+            <div class="quick-links">
+              <a href="index.html" class="quick-link">
+                <span>⬡</span>
+                <div><strong>Button Gallery</strong>
+                  <p>Browse all 50 buttons</p>
+                </div>
+                <span>→</span>
+              </a>
+              <a href="categories.html" class="quick-link">
+                <span>◈</span>
+                <div><strong>Categories</strong>
+                  <p>Filter by style type</p>
+                </div>
+                <span>→</span>
+              </a>
+              <a href="about.html" class="quick-link">
+                <span>✦</span>
+                <div><strong>About</strong>
+                  <p>Learn how it was built</p>
+                </div>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-info-card faq-card">
+            <h3>FAQs</h3>
+            <div class="faq-list" id="faqList">
+              <div class="faq-item">
+                <button class="faq-q" data-faq="0">Is ButtonVault free to use? <span>+</span></button>
+                <div class="faq-a">Yes, completely free. Copy any button, use it in personal or commercial projects — no
+                  attribution required.</div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-q" data-faq="1">Can I customise the buttons? <span>+</span></button>
+                <div class="faq-a">Absolutely. All code uses CSS custom properties — swap colours, fonts, sizes and
+                  timing in seconds.</div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-q" data-faq="2">Do they work in all browsers? <span>+</span></button>
+                <div class="faq-a">Yes, tested in Chrome, Firefox, Safari, and Edge. Backdrop-filter (glass buttons)
+                  needs a modern browser.</div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-q" data-faq="3">Will you add more buttons? <span>+</span></button>
+                <div class="faq-a">Yes! Send feature requests via this form or open a GitHub issue. New categories are
+                  planned regularly.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-glow"></div>
+        <h2>Ready to start building?</h2>
+        <p>50 buttons. Zero setup. Open the gallery and grab what you need.</p>
+        <a href="index.html" class="cta-btn-main">Open Button Gallery →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="logo"><span class="logo-icon">⬡</span><span class="logo-text">Button<em>Vault</em></span></div>
+        <p class="footer-copy">Built with pure HTML · CSS · Vanilla JS · No frameworks · Copy-paste ready</p>
+        <div class="footer-links">
+          <a href="index.html">Home</a><a href="categories.html">Categories</a>
+          <a href="about.html">About</a><a href="contact.html">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="js/pages.js"></script>
+</body>
+
+</html>

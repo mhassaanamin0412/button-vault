@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NavVault — Premium Navbar Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navbar-gallery.css" />
+</head>
+
+<body>
+
+  <!-- ══════════ SITE HEADER ══════════ -->
+
+  <header class="header" id="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">Nav<em>Vault</em></span>
+      </div>
+
+      <nav class="nav" id="nav">
+        <a href="#" class="nav-link active">Home</a>
+
+        <div class="nav-item has-dropdown">
+          <a href="#" class="nav-link">
+            Categories <span class="chevron chevron1">▼</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu1">
+            <div class="dropdown-grid">
+              <a href="#" class="dropdown-item" data-category="hover" style="cursor: default;">
+                <span class="drop-icon">◈</span>
+                <div class="drop-text">
+                  <span class="drop-title">Hover Effects</span>
+                  <span class="drop-desc">Transitions & interactions</span>
+                </div>
+              </a>
+              <a href="#" class="dropdown-item" data-category="gradient" style="cursor: default;">
+                <span class="drop-icon">◉</span>
+                <div class="drop-text">
+                  <span class="drop-title">Gradients</span>
+                  <span class="drop-desc">Modern color blends</span>
+                </div>
+              </a>
+              <a href="#" class="dropdown-item" data-category="animated" style="cursor: default;">
+                <span class="drop-icon">◎</span>
+                <div class="drop-text">
+                  <span class="drop-title">Animations</span>
+                  <span class="drop-desc">Infinite loops & pulses</span>
+                </div>
+              </a>
+              <a href="#" class="dropdown-item" data-category="glass" style="cursor: default;">
+                <span class="drop-icon">◈</span>
+                <div class="drop-text">
+                  <span class="drop-title">Glassmorphism</span>
+                  <span class="drop-desc">Frosted & translucent</span>
+                </div>
+              </a>
+            </div>
+            <div class="dropdown-footer">
+              <a href="#" style="cursor: default;">See in Sidebar →</a>
+            </div>
+          </div>
+        </div>
+
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <!-- this is button five -->
+        <div class="nav-item has-dropdown" id="viewSwitcher">
+          <a href="javascript:void(0)" class="nav-link switcher-btn">
+            <span class="active-indicator"></span>
+            <span id="currentViewLabel">Navbars</span>
+            <span class="chevron">▼</span>
+          </a>
+
+          <div class="dropdown-menu mini-dropdown">
+            <div class="mode-links-group">
+              <a href="navbar-gallery.html" class="mode-link active" data-value="navbars">
+                <span class="mode-icon">▤</span>
+                <div class="mode-info">
+                  <span class="mode-title">Navbars</span>
+                  <span class="mode-desc">Header layouts</span>
+                </div>
+                <span class="active-tick">✓</span>
+              </a>
+
+              <a href="index.html" class="mode-link" data-value="buttons">
+                <span class="mode-icon">⬚</span>
+                <div class="mode-info">
+                  <span class="mode-title">Buttons</span>
+                  <span class="mode-desc">Interactive components</span>
+                </div>
+                <span class="active-tick">✓</span>
+              </a>
+
+            </div>
+          </div>
+      </nav>
+      <div class="header-right">
+        <div class="search-wrap">
+          <button class="search2" id="search2">
+            <svg class="search-icon2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              style="color: var(--text-2);">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+          </button>
+          <input type="text" class="search-input" id="searchInput" placeholder="Search Navbars…" />
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            style="color: var(--text-2);">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.35-4.35" />
+          </svg>
+        </div>
+        <button class="hamburger" id="hamburger" onclick="openSidebar()">
+          <span></span><span></span><span></span>
+        </button>
+      </div><button class="search-bar-hide" id="searchBarHide" onclick="searchBarHide()">⨉</button>
+    </div>
+  </header>
+
+  <!-- ══════════ LAYOUT ══════════ -->
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-inner">
+        <div class="sidebar-header">
+          <span class="sidebar-title">Categories</span>
+          <button class="sidebar-close" id="sidebarClose">✕</button>
+        </div>
+        <ul class="category-list" id="categoryList">
+          <li class="category-item active" data-cat="all"><span class="cat-icon">✦</span>All Navbars<span
+              class="cat-count">50</span></li>
+          <li class="category-item" data-cat="minimal"><span class="cat-icon">—</span>Minimal<span
+              class="cat-count">5</span>
+          </li>
+          <li class="category-item" data-cat="glass"><span class="cat-icon">◈</span>Glassmorphism<span
+              class="cat-count">5</span>
+          </li>
+          <li class="category-item" data-cat="gradient"><span class="cat-icon">◉</span>Gradient<span
+              class="cat-count">5</span>
+          </li>
+          <li class="category-item" data-cat="dark"><span class="cat-icon">◍</span>Dark &amp; Bold<span
+              class="cat-count">5</span>
+          </li>
+          <li class="category-item" data-cat="animated"><span class="cat-icon">◎</span>Animated<span
+              class="cat-count">5</span>
+          </li>
+          <li class="category-item" data-cat="neon"><span class="cat-icon">⊛</span>Neon<span class="cat-count">5</span>
+          </li>
+          <li class="category-item" data-cat="threed"><span class="cat-icon">⊞</span>3D &amp; Depth<span
+              class="cat-count">5</span>
+          </li>
+          <li class="category-item" data-cat="mega"><span class="cat-icon">⊕</span>Mega Menu<span
+              class="cat-count">5</span>
+          </li>
+          <li class="category-item" data-cat="creative"><span class="cat-icon">◻</span>Creative<span
+              class="cat-count">5</span>
+          </li>
+          <li class="category-item" data-cat="mobile"><span class="cat-icon">◈</span>Mobile-First<span
+              class="cat-count">5</span>
+          </li>
+        </ul>
+        <div class="sidebar-footer">50 navbars · 10 categories</div>
+      </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+      <!-- HERO -->
+      <section class="hero-banner">
+        <!-- <div class="hero-orb orb1"></div>
+        <div class="hero-orb orb2"></div> -->
+        <div class="hero-text">
+          <h1>Premium Navbar Collection</h1>
+          <p>copy-paste ready navigation bars for modern web projects.</p>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><span>50</span>Navbars</div>
+          <div class="stat"><span>10</span>Styles</div>
+          <div class="stat"><span>3</span>Files Each</div>
+          <div class="stat"><span>∞</span>Customisable</div>
+        </div>
+      </section>
+
+      <!-- SECTION HEADER -->
+      <div class="section-hd" id="sectionHd">
+        <h2 id="sectionTitle">All Navbars</h2>
+        <span class="count-badge" id="countBadge">50 navbars</span>
+      </div>
+
+      <!-- GRID -->
+      <div class="nav-grid" id="navGrid">
+
+        <!-- ══ MINIMAL 1–5 ══ -->
+        <div class="navbox" data-cat="minimal" data-name="Clean Minimal">
+          <div class="navbox-hd">
+            <h3>Clean Minimal</h3><span class="ntag">Minimal</span>
+          </div>
+          <div class="nav-preview light-bg">
+            <nav class="pnav n1">
+              <div class="n1-logo">Brand</div>
+              <ul class="n1-links">
+                <li><a>Home</a></li>
+                <li><a class="act">About</a></li>
+                <li><a>Work</a></li>
+                <li><a>Contact</a></li>
+              </ul>
+              <button class="n1-cta">Hire Me</button>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="1">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="minimal" data-name="Underline Active">
+          <div class="navbox-hd">
+            <h3>Underline Active</h3><span class="ntag">Minimal</span>
+          </div>
+          <div class="nav-preview dark-bg">
+            <nav class="pnav n2">
+              <div class="n2-logo">◆ Studio</div>
+              <ul class="n2-links">
+                <li><a>Work</a></li>
+                <li><a class="act">Lab</a></li>
+                <li><a>Journal</a></li>
+                <li><a>Info</a></li>
+              </ul>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="2">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="minimal" data-name="Dot Navigation">
+          <div class="navbox-hd">
+            <h3>Dot Navigation</h3><span class="ntag">Minimal</span>
+          </div>
+          <div class="nav-preview cream-bg">
+            <nav class="pnav n3">
+              <span class="n3-logo">ÆTHER</span>
+              <ul class="n3-links">
+                <li><a class="act"><span class="ndot"></span>Index</a></li>
+                <li><a><span class="ndot"></span>Store</a></li>
+                <li><a><span class="ndot"></span>About</a></li>
+              </ul>
+              <span class="n3-tag">EST. 2024</span>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="3">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="minimal" data-name="Floating Pill">
+          <div class="navbox-hd">
+            <h3>Floating Pill</h3><span class="ntag">Minimal</span>
+          </div>
+          <div class="nav-preview mid-bg">
+            <nav class="pnav n4">
+              <ul class="n4-links">
+                <li><a class="act">Home</a></li>
+                <li><a>Portfolio</a></li>
+                <li><a>Blog</a></li>
+                <li><a>Contact</a></li>
+              </ul>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="4">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="minimal" data-name="Centered Mono">
+          <div class="navbox-hd">
+            <h3>Centered Mono</h3><span class="ntag">Minimal</span>
+          </div>
+          <div class="nav-preview light-bg">
+            <nav class="pnav n5">
+              <ul class="n5-links">
+                <li><a>INDEX</a></li>
+                <li><a>WORK</a></li>
+                <li class="n5-logo-item"><a>MK</a></li>
+                <li><a>ABOUT</a></li>
+                <li><a>SHOP</a></li>
+              </ul>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="5">⧉ Copy Code</button>
+        </div>
+
+        <!-- ══ GLASSMORPHISM 6–10 ══ -->
+        <div class="navbox" data-cat="glass" data-name="Frosted Glass">
+          <div class="navbox-hd">
+            <h3>Frosted Glass</h3><span class="ntag">Glass</span>
+          </div>
+          <div class="nav-preview glass-bg1">
+            <nav class="pnav n6">
+              <div class="n6-logo">⬡ Frost</div>
+              <ul class="n6-links">
+                <li><a class="act">Home</a></li>
+                <li><a>Products</a></li>
+                <li><a>Pricing</a></li>
+                <li><a>Docs</a></li>
+              </ul>
+              <button class="n6-btn">Sign Up</button>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="6">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="glass" data-name="Tinted Glass Bar">
+          <div class="navbox-hd">
+            <h3>Tinted Glass Bar</h3><span class="ntag">Glass</span>
+          </div>
+          <div class="nav-preview glass-bg2">
+            <nav class="pnav n7">
+              <div class="n7-logo">PRISM</div>
+              <ul class="n7-links">
+                <li><a>Features</a></li>
+                <li><a class="act">Gallery</a></li>
+                <li><a>Team</a></li>
+                <li><a>FAQ</a></li>
+              </ul>
+              <div class="n7-acts"><button class="n7-login">Login</button><button class="n7-signup">Start Free</button>
+              </div>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="7">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="glass" data-name="Glass Floating Pill">
+          <div class="navbox-hd">
+            <h3>Glass Floating Pill</h3><span class="ntag">Glass</span>
+          </div>
+          <div class="nav-preview glass-bg3">
+            <nav class="pnav n8">
+              <div class="n8-inner">
+                <span class="n8-logo">◈</span>
+                <ul class="n8-links">
+                  <li><a class="act">Explore</a></li>
+                  <li><a>Create</a></li>
+                  <li><a>Share</a></li>
+                </ul>
+                <button class="n8-btn">↗</button>
+              </div>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="8">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="glass" data-name="Dark Glass">
+          <div class="navbox-hd">
+            <h3>Dark Glass</h3><span class="ntag">Glass</span>
+          </div>
+          <div class="nav-preview dark-glass-bg">
+            <nav class="pnav n9">
+              <div class="n9-logo"><em>N</em>ova</div>
+              <ul class="n9-links">
+                <li><a class="act">Home</a></li>
+                <li><a>Explore</a></li>
+                <li><a>Build</a></li>
+                <li><a>Deploy</a></li>
+              </ul>
+              <div class="n9-avatar">JS</div>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="9">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="glass" data-name="Crystal Border">
+          <div class="navbox-hd">
+            <h3>Crystal Border</h3><span class="ntag">Glass</span>
+          </div>
+          <div class="nav-preview glass-bg1">
+            <nav class="pnav n10">
+              <div class="n10-logo">CRYST</div>
+              <ul class="n10-links">
+                <li><a>Vision</a></li>
+                <li><a class="act">Mission</a></li>
+                <li><a>Team</a></li>
+              </ul>
+              <button class="n10-btn">Join Waitlist</button>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="10">⧉ Copy Code</button>
+        </div>
+
+        <!-- ══ GRADIENT 11–15 ══ -->
+        <div class="navbox" data-cat="gradient" data-name="Aurora Gradient">
+          <div class="navbox-hd">
+            <h3>Aurora Gradient</h3><span class="ntag">Gradient</span>
+          </div>
+          <div class="nav-preview plain-bg">
+            <nav class="pnav n11">
+              <div class="n11-logo">Aurora</div>
+              <ul class="n11-links">
+                <li><a class="act">Home</a></li>
+                <li><a>Features</a></li>
+                <li><a>Pricing</a></li>
+                <li><a>Blog</a></li>
+              </ul>
+              <button class="n11-btn">Get Started</button>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="11">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="gradient" data-name="Sunset Bar">
+          <div class="navbox-hd">
+            <h3>Sunset Bar</h3><span class="ntag">Gradient</span>
+          </div>
+          <div class="nav-preview plain-bg">
+            <nav class="pnav n12">
+              <div class="n12-logo">Dusk</div>
+              <ul class="n12-links">
+                <li><a class="act">Discover</a></li>
+                <li><a>Create</a></li>
+                <li><a>Community</a></li>
+                <li><a>Pro</a></li>
+              </ul>
+              <button class="n12-btn">Try Free</button>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="12">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="gradient" data-name="Ocean Gradient">
+          <div class="navbox-hd">
+            <h3>Ocean Gradient</h3><span class="ntag">Gradient</span>
+          </div>
+          <div class="nav-preview plain-bg">
+            <nav class="pnav n13">
+              <div class="n13-logo">◉ Wave</div>
+              <ul class="n13-links">
+                <li><a class="act">Surface</a></li>
+                <li><a>Depths</a></li>
+                <li><a>Current</a></li>
+                <li><a>Tides</a></li>
+              </ul>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="13">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="gradient" data-name="Gradient Underline">
+          <div class="navbox-hd">
+            <h3>Gradient Underline</h3><span class="ntag">Gradient</span>
+          </div>
+          <div class="nav-preview dark-bg">
+            <nav class="pnav n14">
+              <div class="n14-logo">SHIFT</div>
+              <ul class="n14-links">
+                <li><a>Products</a></li>
+                <li><a class="act">Design</a></li>
+                <li><a>Code</a></li>
+                <li><a>Dev</a></li>
+              </ul>
+              <button class="n14-btn">Hire Us</button>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="14">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="gradient" data-name="Rainbow Border">
+          <div class="navbox-hd">
+            <h3>Rainbow Border</h3><span class="ntag">Gradient</span>
+          </div>
+          <div class="nav-preview dark-bg">
+            <nav class="pnav n15">
+              <div class="n15-logo">SPEC</div>
+              <ul class="n15-links">
+                <li><a class="act">Home</a></li>
+                <li><a>Work</a></li>
+                <li><a>Team</a></li>
+                <li><a>Contact</a></li>
+              </ul>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="15">⧉ Copy Code</button>
+        </div>
+
+        <!-- ══ DARK 16–20 ══ -->
+        <div class="navbox" data-cat="dark" data-name="Obsidian">
+          <div class="navbox-hd">
+            <h3>Obsidian</h3><span class="ntag">Dark</span>
+          </div>
+          <div class="nav-preview dark-bg">
+            <nav class="pnav n16">
+              <div class="n16-logo">⬡ OBS</div>
+              <ul class="n16-links">
+                <li><a class="act">Home</a></li>
+                <li><a>Products</a></li>
+                <li><a>About</a></li>
+                <li><a>Blog</a></li>
+              </ul>
+              <div class="n16-acts"><button class="n16-login">Login</button><button class="n16-cta">Sign Up ↗</button>
+              </div>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="16">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="dark" data-name="Carbon Bold">
+          <div class="navbox-hd">
+            <h3>Carbon Bold</h3><span class="ntag">Dark</span>
+          </div>
+          <div class="nav-preview dark-bg">
+            <nav class="pnav n17">
+              <div class="n17-logo">CARBON</div>
+              <ul class="n17-links">
+                <li><a class="act">Studio</a></li>
+                <li><a>Cases</a></li>
+                <li><a>Process</a></li>
+                <li><a>Contact</a></li>
+              </ul>
+              <span class="n17-tag">DESIGN STUDIO</span>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="17">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="dark" data-name="Terminal">
+          <div class="navbox-hd">
+            <h3>Terminal</h3><span class="ntag">Dark</span>
+          </div>
+          <div class="nav-preview terminal-bg">
+            <nav class="pnav n18">
+              <div class="n18-logo"><span class="n18-prompt">~/</span>root</div>
+              <ul class="n18-links">
+                <li><a class="act">ls</a></li>
+                <li><a>cd work</a></li>
+                <li><a>cd about</a></li>
+                <li><a>./contact</a></li>
+              </ul>
+              <span class="n18-cursor">█</span>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="18">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="dark" data-name="Void Dark">
+          <div class="navbox-hd">
+            <h3>Void Dark</h3><span class="ntag">Dark</span>
+          </div>
+          <div class="nav-preview void-bg">
+            <nav class="pnav n19">
+              <div class="n19-logo">VOID</div>
+              <ul class="n19-links">
+                <li><a>∕ Enter</a></li>
+                <li><a class="act">∕ Explore</a></li>
+                <li><a>∕ Build</a></li>
+                <li><a>∕ Exit</a></li>
+              </ul>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="19">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="dark" data-name="Midnight Solid">
+          <div class="navbox-hd">
+            <h3>Midnight Solid</h3><span class="ntag">Dark</span>
+          </div>
+          <div class="nav-preview dark-bg">
+            <nav class="pnav n20">
+              <div class="n20-logo">MID<em>NIGHT</em></div>
+              <ul class="n20-links">
+                <li><a class="act">Gallery</a></li>
+                <li><a>Archive</a></li>
+                <li><a>Press</a></li>
+              </ul>
+              <div class="n20-dots"><span></span><span></span><span></span></div>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="20">⧉ Copy Code</button>
+        </div>
+
+        <!-- ══ ANIMATED 21–25 ══ -->
+        <div class="navbox" data-cat="animated" data-name="Slide Reveal">
+          <div class="navbox-hd">
+            <h3>Slide Reveal</h3><span class="ntag">Animated</span>
+          </div>
+          <div class="nav-preview dark-bg">
+            <nav class="pnav n21">
+              <div class="n21-logo">SL/DE</div>
+              <ul class="n21-links">
+                <li><a class="act">Work</a></li>
+                <li><a>Play</a></li>
+                <li><a>Think</a></li>
+                <li><a>Talk</a></li>
+              </ul>
+              <button class="n21-btn">Open</button>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="21">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="animated" data-name="Shimmer Links">
+          <div class="navbox-hd">
+            <h3>Shimmer Links</h3><span class="ntag">Animated</span>
+          </div>
+          <div class="nav-preview mid-bg">
+            <nav class="pnav n22">
+              <div class="n22-logo">LUMINA</div>
+              <ul class="n22-links">
+                <li><a class="act">Discover</a></li>
+                <li><a>Create</a></li>
+                <li><a>Share</a></li>
+                <li><a>Earn</a></li>
+              </ul>
+              <button class="n22-btn">Dashboard →</button>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="22">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="animated" data-name="Pulse Dot Nav">
+          <div class="navbox-hd">
+            <h3>Pulse Dot Nav</h3><span class="ntag">Animated</span>
+          </div>
+          <div class="nav-preview dark-bg">
+            <nav class="pnav n23">
+              <div class="n23-logo"><span class="n23-pulse"></span>LIVE</div>
+              <ul class="n23-links">
+                <li><a class="act">● Stream</a></li>
+                <li><a>○ Archive</a></li>
+                <li><a>○ Schedule</a></li>
+                <li><a>○ Clips</a></li>
+              </ul>
+              <button class="n23-btn">Watch Now</button>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="23">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="animated" data-name="Animated Underline">
+          <div class="navbox-hd">
+            <h3>Animated Underline</h3><span class="ntag">Animated</span>
+          </div>
+          <div class="nav-preview light-bg">
+            <nav class="pnav n24">
+              <div class="n24-logo">Forma</div>
+              <ul class="n24-links">
+                <li><a>About</a></li>
+                <li><a class="act">Process</a></li>
+                <li><a>Projects</a></li>
+                <li><a>Contact</a></li>
+              </ul>
+              <button class="n24-btn">Let's Talk</button>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="24">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="animated" data-name="Marquee Bar">
+          <div class="navbox-hd">
+            <h3>Marquee Bar</h3><span class="ntag">Animated</span>
+          </div>
+          <div class="nav-preview dark-bg">
+            <nav class="pnav n25">
+              <div class="n25-wrap">
+                <div class="n25-marquee">
+                  <span>HOME</span><span>·</span><span>WORK</span><span>·</span><span>ABOUT</span><span>·</span><span>CONTACT</span><span>·</span>
+                  <span>HOME</span><span>·</span><span>WORK</span><span>·</span><span>ABOUT</span><span>·</span><span>CONTACT</span><span>·</span>
+                </div>
+              </div>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="25">⧉ Copy Code</button>
+        </div>
+
+        <!-- ══ NEON 26–30 ══ -->
+        <div class="navbox" data-cat="neon" data-name="Neon Cyan">
+          <div class="navbox-hd">
+            <h3>Neon Cyan</h3><span class="ntag">Neon</span>
+          </div>
+          <div class="nav-preview void-bg">
+            <nav class="pnav n26">
+              <div class="n26-logo">CYBER</div>
+              <ul class="n26-links">
+                <li><a class="act">Grid</a></li>
+                <li><a>Matrix</a></li>
+                <li><a>Nodes</a></li>
+                <li><a>Exit</a></li>
+              </ul>
+              <button class="n26-btn">CONNECT</button>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="26">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="neon" data-name="Neon Pink">
+          <div class="navbox-hd">
+            <h3>Neon Pink</h3><span class="ntag">Neon</span>
+          </div>
+          <div class="nav-preview void-bg">
+            <nav class="pnav n27">
+              <div class="n27-logo">SYNTH</div>
+              <ul class="n27-links">
+                <li><a class="act">Beats</a></li>
+                <li><a>Drops</a></li>
+                <li><a>Mixes</a></li>
+                <li><a>NFTs</a></li>
+              </ul>
+              <button class="n27-btn">PLAY ▶</button>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="27">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="neon" data-name="Neon Green">
+          <div class="navbox-hd">
+            <h3>Neon Green</h3><span class="ntag">Neon</span>
+          </div>
+          <div class="nav-preview void-bg">
+            <nav class="pnav n28">
+              <div class="n28-logo">[HACK]</div>
+              <ul class="n28-links">
+                <li><a class="act">/root</a></li>
+                <li><a>/sys</a></li>
+                <li><a>/net</a></li>
+                <li><a>/exit</a></li>
+              </ul>
+              <button class="n28-btn">RUN</button>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="28">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="neon" data-name="Neon Purple">
+          <div class="navbox-hd">
+            <h3>Neon Purple</h3><span class="ntag">Neon</span>
+          </div>
+          <div class="nav-preview void-bg">
+            <nav class="pnav n29">
+              <div class="n29-logo">∞ FLUX</div>
+              <ul class="n29-links">
+                <li><a class="act">Realm</a></li>
+                <li><a>Void</a></li>
+                <li><a>Ether</a></li>
+                <li><a>Abyss</a></li>
+              </ul>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="29">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="neon" data-name="Multi Neon">
+          <div class="navbox-hd">
+            <h3>Multi Neon</h3><span class="ntag">Neon</span>
+          </div>
+          <div class="nav-preview void-bg">
+            <nav class="pnav n30">
+              <div class="n30-logo">RGB</div>
+              <ul class="n30-links">
+                <li class="nr"><a class="act">Red</a></li>
+                <li class="ng"><a>Green</a></li>
+                <li class="nb"><a>Blue</a></li>
+                <li class="nw"><a>White</a></li>
+              </ul>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="30">⧉ Copy Code</button>
+        </div>
+
+        <!-- ══ 3D 31–35 ══ -->
+        <div class="navbox" data-cat="threed" data-name="Raised 3D Bar">
+          <div class="navbox-hd">
+            <h3>Raised 3D Bar</h3><span class="ntag">3D</span>
+          </div>
+          <div class="nav-preview mid-bg">
+            <nav class="pnav n31">
+              <div class="n31-logo">SOLID</div>
+              <ul class="n31-links">
+                <li><a class="act">Home</a></li>
+                <li><a>Shop</a></li>
+                <li><a>About</a></li>
+                <li><a>Contact</a></li>
+              </ul>
+              <button class="n31-btn">Buy Now</button>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="31">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="threed" data-name="Extruded Links">
+          <div class="navbox-hd">
+            <h3>Extruded Links</h3><span class="ntag">3D</span>
+          </div>
+          <div class="nav-preview light-bg">
+            <nav class="pnav n32">
+              <div class="n32-logo">EXTRUDE</div>
+              <ul class="n32-links">
+                <li><a class="act">Home</a></li>
+                <li><a>Work</a></li>
+                <li><a>Lab</a></li>
+                <li><a>Say Hi</a></li>
+              </ul>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="32">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="threed" data-name="Layered Shadow">
+          <div class="navbox-hd">
+            <h3>Layered Shadow</h3><span class="ntag">3D</span>
+          </div>
+          <div class="nav-preview mid-bg">
+            <nav class="pnav n33">
+              <div class="n33-logo">LAYER</div>
+              <ul class="n33-links">
+                <li><a class="act">Overview</a></li>
+                <li><a>Features</a></li>
+                <li><a>Pricing</a></li>
+                <li><a>Docs</a></li>
+              </ul>
+              <button class="n33-btn">Get App</button>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="33">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="threed" data-name="Perspective Hover">
+          <div class="navbox-hd">
+            <h3>Perspective Hover</h3><span class="ntag">3D</span>
+          </div>
+          <div class="nav-preview dark-bg">
+            <nav class="pnav n34">
+              <div class="n34-logo">DEPTH</div>
+              <ul class="n34-links">
+                <li><a class="act">Fore</a></li>
+                <li><a>Mid</a></li>
+                <li><a>Back</a></li>
+                <li><a>Beyond</a></li>
+              </ul>
+              <button class="n34-btn">Dive In</button>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="34">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="threed" data-name="Neumorphic Nav">
+          <div class="navbox-hd">
+            <h3>Neumorphic Nav</h3><span class="ntag">3D</span>
+          </div>
+          <div class="nav-preview neu-bg">
+            <nav class="pnav n35">
+              <div class="n35-logo">NEU</div>
+              <ul class="n35-links">
+                <li><a class="act">Home</a></li>
+                <li><a>Work</a></li>
+                <li><a>Skills</a></li>
+                <li><a>Contact</a></li>
+              </ul>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="35">⧉ Copy Code</button>
+        </div>
+
+        <!-- ══ MEGA 36–40 ══ -->
+        <div class="navbox navbox-wide" data-cat="mega" data-name="Classic Mega Menu">
+          <div class="navbox-hd">
+            <h3>Classic Mega Menu</h3><span class="ntag">Mega</span>
+          </div>
+          <div class="nav-preview dark-bg nav-tall">
+            <nav class="pnav n36">
+              <div class="n36-bar">
+                <div class="n36-logo">MEGA</div>
+                <ul class="n36-links">
+                  <li><a>Home</a></li>
+                  <li class="has-mega">
+                    <a class="act">Products ▾</a>
+                    <div class="n36-mega">
+                      <div class="n36-col"><span class="n36-ctitle">Design</span><a>UI Kit</a><a>Icons</a><a>Fonts</a>
+                      </div>
+                      <div class="n36-col"><span
+                          class="n36-ctitle">Dev</span><a>Components</a><a>Templates</a><a>APIs</a></div>
+                      <div class="n36-col"><span class="n36-ctitle">Tools</span><a>Figma Plugin</a><a>VS
+                          Code</a><a>CLI</a></div>
+                    </div>
+                  </li>
+                  <li><a>Pricing</a></li>
+                  <li><a>Blog</a></li>
+                </ul>
+                <button class="n36-btn">Start Free</button>
+              </div>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="36">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox navbox-wide" data-cat="mega" data-name="Card Mega Menu">
+          <div class="navbox-hd">
+            <h3>Card Mega Menu</h3><span class="ntag">Mega</span>
+          </div>
+          <div class="nav-preview light-bg nav-tall">
+            <nav class="pnav n37">
+              <div class="n37-bar">
+                <div class="n37-logo">Nexus</div>
+                <ul class="n37-links">
+                  <li><a>Home</a></li>
+                  <li class="has-mega37">
+                    <a class="act">Solutions ▾</a>
+                    <div class="n37-mega">
+                      <a href="#" class="n37-card">
+                        <div class="n37-ico">⚡</div><strong>Speed</strong><span>Lightning builds</span>
+                      </a>
+                      <a href="#" class="n37-card">
+                        <div class="n37-ico">🛡</div><strong>Security</strong><span>Enterprise-grade</span>
+                      </a>
+                      <a href="#" class="n37-card">
+                        <div class="n37-ico">📊</div><strong>Analytics</strong><span>Real-time data</span>
+                      </a>
+                    </div>
+                  </li>
+                  <li><a>Pricing</a></li>
+                  <li><a>About</a></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="37">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox navbox-wide" data-cat="mega" data-name="Full Width Mega">
+          <div class="navbox-hd">
+            <h3>Full Width Mega</h3><span class="ntag">Mega</span>
+          </div>
+          <div class="nav-preview dark-bg nav-tall">
+            <nav class="pnav n38">
+              <div class="n38-bar">
+                <div class="n38-logo">ARCH</div>
+                <ul class="n38-links">
+                  <li><a>Home</a></li>
+                  <li class="has-mega38">
+                    <a class="act">Catalogue ▾</a>
+                    <div class="n38-mega">
+                      <div class="n38-featured"><span>Featured</span><strong>New Collection 2025</strong>
+                        <p>Explore the latest drops</p><a>View →</a>
+                      </div>
+                      <div class="n38-cats">
+                        <div class="n38-cat"><span>Tops</span><a>T-Shirts</a><a>Hoodies</a></div>
+                        <div class="n38-cat"><span>Bottoms</span><a>Jeans</a><a>Shorts</a></div>
+                        <div class="n38-cat"><span>Access.</span><a>Caps</a><a>Bags</a></div>
+                      </div>
+                    </div>
+                  </li>
+                  <li><a>About</a></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="38">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox navbox-wide" data-cat="mega" data-name="Icon Mega Menu">
+          <div class="navbox-hd">
+            <h3>Icon Mega Menu</h3><span class="ntag">Mega</span>
+          </div>
+          <div class="nav-preview mid-bg nav-tall">
+            <nav class="pnav n39">
+              <div class="n39-bar">
+                <div class="n39-logo">◉ Hub</div>
+                <ul class="n39-links">
+                  <li><a>Home</a></li>
+                  <li class="has-mega39">
+                    <a class="act">Services ▾</a>
+                    <div class="n39-mega">
+                      <a href="#" class="n39-item"><span class="n39-ico">◈</span>
+                        <div><strong>Design</strong><small>UI/UX</small></div>
+                      </a>
+                      <a href="#" class="n39-item"><span class="n39-ico">⊕</span>
+                        <div><strong>Dev</strong><small>Web App</small></div>
+                      </a>
+                      <a href="#" class="n39-item"><span class="n39-ico">◎</span>
+                        <div><strong>Brand</strong><small>Identity</small></div>
+                      </a>
+                      <a href="#" class="n39-item"><span class="n39-ico">⊛</span>
+                        <div><strong>Motion</strong><small>Animation</small></div>
+                      </a>
+                    </div>
+                  </li>
+                  <li><a>Work</a></li>
+                  <li><a>Contact</a></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="39">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox navbox-wide" data-cat="mega" data-name="Sidebar Mega">
+          <div class="navbox-hd">
+            <h3>Sidebar Mega</h3><span class="ntag">Mega</span>
+          </div>
+          <div class="nav-preview dark-bg nav-tall">
+            <nav class="pnav n40">
+              <div class="n40-bar">
+                <div class="n40-logo">SIDE</div>
+                <ul class="n40-links">
+                  <li><a>Home</a></li>
+                  <li class="has-mega40">
+                    <a class="act">Platform ▾</a>
+                    <div class="n40-mega">
+                      <div class="n40-sidebar"><a href="#" class="n40-tab active">Overview</a><a href="#"
+                          class="n40-tab">Analytics</a><a href="#" class="n40-tab">Integrations</a></div>
+                      <div class="n40-content"><strong>Platform Overview</strong>
+                        <p>Everything you need to build, ship, and scale modern apps fast.</p><a href="#"
+                          class="n40-link">Learn more →</a>
+                      </div>
+                    </div>
+                  </li>
+                  <li><a>Pricing</a></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="40">⧉ Copy Code</button>
+        </div>
+
+        <!-- ══ CREATIVE 41–45 ══ -->
+        <div class="navbox" data-cat="creative" data-name="Split Half">
+          <div class="navbox-hd">
+            <h3>Split Half</h3><span class="ntag">Creative</span>
+          </div>
+          <div class="nav-preview split-bg">
+            <nav class="pnav n41">
+              <div class="n41-left"><span>WORK</span><span>JOURNAL</span></div>
+              <div class="n41-logo">◈</div>
+              <div class="n41-right"><span>ABOUT</span><span>CONTACT</span></div>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="41">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="creative" data-name="Editorial">
+          <div class="navbox-hd">
+            <h3>Editorial</h3><span class="ntag">Creative</span>
+          </div>
+          <div class="nav-preview editorial-bg">
+            <nav class="pnav n42">
+              <div class="n42-issue">ISSUE 12 — 2025</div>
+              <div class="n42-logo">THE PRESS</div>
+              <ul class="n42-links">
+                <li><a class="act">Front Page</a></li>
+                <li><a>Culture</a></li>
+                <li><a>Tech</a></li>
+                <li><a>Opinion</a></li>
+              </ul>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="42">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="creative" data-name="Brutalist">
+          <div class="navbox-hd">
+            <h3>Brutalist</h3><span class="ntag">Creative</span>
+          </div>
+          <div class="nav-preview brut-bg">
+            <nav class="pnav n43">
+              <div class="n43-logo">BRUT</div>
+              <ul class="n43-links">
+                <li><a class="act">HOME</a></li>
+                <li><a>WORK</a></li>
+                <li><a>ABOUT</a></li>
+                <li><a>CONTACT</a></li>
+              </ul>
+              <button class="n43-btn">ENTER →</button>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="43">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="creative" data-name="Sticker Style">
+          <div class="navbox-hd">
+            <h3>Sticker Style</h3><span class="ntag">Creative</span>
+          </div>
+          <div class="nav-preview sticker-bg">
+            <nav class="pnav n44">
+              <div class="n44-logo">🎨 Studio</div>
+              <ul class="n44-links">
+                <li><a class="act">Home</a></li>
+                <li><a>Portfolio</a></li>
+                <li><a>Shop</a></li>
+                <li><a>Blog</a></li>
+              </ul>
+              <button class="n44-btn">🚀 Launch</button>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="44">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="creative" data-name="Side Vertical Nav">
+          <div class="navbox-hd">
+            <h3>Side Vertical Nav</h3><span class="ntag">Creative</span>
+          </div>
+          <div class="nav-preview dark-bg nav-tall-vert">
+            <nav class="pnav n45">
+              <div class="n45-logo">V</div>
+              <ul class="n45-links">
+                <li><a class="act">Home</a></li>
+                <li><a>Work</a></li>
+                <li><a>About</a></li>
+                <li><a>Contact</a></li>
+              </ul>
+              <div class="n45-socials"><a>tw</a><a>ig</a><a>gh</a></div>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="45">⧉ Copy Code</button>
+        </div>
+
+        <!-- ══ MOBILE 46–50 ══ -->
+        <div class="navbox" data-cat="mobile" data-name="Bottom Tab Bar">
+          <div class="navbox-hd">
+            <h3>Bottom Tab Bar</h3><span class="ntag">Mobile</span>
+          </div>
+          <div class="nav-preview dark-bg nav-tall">
+            <div class="n46-wrap">
+              <p class="n46-body">Page Content Area</p>
+              <nav class="pnav n46">
+                <a href="#" class="n46-tab active"><span>⌂</span><small>Home</small></a>
+                <a href="#" class="n46-tab"><span>⊕</span><small>Explore</small></a>
+                <a href="#" class="n46-tab n46-center"><span>+</span></a>
+                <a href="#" class="n46-tab"><span>◈</span><small>Save</small></a>
+                <a href="#" class="n46-tab"><span>◉</span><small>Profile</small></a>
+              </nav>
+            </div>
+          </div>
+          <button class="copy-btn" data-id="46">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="mobile" data-name="Hamburger Slide">
+          <div class="navbox-hd">
+            <h3>Hamburger Slide</h3><span class="ntag">Mobile</span>
+          </div>
+          <div class="nav-preview dark-bg nav-tall">
+            <nav class="pnav n47">
+              <div class="n47-bar">
+                <div class="n47-logo">SLIDE</div>
+                <button class="n47-ham" id="n47Ham"><span></span><span></span><span></span></button>
+              </div>
+              <div class="n47-menu" id="n47Menu">
+                <ul>
+                  <li><a class="act">Home</a></li>
+                  <li><a>About</a></li>
+                  <li><a>Work</a></li>
+                  <li><a>Contact</a></li>
+                </ul>
+                <button class="n47-cta">Get In Touch →</button>
+              </div>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="47">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="mobile" data-name="Fullscreen Overlay">
+          <div class="navbox-hd">
+            <h3>Fullscreen Overlay</h3><span class="ntag">Mobile</span>
+          </div>
+          <div class="nav-preview dark-bg nav-tall">
+            <nav class="pnav n48">
+              <div class="n48-bar">
+                <div class="n48-logo">FULL</div>
+                <button class="n48-open" id="n48Open">☰</button>
+              </div>
+              <div class="n48-overlay" id="n48Overlay">
+                <button class="n48-close" id="n48Close">✕</button>
+                <ul>
+                  <li><a>01 Home</a></li>
+                  <li><a>02 Work</a></li>
+                  <li><a>03 About</a></li>
+                  <li><a>04 Contact</a></li>
+                </ul>
+              </div>
+            </nav>
+          </div>
+          <button class="copy-btn" data-id="48">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="mobile" data-name="Dot Indicator">
+          <div class="navbox-hd">
+            <h3>Dot Indicator</h3><span class="ntag">Mobile</span>
+          </div>
+          <div class="nav-preview dark-bg nav-tall">
+            <div class="n49-wrap">
+              <nav class="pnav n49-top">
+                <div class="n49-logo">APP</div><button class="n49-ham">☰</button>
+              </nav>
+              <div class="n49-body">Swipe between pages</div>
+              <div class="pnav n49-dots"><span class="n49d active"></span><span class="n49d"></span><span
+                  class="n49d"></span><span class="n49d"></span></div>
+            </div>
+          </div>
+          <button class="copy-btn" data-id="49">⧉ Copy Code</button>
+        </div>
+
+        <div class="navbox" data-cat="mobile" data-name="Sticky Shrink">
+          <div class="navbox-hd">
+            <h3>Sticky Shrink</h3><span class="ntag">Mobile</span>
+          </div>
+          <div class="nav-preview dark-bg nav-tall">
+            <nav class="pnav n50" id="n50">
+              <div class="n50-logo">SHRINK</div>
+              <ul class="n50-links">
+                <li><a class="act">Home</a></li>
+                <li><a>Work</a></li>
+                <li><a>Blog</a></li>
+                <li><a>Contact</a></li>
+              </ul>
+              <button class="n50-btn" id="n50Toggle">Shrink ↑</button>
+            </nav>
+            <p class="n50-hint">Click button to demo shrink state</p>
+          </div>
+          <button class="copy-btn" data-id="50">⧉ Copy Code</button>
+        </div>
+
+      </div><!-- /nav-grid -->
+
+      <div class="no-results" id="noResults" style="display:none;">
+        No navbars found for "<span id="searchTerm"></span>"
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <div class="modal-hd">
+        <h3 class="modal-title" id="modalTitle">Navbar Code</h3>
+        <div class="modal-tabs">
+          <button class="tab-btn active" data-tab="html">HTML</button>
+          <button class="tab-btn" data-tab="css">CSS</button>
+          <button class="tab-btn" data-tab="js">JS</button>
+        </div>
+        <button class="modal-close" id="modalClose">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="code-panel active" id="htmlPanel">
+          <pre><code id="htmlCode"></code></pre>
+        </div>
+        <div class="code-panel" id="cssPanel">
+          <pre><code id="cssCode"></code></pre>
+        </div>
+        <div class="code-panel" id="jsPanel">
+          <pre><code id="jsCode"></code></pre>
+        </div>
+      </div>
+      <div class="modal-ft">
+        <button class="modal-copy-btn" id="modalCopyBtn">⧉ Copy to Clipboard</button>
+        <span class="copy-confirm" id="copyConfirm">✓ Copied!</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="vault-container">
+    <header class="addlab-header">
+      <div class="addlogo">Navbar<em>Vault</em></div>
+      <div class="addheader-actions">
+        <button class="addbtn-ui addbtn-secondary" onclick="resetNavEditor()">Reset</button>
+        <button class="addbtn-ui addbtn-primary" id="navPublishBtn">✦ Publish to Vault</button>
+      </div>
+    </header>
+
+    <section class="addworkspace nav-workspace">
+      <div class="addeditor-pane">
+        <div class="addtab-bar">
+          <button class="addtab-btn active" id="navHTMLBtn" onclick="switchNavTab('html')">HTML</button>
+          <button class="addtab-btn" id="navCSSBtn" onclick="switchNavTab('css')">CSS</button>
+          <button class="addtab-btn" id="navJSBtn" onclick="switchNavTab('js')">JS</button>
+        </div>
+        <div class="addcode-area">
+          <textarea id="navHtmlCode" class="addcode-input active"
+            placeholder="<nav class='navbar'>...</nav>"></textarea>
+          <textarea id="navCssCode" class="addcode-input"
+            placeholder=".navbar { display: flex; justify-content: space-between; }"></textarea>
+          <textarea id="navJsCode" class="addcode-input" placeholder="// Mobile menu logic here..."></textarea>
+        </div>
+      </div>
+
+      <div class="addpreview-pane">
+        <div class="addpreview-label">Live Desktop View</div>
+        <div id="navLiveCanvas"></div>
+      </div>
+    </section>
+
+    <section class="vault-storage-section">
+      <div class="storage-header">
+        <h2>Your Saved Navbars</h2>
+        <p>Components isolated via Shadow DOM</p>
+      </div>
+      <div id="navGalleryGrid" class="nav-gallery-stack"></div>
+    </section>
+  </div>
+
+  <div class="uploadButton" id="uploadButton">
+    <div class="innerUploadButton">
+      <div class="ticicon">
+        <h2>✓</h2>
+      </div>
+      <h1>Navbar Vaulted!</h1>
+      <p>Your navigation design is safely stored.</p>
+      <div class="uploadButtons">
+        <button class="uploadButtonMore" onclick="closeDone()">Awesome</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/navbar-gallery.js"></script>
+</body>
+
+</html>
