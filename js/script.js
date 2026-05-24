@@ -7297,3 +7297,165 @@ document.getElementById('btnGrid').addEventListener('click', (e) => {
 });
 
 // ===========================NOW========================
+
+
+const LabManager = {
+  overlay: document.getElementById('checkOverlay'),
+  viewport: document.getElementById('btnOverlay'),
+  input: document.getElementById('checkInput'),
+  previewDot: document.getElementById('colorPreview'),
+
+  // Central function to update all background visuals
+  setSurface: (value) => {
+    // Update Input and Dot
+    LabManager.input.value = value;
+    LabManager.previewDot.style.background = value;
+
+    // Update Viewport Background
+    LabManager.viewport.style.background = value;
+
+    // Update Iframe Internal Background (via transition)
+    const frame = LabManager.viewport.querySelector('iframe');
+    if (frame) {
+      frame.style.background = 'transparent'; // Let the viewport handle the color
+    }
+  },
+
+  open: (buttonId) => {
+    const data = BUTTON_DATA[buttonId];
+    if (!data) return;
+
+    // Create the Simulation Iframe
+    const iframe = document.createElement('iframe');
+    iframe.style.cssText = "width:100%; height:100%; border:none; background:transparent;";
+
+    const htmlContent = `
+            <style>
+                body { 
+                    margin:0; min-height:100vh; display:flex; 
+                    align-items:center; justify-content:center; 
+                    font-family: system-ui; 
+                }
+                ${data.css}
+            </style>
+            <body>${data.html}</body>
+            <script>${data.js}<\/script>
+        `;
+
+    iframe.srcdoc = htmlContent;
+
+    LabManager.viewport.innerHTML = '';
+    LabManager.viewport.appendChild(iframe);
+    LabManager.overlay.style.display = 'flex';
+
+    // Apply current surface
+    LabManager.setSurface(LabManager.input.value);
+  },
+
+  close: () => {
+    LabManager.overlay.style.display = 'none';
+    LabManager.viewport.innerHTML = '<div class="viewport-hint">Simulation Ended</div>';
+  }
+};
+
+// --- Event Listeners ---
+
+// 1. Listen for clicks on the tokens
+document.querySelectorAll('.token').forEach(btn => {
+  btn.addEventListener('click', () => LabManager.setSurface(btn.dataset.value));
+});
+
+// 2. Listen for manual typing
+LabManager.input.addEventListener('input', (e) => LabManager.setSurface(e.target.value));
+
+// 3. Close actions
+document.getElementById('checkClose').onclick = LabManager.close;
+LabManager.overlay.onclick = (e) => { if (e.target === LabManager.overlay) LabManager.close(); };
+
+// 4. Trigger from your grid (assuming btnGrid exists)
+document.getElementById('btnGrid').addEventListener('click', (e) => {
+  const trigger = e.target.closest('.check-btn-opener');
+  if (trigger) LabManager.open(trigger.dataset.id);
+});
+
+// ===========================NOW========================
+
+
+// ── Send button code to n8n workflow ──────────────────────────
+async function sendToWorkflow() {
+  const HTML = document.getElementById('addhtmlCode').value.trim();
+  const CSS = document.getElementById('addcssCode').value.trim();
+  const JS = document.getElementById('addjsCode').value.trim();
+
+  if (!HTML && !CSS && !JS) {
+    alert('Please enter at least HTML, CSS, or JS code before sending.');
+    return;
+  }
+
+  const btn = document.getElementById('sendToAIBtn');
+  const panel = document.getElementById('aiResponsePanel');
+  const output = document.getElementById('aiOutput');
+  const statusText = document.getElementById('aiStatusText');
+  const dot = document.getElementById('aiDot');
+  const cards = document.getElementById('aiResponseCards');
+
+  // Show panel
+  panel.classList.add('visible');
+
+  // Loading state
+  btn.disabled = true;
+  btn.textContent = '⏳ Sending...';
+  output.className = 'ai-output loading';
+  output.textContent = 'Sending code to n8n workflow...';
+  statusText.textContent = 'Sending...';
+  statusText.className = 'ai-status-text loading';
+  dot.className = 'ai-dot active';
+  cards.innerHTML = '';
+
+  try {
+    const res = await fetch('https://dci.app.n8n.cloud/webhook/receive-data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ HTML, CSS, JS })
+    });
+
+    if (!res.ok) throw new Error(`Server error: ${res.status}`);
+
+    const data = await res.json();
+
+    // Success
+    output.className = 'ai-output has-data';
+    output.textContent = JSON.stringify(data, null, 2);
+    statusText.textContent = '✅ Response received';
+    statusText.className = 'ai-status-text success';
+    dot.className = 'ai-dot active';
+
+    // Render cards
+    if (typeof data === 'object' && !Array.isArray(data)) {
+      Object.entries(data).forEach(([key, value]) => {
+        const card = document.createElement('div');
+        card.className = 'ai-card';
+        card.innerHTML = `
+          <div class="ai-card-label">${key}</div>
+          <div class="ai-card-value">${typeof value === 'object' ? JSON.stringify(value, null, 2) : value}</div>
+        `;
+        cards.appendChild(card);
+      });
+    }
+
+  } catch (err) {
+    output.className = 'ai-output has-error';
+    output.textContent = `Error: ${err.message}`;
+    statusText.textContent = '❌ Request failed';
+    statusText.className = 'ai-status-text error';
+    dot.className = 'ai-dot error';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '⚡ Send to AI';
+  }
+}
+
+// ── Close AI response panel ───────────────────────────────────
+function closeAIResponse() {
+  document.getElementById('aiResponsePanel').classList.remove('visible');
+}
