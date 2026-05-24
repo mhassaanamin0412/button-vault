@@ -150,49 +150,49 @@
               <span class="cat-count">50</span>
             </li>
             <li class="category-item" data-category="hover" id="category-item">
-              <span class="cat-icon">◈</span> Hover Buttons
+              <span class="cat-icon">◈</span> Hover Effects
               <span class="cat-count">5</span>
             </li>
             <li class="category-item" data-category="gradient">
-              <span class="cat-icon">◉</span> Gradient Buttons
+              <span class="cat-icon">◉</span> Gradients
               <span class="cat-count">5</span>
             </li>
             <li class="category-item" data-category="outline">
-              <span class="cat-icon">◻</span> Outline Buttons
+              <span class="cat-icon">◻</span> Outlines
               <span class="cat-count">5</span>
             </li>
             <li class="category-item" data-category="animated">
-              <span class="cat-icon">◎</span> Animated Buttons
+              <span class="cat-icon">◎</span> Animations
               <span class="cat-count">5</span>
             </li>
             <li class="category-item" data-category="shadow">
-              <span class="cat-icon">◍</span> Shadow Buttons
+              <span class="cat-icon">◍</span> Shadows
               <span class="cat-count">5</span>
             </li>
             <li class="category-item" data-category="icon">
-              <span class="cat-icon">⊕</span> Icon Buttons
+              <span class="cat-icon">⊕</span> Icons
               <span class="cat-count">5</span>
             </li>
             <li class="category-item" data-category="neon">
-              <span class="cat-icon">⊛</span> Neon Buttons
+              <span class="cat-icon">⊛</span> Neon
               <span class="cat-count">5</span>
             </li>
             <li class="category-item" data-category="glass">
-              <span class="cat-icon">◈</span> Glass Buttons
+              <span class="cat-icon">◈</span> Glass
               <span class="cat-count">5</span>
             </li>
             <li class="category-item" data-category="3d">
-              <span class="cat-icon">⊞</span> 3D Buttons
+              <span class="cat-icon">⊞</span> 3D Effects
               <span class="cat-count">5</span>
             </li>
             <li class="category-item" data-category="minimal">
-              <span class="cat-icon">—</span> Minimal Buttons
+              <span class="cat-icon">—</span> Minimal
               <span class="cat-count">5</span>
             </li>
           </ul>
 
           <div class="sidebar-footer">
-            <span>50 buttons · 10 categories</span>
+            <span>50 buttons · 10 core categories</span>
           </div>
         </div>
       </aside>
@@ -1006,13 +1006,26 @@
           <div class="addlogo">Button<em>Vault</em></div>
           <div class="addheader-actions">
             <button class="addbtn-ui addbtn-secondary" onclick="resetEditor()">Reset</button>
+            <button class="addbtn-ui addbtn-ai" id="sendToAIBtn" onclick="sendToWorkflow()">⚡ Send to AI</button>
             <button class="addbtn-ui addbtn-primary" id="addpublishBtn">✦ Publish to Vault</button>
             <button class="addClose" id="addClose" onclick="closeAddButton()">✕</button>
           </div>
         </header>
         <section class="addworkspace">
-          <!-- <button class="modal-close" id="modalClose">✕</button> -->
-
+          <div class="ai-response-panel" id="aiResponsePanel">
+            <div class="ai-response-header">
+              <span class="ai-response-title">⚡ AI Response</span>
+              <div class="ai-status-bar">
+                <span class="ai-dot" id="aiDot"></span>
+                <span class="ai-status-text" id="aiStatusText">Waiting...</span>
+              </div>
+              <button class="ai-response-close" onclick="closeAIResponse()">✕</button>
+            </div>
+            <div class="ai-response-body">
+              <div class="ai-output" id="aiOutput">Send your button code to see the AI response here...</div>
+              <div class="ai-response-cards" id="aiResponseCards"></div>
+            </div>
+          </div>
           <div class="addeditor-pane">
             <div class="addtab-bar">
               <button class="addtab-btn active" id="addHTMLButton" data-type="html"
@@ -3201,12 +3214,12 @@
   </div>
   <div class="cursorDiv" id="cursorDiv"></div>
   <script src="js/script.js"></script>
- <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
   <script type="module">
     import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
     createChat({
-      webhookUrl: 'https://dreamcodeindustries.app.n8n.cloud/webhook/4add84a3-9a49-4b4a-9ebf-009551decc5d/chat'
+      webhookUrl: 'http://localhost:5678/webhook/4e5c1917-8557-40ce-bf1d-bb1c34f8db93/chat'
     });
   </script>
 </body>
