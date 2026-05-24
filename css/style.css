@@ -6030,3 +6030,229 @@ pre {
   visibility: visible;
   scale: 1;
 }
+/* ----------------------------AI--------------------------------- */
+/* AI Button in header */
+.addbtn-ai {
+  background: linear-gradient(135deg, #00f5a0, #00c9ff);
+  color: #000;
+  font-weight: 700;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.addbtn-ai:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.addbtn-ai:active {
+  transform: translateY(0);
+}
+
+.addbtn-ai:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* AI Response Panel */
+.ai-response-panel {
+  display: none;
+  flex-direction: column;
+  background: var(--bg, #0a0a0f);
+  border: 1px solid rgba(0, 245, 160, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 16px;
+  animation: aiSlideIn 0.3s ease;
+}
+
+.ai-response-panel.visible {
+  display: flex;
+}
+
+@keyframes aiSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ai-response-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  border-bottom: 1px solid rgba(0, 245, 160, 0.1);
+  background: rgba(0, 245, 160, 0.04);
+}
+
+.ai-response-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: #00f5a0;
+  letter-spacing: 0.5px;
+}
+
+.ai-status-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ai-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #5a5a78;
+  transition: all 0.3s;
+}
+
+.ai-dot.active {
+  background: #00f5a0;
+  box-shadow: 0 0 8px #00f5a0;
+  animation: aiPulse 1.5s infinite;
+}
+
+.ai-dot.error {
+  background: #ff4f6d;
+  box-shadow: 0 0 8px #ff4f6d;
+}
+
+@keyframes aiPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.ai-status-text {
+  font-size: 11px;
+  color: #5a5a78;
+  font-family: 'DM Mono', monospace;
+  transition: color 0.3s;
+}
+
+.ai-status-text.loading {
+  color: #ffb347;
+}
+
+.ai-status-text.success {
+  color: #00f5a0;
+}
+
+.ai-status-text.error {
+  color: #ff4f6d;
+}
+
+.ai-response-close {
+  background: none;
+  border: none;
+  color: #5a5a78;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: color 0.2s;
+}
+
+.ai-response-close:hover {
+  color: #ff4f6d;
+}
+
+.ai-response-body {
+  padding: 16px 18px;
+}
+
+.ai-output {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #5a5a78;
+  white-space: pre-wrap;
+  word-break: break-all;
+  min-height: 80px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-output.has-data {
+  color: #00f5a0;
+  border-color: rgba(0, 245, 160, 0.15);
+}
+
+.ai-output.has-error {
+  color: #ff4f6d;
+  border-color: rgba(255, 79, 109, 0.15);
+}
+
+.ai-output.loading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00f5a0, transparent);
+  animation: aiScan 1s linear infinite;
+}
+
+@keyframes aiScan {
+  from {
+    top: 0;
+  }
+
+  to {
+    top: 100%;
+  }
+}
+
+.ai-response-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.ai-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.ai-card-label {
+  font-size: 10px;
+  color: #5a5a78;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.ai-card-value {
+  font-size: 11px;
+  color: #e8e8f0;
+  line-height: 1.6;
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+/* ----------------------------AI--------------------------------- */
+/* ----------------------------AI--------------------------------- */
