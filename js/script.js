@@ -6023,114 +6023,378 @@ function closeAddButton() {
     document.getElementById('addbutton').style.display = 'none';
 }
 
+// ─────────────────────────────────────────────────────────────
+// Open Gallery
+// ─────────────────────────────────────────────────────────────
+
 async function openAddGallery() {
+
     document.getElementById('addGallery').style.display = 'block';
 
     const grid = document.getElementById('addgalleryGrid');
-    grid.innerHTML = '<p style="color:var(--text-2);text-align:center;padding:40px;font-family:Syne,sans-serif;">⏳ Loading buttons...</p>';
+
+    grid.innerHTML = `
+        <p style="
+            color:var(--text-2);
+            text-align:center;
+            padding:40px;
+            font-family:Syne,sans-serif;
+        ">
+            ⏳ Loading buttons...
+        </p>
+    `;
+
+    await getButtonData();
+}
+
+
+// ─────────────────────────────────────────────────────────────
+// Load Buttons
+// ─────────────────────────────────────────────────────────────
+
+async function getButtonData() {
+
+    const grid = document.getElementById('addgalleryGrid');
 
     try {
-        const res = await fetch('https://dci.app.n8n.cloud/webhook/get-buttons', {
-            method: 'GET',
-            headers: { 'Content-Type': 'application/json' }
-        });
 
-        if (!res.ok) throw new Error(`Server error: ${res.status}`);
+        const res = await fetch(
+            'https://dci.app.n8n.cloud/webhook/get-buttons',
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
 
-        const data = await res.json();
-        console.log(data);
-
-        // ── Handle all possible n8n response formats ─────────────────
-        let items = [];
-        if (Array.isArray(data)) {
-            items = (data.length > 0 && data[0].buttons) ? data[0].buttons : data;
-        } else if (data.buttons) {
-            items = data.buttons;
-        } else {
-            items = [data];
+        if (!res.ok) {
+            throw new Error(`Server error: ${res.status}`);
         }
 
-        // ── Clean helper ─────────────────────────────────────────────
+        const data = await res.json();
+
+        console.log(data);
+
+        // ─────────────────────────────────────────
+        // Handle n8n formats
+        // ─────────────────────────────────────────
+
+        let items = [];
+
+        if (Array.isArray(data)) {
+
+            items = (
+                data.length > 0 &&
+                data[0].buttons
+            )
+                ? data[0].buttons
+                : data;
+
+        } else if (data.buttons) {
+
+            items = data.buttons;
+
+        } else {
+
+            items = [data];
+
+        }
+
+        // ─────────────────────────────────────────
+        // Clean helper
+        // ─────────────────────────────────────────
+
         const clean = (str) => {
+
             if (typeof str !== 'string') return '';
+
             str = str.trim();
-            if (str.startsWith('"') && str.endsWith('"')) str = str.slice(1, -1);
+
+            if (
+                str.startsWith('"') &&
+                str.endsWith('"')
+            ) {
+                str = str.slice(1, -1);
+            }
+
             return str
                 .replace(/\\n/g, '\n')
                 .replace(/\\t/g, '\t')
                 .replace(/\\"/g, '"')
                 .replace(/\\\\/g, '\\');
+
         };
 
+        // ─────────────────────────────────────────
+        // Empty state
+        // ─────────────────────────────────────────
+
         if (items.length === 0) {
-            grid.innerHTML = '<p style="color:var(--text-2);text-align:center;padding:40px;font-family:Syne,sans-serif;">No buttons uploaded yet.</p>';
+
+            grid.innerHTML = `
+                <p style="
+                    color:var(--text-2);
+                    text-align:center;
+                    padding:40px;
+                    font-family:Syne,sans-serif;
+                ">
+                    No buttons uploaded yet.
+                </p>
+            `;
+
             return;
         }
 
-        // ── Render each button ────────────────────────────────────────
+        // ─────────────────────────────────────────
+        // Render cards
+        // ─────────────────────────────────────────
+
         grid.innerHTML = '';
+
         items.forEach((item, index) => {
+
             const html = clean(item.HTML || item.html || '');
+
             const css = clean(item.CSS || item.css || '');
+
             const js = clean(item.JS || item.js || '');
 
+            const id = clean(item._id || item.id || '');
+
             const card = document.createElement('div');
+
             card.className = 'addbtnbox';
+
             card.id = `n8n-card-${index}`;
 
-            // Shadow DOM isolation
+            // ─────────────────────────
+            // Shadow wrapper
+            // ─────────────────────────
+
             const wrapper = document.createElement('div');
+
             wrapper.className = 'addbutton-wrapper';
+
             card.appendChild(wrapper);
 
-            const shadow = wrapper.attachShadow({ mode: 'open' });
-            shadow.innerHTML = `
-        <style>
-          :host { display:flex; align-items:center; justify-content:center; width:100%; height:100%; }
-          ${css}
-        </style>
-        <div class="shadow-content-root">${html}</div>
-        <script>${js}</script>
-      `;
+            const shadow = wrapper.attachShadow({
+                mode: 'open'
+            });
 
-            // Run JS safely inside Shadow DOM
-            if (js && js.trim() !== '' && js !== '/* No JavaScript required */') {
-                const script = document.createElement('script');
-                script.textContent = `
-          (function() {
-            try {
-              const card = document.getElementById('n8n-card-${index}');
-              const shadowRoot = card.querySelector('.addbutton-wrapper').shadowRoot;
-              ${js
-                        .replace(/document\.querySelector/g, 'shadowRoot.querySelector')
-                        .replace(/document\.getElementById/g, 'shadowRoot.getElementById')
+            shadow.innerHTML = `
+                <style>
+                    :host {
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        width:100%;
+                        height:100%;
                     }
-            } catch(err) {
-              console.error('Gallery JS Error in n8n card ${index}:', err);
-            }
-          })();
-        `;
+
+                    ${css}
+                </style>
+
+                <div class="shadow-content-root">
+                    ${html}
+                </div>
+
+                <script>
+                    ${js}
+                </script>
+            `;
+
+            // ─────────────────────────
+            // Safe JS execution
+            // ─────────────────────────
+
+            if (
+                js &&
+                js.trim() !== '' &&
+                js !== '/* No JavaScript required */'
+            ) {
+
+                const script = document.createElement('script');
+
+                script.textContent = `
+                    (function() {
+
+                        try {
+
+                            const card =
+                                document.getElementById(
+                                    'n8n-card-${index}'
+                                );
+
+                            const shadowRoot =
+                                card.querySelector(
+                                    '.addbutton-wrapper'
+                                ).shadowRoot;
+
+                            ${js
+                        .replace(
+                            /document\.querySelector/g,
+                            'shadowRoot.querySelector'
+                        )
+                        .replace(
+                            /document\.getElementById/g,
+                            'shadowRoot.getElementById'
+                        )}
+
+                        } catch(err) {
+
+                            console.error(
+                                'Gallery JS Error:',
+                                err
+                            );
+
+                        }
+
+                    })();
+                `;
+
                 card.appendChild(script);
             }
 
+            // ─────────────────────────
             // Tools
-            const safeItem = JSON.stringify({ html, css, js }) || JSON.stringify({ HTML, CSS, JS });
+            // ─────────────────────────
+
+            const safeItem = JSON.stringify({
+                html,
+                css,
+                js
+            });
+
             const tools = document.createElement('div');
+
             tools.className = 'addcard-tools';
+
             tools.innerHTML = `
-        <button class="addtool-btn" onclick='viewN8nSource(${index}, ${safeItem.replace(/'/g, "&#39;")})'>Source</button>
-        <button class="delete-button" onclick='deleteButton()'>Delete</button>
-      `;
+                <button
+                    class="addtool-btn"
+                    onclick='viewN8nSource(
+                        ${index},
+                        ${safeItem.replace(/'/g, "&#39;")}
+                    )'
+                >
+                    Source
+                </button>
+
+                <button
+                    class="delete-button"
+                    data-id="${id}"
+                >
+                    Delete
+                </button>
+            `;
+
             card.appendChild(tools);
+
             grid.appendChild(card);
+
         });
 
     } catch (err) {
-        grid.innerHTML = `<p style="color:#ff6584;text-align:center;padding:40px;font-family:Syne,sans-serif;">❌ Failed to load: ${err.message}</p>`;
-        console.error('Gallery fetch error:', err);
+
+        grid.innerHTML = `
+            <p style="
+                color:#ff6584;
+                text-align:center;
+                padding:40px;
+                font-family:Syne,sans-serif;
+            ">
+                ❌ Failed to load:
+                ${err.message}
+            </p>
+        `;
+
+        console.error(
+            'Gallery fetch error:',
+            err
+        );
     }
 }
 
+
+// ─────────────────────────────────────────────────────────────
+// DELETE BUTTON EVENT
+// ─────────────────────────────────────────────────────────────
+
+document.addEventListener(
+    'click',
+    async (e) => {
+
+        const btn =
+            e.target.closest('.delete-button');
+
+        if (!btn) return;
+
+        e.preventDefault();
+
+        const id = btn.dataset.id;
+
+        if (!id) {
+
+            console.error(
+                'Invalid button ID'
+            );
+
+            return;
+        }
+
+        try {
+
+            const response = await fetch(
+                'https://dci.app.n8n.cloud/webhook/delete-button',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type':
+                            'application/json'
+                    },
+                    body: JSON.stringify({ id })
+                }
+            );
+
+            if (!response.ok) {
+
+                throw new Error(
+                    `HTTP Error: ${response.status}`
+                );
+            }
+
+            let result;
+
+            try {
+
+                result =
+                    await response.json();
+
+            } catch {
+
+                result = {
+                    success: true
+                };
+            }
+
+            console.log(
+                'Delete result:',
+                result
+            );
+
+            // Refresh gallery
+            await getButtonData();
+
+        } catch (error) {
+
+            console.error(
+                'Delete error:',
+                error
+            );
+        }
+    }
+);
 function viewN8nSource(index, item) {
     const modal = document.getElementById('addcodeModal');
     const body = document.getElementById('addmodalBody');
@@ -7500,26 +7764,28 @@ async function sendToWorkflow() {
 // ── Close AI response panel ────────────────────────────────────
 function closeAIResponse() {
     document.getElementById('aiResponsePanel').classList.remove('visible');
+    document.getElementById('aiOutput').className = 'ai-output';
+    document.getElementById('aiStatusText').className = 'ai-status-text';
+    document.getElementById('aiDot').className = 'ai-dot';
+    document.getElementById('aiResponseCards').innerHTML = '';
 }
 
-async function deleteButton(buttonId) {
-    try {
-        const response = await fetch(`https://dci.app.n8n.cloud/webhook/delete-button`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                id: buttonId
-            })
-        });
+// async function deleteButton() {
+//     try {
+//         const response = await fetch(`https://dci.app.n8n.cloud/webhook/delete-button`, {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify({}),
+//         });
 
-        const result = await response.json();
-        console.log('Delete result:', result);
-        return result;
-    } catch (error) {
-        console.error('Delete error:', error);
-        throw error;
-    }
-    
-}
+//         const result = await response.json();
+//         console.log('Delete result:', result);
+//         getButtonData();
+//         return result;
+//     } catch (error) {
+//         console.error('Delete error:', error);
+//         throw error;
+//     }
+// }
