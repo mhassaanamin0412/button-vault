@@ -3618,6 +3618,15 @@ button.addcloseGallery {
     font-weight: 700;
     cursor: pointer;
     transition: var(--transition);
+    display: none;
+}
+
+/* ─────────────────────────────
+   Hide delete buttons by default
+───────────────────────────── */
+body.admin-mode .delete-button {
+
+    display: inline-flex;
 }
 
 .delete-button:hover {
@@ -6274,4 +6283,59 @@ pre {
     word-break: break-all;
     white-space: pre-wrap;
     font-family: 'Fira Code', monospace;
+}
+
+
+/* delete-button-card */
+
+.delete-loading-card {
+
+    width: 100%;
+    height: 100%;
+
+    min-height: 220px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 16px;
+
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.03);
+
+    backdrop-filter: blur(10px);
+
+    color: var(--text-1);
+
+    font-family: Syne, sans-serif;
+}
+
+/* Spinner */
+
+.delete-spinner {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    border: 4px solid rgba(255, 255, 255, 0.15);
+
+    border-top-color: white;
+
+    animation:
+        deleteSpin 0.8s linear infinite;
+}
+
+@keyframes deleteSpin {
+
+    to {
+
+        transform: rotate(360deg);
+
+    }
 }
