@@ -6542,635 +6542,635 @@ function viewN8nSource(index, item) {
   `;
 
     document.getElementById('addcopyVaultCode').onclick = () => {
-        const fullCode = `< !--HTML -->\n${ item.html }\n\n/* CSS */\n${ item.css }\n\n// JS\n${item.js}`;
+        const fullCode = `< !--HTML -->\n${item.html}\n\n/* CSS */\n${item.css}\n\n// JS\n${item.js}`;
         navigator.clipboard.writeText(fullCode).then(() => {
-                        const btn = document.getElementById('addcopyVaultCode');
-                        btn.textContent = '✓ Copied!';
-                        setTimeout(() => btn.textContent = 'Copy Full Code', 2000);
-                    });
-            };
+            const btn = document.getElementById('addcopyVaultCode');
+            btn.textContent = '✓ Copied!';
+            setTimeout(() => btn.textContent = 'Copy Full Code', 2000);
+        });
+    };
 
-            modal.style.display = 'flex';
-        }
+    modal.style.display = 'flex';
+}
 
 function closeAddGallery() {
-            document.getElementById('addGallery').style.display = 'none';
-        }
+    document.getElementById('addGallery').style.display = 'none';
+}
 
-        function openDone() {
-            document.getElementById('uploadButton').style.display = 'flex';
-        }
+function openDone() {
+    document.getElementById('uploadButton').style.display = 'flex';
+}
 
-        function closeComDone() {
-            document.getElementById('addbutton').style.display = 'none';
-            document.getElementById('uploadButton').style.display = 'none';
-            // document.getElementById('thanksOverlay').style.display = 'flex';
-            // setTimeout(() => {
-            //     document.getElementById('thanksOverlay').style.display = 'none';
-            // }, 2400);
-        }
+function closeComDone() {
+    document.getElementById('addbutton').style.display = 'none';
+    document.getElementById('uploadButton').style.display = 'none';
+    // document.getElementById('thanksOverlay').style.display = 'flex';
+    // setTimeout(() => {
+    //     document.getElementById('thanksOverlay').style.display = 'none';
+    // }, 2400);
+}
 
-        function closeDone() {
-            document.getElementById('uploadButton').style.display = 'none';
-            document.getElementById('thanksOverlay').style.display = 'flex';
-            document.getElementById('thanksOverlay').style.display = 'none';
-        }
+function closeDone() {
+    document.getElementById('uploadButton').style.display = 'none';
+    document.getElementById('thanksOverlay').style.display = 'flex';
+    document.getElementById('thanksOverlay').style.display = 'none';
+}
 
-        function switchHtmlTab() {
-            document.getElementById('addhtmlCode').classList.add('active');
-            document.getElementById('addcssCode').classList.remove('active');
-            document.getElementById('addjsCode').classList.remove('active');
-            document.getElementById('addHTMLButton').classList.add('active');
-            document.getElementById('addCSSButton').classList.remove('active');
-            document.getElementById('addJSButton').classList.remove('active');
-        }
-        function switchcssTab() {
-            document.getElementById('addcssCode').classList.add('active');
-            document.getElementById('addhtmlCode').classList.remove('active');
-            document.getElementById('addjsCode').classList.remove('active');
-            document.getElementById('addCSSButton').classList.add('active');
-            document.getElementById('addHTMLButton').classList.remove('active');
-            document.getElementById('addJSButton').classList.remove('active');
-        }
-        function switchjsTab() {
-            document.getElementById('addjsCode').classList.add('active');
-            document.getElementById('addcssCode').classList.remove('active');
-            document.getElementById('addhtmlCode').classList.remove('active');
-            document.getElementById('addJSButton').classList.add('active');
-            document.getElementById('addHTMLButton').classList.remove('active');
-            document.getElementById('addCSSButton').classList.remove('active');
-        }
+function switchHtmlTab() {
+    document.getElementById('addhtmlCode').classList.add('active');
+    document.getElementById('addcssCode').classList.remove('active');
+    document.getElementById('addjsCode').classList.remove('active');
+    document.getElementById('addHTMLButton').classList.add('active');
+    document.getElementById('addCSSButton').classList.remove('active');
+    document.getElementById('addJSButton').classList.remove('active');
+}
+function switchcssTab() {
+    document.getElementById('addcssCode').classList.add('active');
+    document.getElementById('addhtmlCode').classList.remove('active');
+    document.getElementById('addjsCode').classList.remove('active');
+    document.getElementById('addCSSButton').classList.add('active');
+    document.getElementById('addHTMLButton').classList.remove('active');
+    document.getElementById('addJSButton').classList.remove('active');
+}
+function switchjsTab() {
+    document.getElementById('addjsCode').classList.add('active');
+    document.getElementById('addcssCode').classList.remove('active');
+    document.getElementById('addhtmlCode').classList.remove('active');
+    document.getElementById('addJSButton').classList.add('active');
+    document.getElementById('addHTMLButton').classList.remove('active');
+    document.getElementById('addCSSButton').classList.remove('active');
+}
 
-        //addButtonsend
+//addButtonsend
 
-        // search
-        // const search1 = document.getElementById('searchInput');
-        document.getElementById('search2').addEventListener('click', function () {
-            document.getElementById('searchInput').classList.add('active');
-            document.getElementById('searchBarHide').style.visibility = 'visible';
+// search
+// const search1 = document.getElementById('searchInput');
+document.getElementById('search2').addEventListener('click', function () {
+    document.getElementById('searchInput').classList.add('active');
+    document.getElementById('searchBarHide').style.visibility = 'visible';
+});
+
+function searchBarHide() {
+    document.getElementById('searchInput').classList.remove('active');
+    document.getElementById('searchBarHide').style.visibility = 'hidden';
+}
+// searchEnd
+
+// logo
+
+// ===================== COMPANY CV CARD =====================
+const logoIcon = document.getElementById('logoIcon');
+const companyCVOverlay = document.getElementById('companyCVOverlay');
+const companyCVClose = document.getElementById('companyCVClose');
+
+// Tab switching functionality
+function initCVTabs() {
+    const tabBtns = document.querySelectorAll('.cv-tab-btn');
+    const tabPanes = document.querySelectorAll('.cv-tab-pane');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all tabs and panes
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabPanes.forEach(p => p.classList.remove('active'));
+
+            // Add active class to clicked tab
+            btn.classList.add('active');
+
+            // Show corresponding pane
+            const tabId = btn.dataset.tab;
+            document.getElementById(`tab-${tabId}`).classList.add('active');
         });
+    });
+}
 
-        function searchBarHide() {
-            document.getElementById('searchInput').classList.remove('active');
-            document.getElementById('searchBarHide').style.visibility = 'hidden';
-        }
-        // searchEnd
+// Project filter functionality
+function initProjectFilters() {
+    const filterBtns = document.querySelectorAll('.cv-filter-btn');
+    const projectCards = document.querySelectorAll('.cv-project-card');
 
-        // logo
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all filter buttons
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-        // ===================== COMPANY CV CARD =====================
-        const logoIcon = document.getElementById('logoIcon');
-        const companyCVOverlay = document.getElementById('companyCVOverlay');
-        const companyCVClose = document.getElementById('companyCVClose');
+            const filterValue = btn.dataset.filter;
 
-        // Tab switching functionality
-        function initCVTabs() {
-            const tabBtns = document.querySelectorAll('.cv-tab-btn');
-            const tabPanes = document.querySelectorAll('.cv-tab-pane');
-
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    // Remove active class from all tabs and panes
-                    tabBtns.forEach(b => b.classList.remove('active'));
-                    tabPanes.forEach(p => p.classList.remove('active'));
-
-                    // Add active class to clicked tab
-                    btn.classList.add('active');
-
-                    // Show corresponding pane
-                    const tabId = btn.dataset.tab;
-                    document.getElementById(`tab-${tabId}`).classList.add('active');
-                });
-            });
-        }
-
-        // Project filter functionality
-        function initProjectFilters() {
-            const filterBtns = document.querySelectorAll('.cv-filter-btn');
-            const projectCards = document.querySelectorAll('.cv-project-card');
-
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    // Remove active class from all filter buttons
-                    filterBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-
-                    const filterValue = btn.dataset.filter;
-
-                    projectCards.forEach(card => {
-                        if (filterValue === 'all' || card.dataset.category.includes(filterValue)) {
-                            card.style.display = 'block';
-                            setTimeout(() => {
-                                card.style.opacity = '1';
-                                card.style.transform = 'scale(1)';
-                            }, 10);
-                        } else {
-                            card.style.opacity = '0';
-                            card.style.transform = 'scale(0.8)';
-                            setTimeout(() => {
-                                card.style.display = 'none';
-                            }, 300);
-                        }
-                    });
-                });
-            });
-        }
-
-        // Open CV card when logo is clicked
-        if (logoIcon) {
-            logoIcon.addEventListener('click', (e) => {
-                e.preventDefault();
-                companyCVOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-
-                // Initialize tabs and filters if not already initialized
-                if (!window.cvInitialized) {
-                    initCVTabs();
-                    initProjectFilters();
-                    window.cvInitialized = true;
+            projectCards.forEach(card => {
+                if (filterValue === 'all' || card.dataset.category.includes(filterValue)) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'scale(1)';
+                    }, 10);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
                 }
-            });
-        }
-
-        // Close CV card
-        function closeCompanyCV() {
-            companyCVOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        if (companyCVClose) {
-            companyCVClose.addEventListener('click', closeCompanyCV);
-        }
-
-        // Close when clicking outside the card
-        companyCVOverlay.addEventListener('click', (e) => {
-            if (e.target === companyCVOverlay) {
-                closeCompanyCV();
-            }
-        });
-
-        // Close with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && companyCVOverlay.classList.contains('active')) {
-                closeCompanyCV();
-            }
-        });
-
-        // Smooth scroll for tabs
-        document.querySelectorAll('.cv-tab-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelector('.cv-tab-content').scrollTop = 0;
             });
         });
+    });
+}
 
-        // LOGO IMG
+// Open CV card when logo is clicked
+if (logoIcon) {
+    logoIcon.addEventListener('click', (e) => {
+        e.preventDefault();
+        companyCVOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
 
-        document.getElementById('cv-logo-wrapper').addEventListener('click', function () {
-            document.getElementById('logo-image').style.display = 'flex';
-        });
+        // Initialize tabs and filters if not already initialized
+        if (!window.cvInitialized) {
+            initCVTabs();
+            initProjectFilters();
+            window.cvInitialized = true;
+        }
+    });
+}
 
-        document.getElementById('logo-image-close').addEventListener('click', function () {
-            document.getElementById('logo-image').style.display = 'none';
-        });
+// Close CV card
+function closeCompanyCV() {
+    companyCVOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
 
-        // logoend
+if (companyCVClose) {
+    companyCVClose.addEventListener('click', closeCompanyCV);
+}
+
+// Close when clicking outside the card
+companyCVOverlay.addEventListener('click', (e) => {
+    if (e.target === companyCVOverlay) {
+        closeCompanyCV();
+    }
+});
+
+// Close with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && companyCVOverlay.classList.contains('active')) {
+        closeCompanyCV();
+    }
+});
+
+// Smooth scroll for tabs
+document.querySelectorAll('.cv-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelector('.cv-tab-content').scrollTop = 0;
+    });
+});
+
+// LOGO IMG
+
+document.getElementById('cv-logo-wrapper').addEventListener('click', function () {
+    document.getElementById('logo-image').style.display = 'flex';
+});
+
+document.getElementById('logo-image-close').addEventListener('click', function () {
+    document.getElementById('logo-image').style.display = 'none';
+});
+
+// logoend
 
 
-        /* ===================== SIMPLIFIED CUSTOMIZER ===================== */
+/* ===================== SIMPLIFIED CUSTOMIZER ===================== */
 
-        let currentCustomizerId = null;
-        let originalButtonData = null;
-        let customizerUpdateTimer = null;
+let currentCustomizerId = null;
+let originalButtonData = null;
+let customizerUpdateTimer = null;
 
-        // Store button CSS for quick access
-        let storedButtonCSS = {};
+// Store button CSS for quick access
+let storedButtonCSS = {};
 
-        // ===================== OPEN/CLOSE MODAL =====================
-        function cusopenModal(id) {
-            const data = BUTTON_DATA[id];
-            if (!data) {
-                console.error('Button data not found for ID:', id);
-                return;
+// ===================== OPEN/CLOSE MODAL =====================
+function cusopenModal(id) {
+    const data = BUTTON_DATA[id];
+    if (!data) {
+        console.error('Button data not found for ID:', id);
+        return;
+    }
+
+    currentCustomizerId = id;
+    originalButtonData = JSON.parse(JSON.stringify(data));
+
+    // Store the original CSS for this button
+    storedButtonCSS[id] = data.css;
+
+    const modalTitle = document.getElementById('cusmodalTitle');
+    if (modalTitle) modalTitle.textContent = `Customize: ${data.name}`;
+
+    // Set editor values
+    const htmlEditor = document.getElementById('cushtmlEditor');
+    const cssEditor = document.getElementById('cuscssEditor');
+    const jsEditor = document.getElementById('cusjsEditor');
+
+    if (htmlEditor) htmlEditor.value = data.html;
+    if (cssEditor) cssEditor.value = data.css;
+    if (jsEditor) jsEditor.value = data.js;
+
+    // Parse CSS and populate controls
+    parseCSSAndUpdateControls(data.css);
+
+    // Update live preview
+    setTimeout(() => {
+        updateCustomizerPreview();
+    }, 100);
+
+    // Switch to HTML tab
+    cusswitchTab('html');
+
+    // Show modal
+    const overlay = document.getElementById('cusmodalOverlay');
+    if (overlay) {
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    const confirm = document.getElementById('cuscopyConfirm');
+    if (confirm) confirm.classList.remove('show');
+
+    console.log(`✅ Loaded CSS for button ${id}`);
+}
+
+function cuscloseModal() {
+    const overlay = document.getElementById('cusmodalOverlay');
+    if (overlay) {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+}
+
+// ===================== TAB SWITCHING =====================
+function cusswitchTab(tab) {
+    const tabBtns = document.querySelectorAll('.custab-btn');
+    const panels = {
+        html: document.getElementById('cushtmlPanel'),
+        css: document.getElementById('cuscssPanel'),
+        js: document.getElementById('cusjsPanel')
+    };
+
+    tabBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === tab);
+    });
+
+    Object.keys(panels).forEach(key => {
+        if (panels[key]) {
+            panels[key].classList.toggle('active', key === tab);
+        }
+    });
+}
+
+// ===================== PARSE CSS AND UPDATE CONTROLS =====================
+function parseCSSAndUpdateControls(css) {
+    const btnSelector = new RegExp(`\\.btn-${currentCustomizerId}\\s*{([^}]+)}`, 'i');
+    const btnMatch = css.match(btnSelector);
+
+    if (btnMatch) {
+        const styles = btnMatch[1];
+
+        // Extract values
+        const colorMatch = styles.match(/color:\s*([^;]+)/);
+        const bgMatch = styles.match(/background(?:-color)?:\s*([^;]+)/);
+        const paddingMatch = styles.match(/padding:\s*([^;]+)/);
+        const radiusMatch = styles.match(/border-radius:\s*([^;]+)/);
+        const fontSizeMatch = styles.match(/font-size:\s*([^;]+)/);
+        const fontWeightMatch = styles.match(/font-weight:\s*([^;]+)/);
+        const letterMatch = styles.match(/letter-spacing:\s*([^;]+)/);
+        const borderMatch = styles.match(/border:\s*([^;]+)/);
+        const shadowMatch = styles.match(/box-shadow:\s*([^;]+)/);
+
+        // Update UI
+        if (colorMatch) updateColorControl('cusTextColor', colorMatch[1].trim());
+
+        // Check if background is transparent
+        if (bgMatch) {
+            const bgValue = bgMatch[1].trim();
+            const isTransparent = bgValue === 'transparent' || bgValue === 'rgba(0,0,0,0)' || bgValue === 'rgba(0, 0, 0, 0)';
+
+            const transparentCheckbox = document.getElementById('cusBgTransparent');
+            if (transparentCheckbox) {
+                transparentCheckbox.checked = isTransparent;
             }
 
-            currentCustomizerId = id;
-            originalButtonData = JSON.parse(JSON.stringify(data));
-
-            // Store the original CSS for this button
-            storedButtonCSS[id] = data.css;
-
-            const modalTitle = document.getElementById('cusmodalTitle');
-            if (modalTitle) modalTitle.textContent = `Customize: ${data.name}`;
-
-            // Set editor values
-            const htmlEditor = document.getElementById('cushtmlEditor');
-            const cssEditor = document.getElementById('cuscssEditor');
-            const jsEditor = document.getElementById('cusjsEditor');
-
-            if (htmlEditor) htmlEditor.value = data.html;
-            if (cssEditor) cssEditor.value = data.css;
-            if (jsEditor) jsEditor.value = data.js;
-
-            // Parse CSS and populate controls
-            parseCSSAndUpdateControls(data.css);
-
-            // Update live preview
-            setTimeout(() => {
-                updateCustomizerPreview();
-            }, 100);
-
-            // Switch to HTML tab
-            cusswitchTab('html');
-
-            // Show modal
-            const overlay = document.getElementById('cusmodalOverlay');
-            if (overlay) {
-                overlay.classList.add('open');
-                document.body.style.overflow = 'hidden';
-            }
-
-            const confirm = document.getElementById('cuscopyConfirm');
-            if (confirm) confirm.classList.remove('show');
-
-            console.log(`✅ Loaded CSS for button ${id}`);
-        }
-
-        function cuscloseModal() {
-            const overlay = document.getElementById('cusmodalOverlay');
-            if (overlay) {
-                overlay.classList.remove('open');
-                document.body.style.overflow = '';
-            }
-        }
-
-        // ===================== TAB SWITCHING =====================
-        function cusswitchTab(tab) {
-            const tabBtns = document.querySelectorAll('.custab-btn');
-            const panels = {
-                html: document.getElementById('cushtmlPanel'),
-                css: document.getElementById('cuscssPanel'),
-                js: document.getElementById('cusjsPanel')
-            };
-
-            tabBtns.forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.tab === tab);
-            });
-
-            Object.keys(panels).forEach(key => {
-                if (panels[key]) {
-                    panels[key].classList.toggle('active', key === tab);
-                }
-            });
-        }
-
-        // ===================== PARSE CSS AND UPDATE CONTROLS =====================
-        function parseCSSAndUpdateControls(css) {
-            const btnSelector = new RegExp(`\\.btn-${currentCustomizerId}\\s*{([^}]+)}`, 'i');
-            const btnMatch = css.match(btnSelector);
-
-            if (btnMatch) {
-                const styles = btnMatch[1];
-
-                // Extract values
-                const colorMatch = styles.match(/color:\s*([^;]+)/);
-                const bgMatch = styles.match(/background(?:-color)?:\s*([^;]+)/);
-                const paddingMatch = styles.match(/padding:\s*([^;]+)/);
-                const radiusMatch = styles.match(/border-radius:\s*([^;]+)/);
-                const fontSizeMatch = styles.match(/font-size:\s*([^;]+)/);
-                const fontWeightMatch = styles.match(/font-weight:\s*([^;]+)/);
-                const letterMatch = styles.match(/letter-spacing:\s*([^;]+)/);
-                const borderMatch = styles.match(/border:\s*([^;]+)/);
-                const shadowMatch = styles.match(/box-shadow:\s*([^;]+)/);
-
-                // Update UI
-                if (colorMatch) updateColorControl('cusTextColor', colorMatch[1].trim());
-
-                // Check if background is transparent
-                if (bgMatch) {
-                    const bgValue = bgMatch[1].trim();
-                    const isTransparent = bgValue === 'transparent' || bgValue === 'rgba(0,0,0,0)' || bgValue === 'rgba(0, 0, 0, 0)';
-
-                    const transparentCheckbox = document.getElementById('cusBgTransparent');
-                    if (transparentCheckbox) {
-                        transparentCheckbox.checked = isTransparent;
-                    }
-
-                    if (!isTransparent) {
-                        updateColorControl('cusBgColor', bgValue);
-                    }
-                }
-
-                if (paddingMatch) updatePaddingControls(paddingMatch[1].trim());
-                if (radiusMatch) updateSliderControl('cusBorderRadius', radiusMatch[1].trim());
-                if (fontSizeMatch) updateSliderControl('cusFontSize', fontSizeMatch[1].trim());
-                if (fontWeightMatch) {
-                    const weight = document.getElementById('cusFontWeight');
-                    if (weight) weight.value = fontWeightMatch[1].trim();
-                }
-                if (letterMatch) updateSliderControl('cusLetterSpacing', letterMatch[1].trim());
-
-                // Parse border
-                if (borderMatch && borderMatch[1] !== 'none') {
-                    const borderParts = borderMatch[1].split(' ');
-                    if (borderParts.length >= 3) {
-                        updateSliderControl('cusBorderWidth', borderParts[0]);
-                        updateColorControl('cusBorderColor', borderParts[2]);
-                        const styleSelect = document.getElementById('cusBorderStyle');
-                        if (styleSelect && borderParts[1]) styleSelect.value = borderParts[1];
-                    }
-                } else {
-                    updateSliderControl('cusBorderWidth', '0');
-                    const styleSelect = document.getElementById('cusBorderStyle');
-                    if (styleSelect) styleSelect.value = 'none';
-                }
-
-                // Parse shadow
-                if (shadowMatch && shadowMatch[1] !== 'none') {
-                    const shadowParts = shadowMatch[1].match(/(-?\d+)px\s+(-?\d+)px\s+(\d+)px\s+(#[0-9a-f]+)/i);
-                    if (shadowParts) {
-                        updateSliderControl('cusShadowX', shadowParts[1]);
-                        updateSliderControl('cusShadowY', shadowParts[2]);
-                        updateSliderControl('cusShadowBlur', shadowParts[3]);
-                        updateColorControl('cusShadowColor', shadowParts[4]);
-                    }
-                } else {
-                    updateSliderControl('cusShadowX', '0');
-                    updateSliderControl('cusShadowY', '0');
-                    updateSliderControl('cusShadowBlur', '0');
-                }
-            }
-        }
-
-        function updatePaddingControls(paddingValue) {
-            const parts = paddingValue.split(' ');
-            let topBottom = '12';
-            let leftRight = '26';
-
-            if (parts.length === 1) {
-                topBottom = leftRight = parts[0].replace('px', '');
-            } else if (parts.length === 2) {
-                topBottom = parts[0].replace('px', '');
-                leftRight = parts[1].replace('px', '');
-            } else if (parts.length >= 3) {
-                topBottom = parts[0].replace('px', '');
-                leftRight = parts[1].replace('px', '');
-            }
-
-            updateSliderControl('cusPaddingY', topBottom);
-            updateSliderControl('cusPaddingX', leftRight);
-        }
-
-        // ===================== HELPER FUNCTIONS =====================
-        function updateColorControl(id, value) {
-            const element = document.getElementById(id);
-            if (element && value) {
-                element.value = value;
-                const hexInput = document.getElementById(`${id}Hex`);
-                if (hexInput) hexInput.value = value;
+            if (!isTransparent) {
+                updateColorControl('cusBgColor', bgValue);
             }
         }
 
-        function updateSliderControl(id, value) {
-            const element = document.getElementById(id);
-            if (element && value) {
-                const numericValue = parseFloat(value);
-                if (!isNaN(numericValue)) {
-                    element.value = numericValue;
-                    const valueSpan = document.getElementById(`${id}Val`);
-                    if (valueSpan) {
-                        valueSpan.textContent = numericValue + 'px';
-                    }
-                }
+        if (paddingMatch) updatePaddingControls(paddingMatch[1].trim());
+        if (radiusMatch) updateSliderControl('cusBorderRadius', radiusMatch[1].trim());
+        if (fontSizeMatch) updateSliderControl('cusFontSize', fontSizeMatch[1].trim());
+        if (fontWeightMatch) {
+            const weight = document.getElementById('cusFontWeight');
+            if (weight) weight.value = fontWeightMatch[1].trim();
+        }
+        if (letterMatch) updateSliderControl('cusLetterSpacing', letterMatch[1].trim());
+
+        // Parse border
+        if (borderMatch && borderMatch[1] !== 'none') {
+            const borderParts = borderMatch[1].split(' ');
+            if (borderParts.length >= 3) {
+                updateSliderControl('cusBorderWidth', borderParts[0]);
+                updateColorControl('cusBorderColor', borderParts[2]);
+                const styleSelect = document.getElementById('cusBorderStyle');
+                if (styleSelect && borderParts[1]) styleSelect.value = borderParts[1];
             }
+        } else {
+            updateSliderControl('cusBorderWidth', '0');
+            const styleSelect = document.getElementById('cusBorderStyle');
+            if (styleSelect) styleSelect.value = 'none';
         }
 
-        // ===================== UPDATE EXISTING CSS PROPERTIES =====================
-        function updateCSSProperties(existingStyles, newStyles) {
-            let updatedStyles = existingStyles;
-
-            // Update color
-            if (newStyles.color !== undefined) {
-                if (updatedStyles.includes('color:')) {
-                    updatedStyles = updatedStyles.replace(/color:\s*[^;]+;/, `color: ${newStyles.color};`);
-                } else {
-                    updatedStyles += `\n  color: ${newStyles.color};`;
-                }
+        // Parse shadow
+        if (shadowMatch && shadowMatch[1] !== 'none') {
+            const shadowParts = shadowMatch[1].match(/(-?\d+)px\s+(-?\d+)px\s+(\d+)px\s+(#[0-9a-f]+)/i);
+            if (shadowParts) {
+                updateSliderControl('cusShadowX', shadowParts[1]);
+                updateSliderControl('cusShadowY', shadowParts[2]);
+                updateSliderControl('cusShadowBlur', shadowParts[3]);
+                updateColorControl('cusShadowColor', shadowParts[4]);
             }
-
-            // Update background (supports transparent)
-            if (newStyles.background !== undefined) {
-                if (updatedStyles.includes('background:')) {
-                    updatedStyles = updatedStyles.replace(/background:\s*[^;]+;/, `background: ${newStyles.background};`);
-                } else if (updatedStyles.includes('background-color:')) {
-                    updatedStyles = updatedStyles.replace(/background-color:\s*[^;]+;/, `background: ${newStyles.background};`);
-                } else {
-                    updatedStyles += `\n  background: ${newStyles.background};`;
-                }
-            }
-
-            // Update padding
-            if (newStyles.padding !== undefined) {
-                if (updatedStyles.includes('padding:')) {
-                    updatedStyles = updatedStyles.replace(/padding:\s*[^;]+;/, `padding: ${newStyles.padding};`);
-                } else {
-                    updatedStyles += `\n  padding: ${newStyles.padding};`;
-                }
-            }
-
-            // Update border-radius
-            if (newStyles.borderRadius !== undefined) {
-                if (updatedStyles.includes('border-radius:')) {
-                    updatedStyles = updatedStyles.replace(/border-radius:\s*[^;]+;/, `border-radius: ${newStyles.borderRadius};`);
-                } else {
-                    updatedStyles += `\n  border-radius: ${newStyles.borderRadius};`;
-                }
-            }
-
-            // Update font-size
-            if (newStyles.fontSize !== undefined) {
-                if (updatedStyles.includes('font-size:')) {
-                    updatedStyles = updatedStyles.replace(/font-size:\s*[^;]+;/, `font-size: ${newStyles.fontSize};`);
-                } else {
-                    updatedStyles += `\n  font-size: ${newStyles.fontSize};`;
-                }
-            }
-
-            // Update font-weight
-            if (newStyles.fontWeight !== undefined) {
-                if (updatedStyles.includes('font-weight:')) {
-                    updatedStyles = updatedStyles.replace(/font-weight:\s*[^;]+;/, `font-weight: ${newStyles.fontWeight};`);
-                } else {
-                    updatedStyles += `\n  font-weight: ${newStyles.fontWeight};`;
-                }
-            }
-
-            // Update letter-spacing
-            if (newStyles.letterSpacing !== undefined) {
-                if (updatedStyles.includes('letter-spacing:')) {
-                    updatedStyles = updatedStyles.replace(/letter-spacing:\s*[^;]+;/, `letter-spacing: ${newStyles.letterSpacing};`);
-                } else {
-                    updatedStyles += `\n  letter-spacing: ${newStyles.letterSpacing};`;
-                }
-            }
-
-            // Update border
-            if (newStyles.border !== undefined) {
-                if (updatedStyles.includes('border:')) {
-                    updatedStyles = updatedStyles.replace(/border:\s*[^;]+;/, `border: ${newStyles.border};`);
-                } else {
-                    updatedStyles += `\n  border: ${newStyles.border};`;
-                }
-            } else if (newStyles.border === 'none') {
-                if (updatedStyles.includes('border:')) {
-                    updatedStyles = updatedStyles.replace(/border:\s*[^;]+;/, '');
-                }
-            }
-
-            // Update box-shadow
-            if (newStyles.boxShadow !== undefined) {
-                if (updatedStyles.includes('box-shadow:')) {
-                    updatedStyles = updatedStyles.replace(/box-shadow:\s*[^;]+;/, `box-shadow: ${newStyles.boxShadow};`);
-                } else {
-                    updatedStyles += `\n  box-shadow: ${newStyles.boxShadow};`;
-                }
-            } else if (newStyles.boxShadow === 'none') {
-                if (updatedStyles.includes('box-shadow:')) {
-                    updatedStyles = updatedStyles.replace(/box-shadow:\s*[^;]+;/, '');
-                }
-            }
-
-            return updatedStyles;
+        } else {
+            updateSliderControl('cusShadowX', '0');
+            updateSliderControl('cusShadowY', '0');
+            updateSliderControl('cusShadowBlur', '0');
         }
+    }
+}
 
-        // ===================== GENERATE UPDATED CSS FROM CONTROLS =====================
-        function generateUpdatedCSSFromControls(currentCSS) {
-            // Extract existing styles block
-            const btnSelector = new RegExp(`\\.btn-${currentCustomizerId}\\s*{([^}]+)}`, 'i');
-            const btnMatch = currentCSS.match(btnSelector);
+function updatePaddingControls(paddingValue) {
+    const parts = paddingValue.split(' ');
+    let topBottom = '12';
+    let leftRight = '26';
 
-            let existingStyles = '';
-            if (btnMatch) {
-                existingStyles = btnMatch[1];
+    if (parts.length === 1) {
+        topBottom = leftRight = parts[0].replace('px', '');
+    } else if (parts.length === 2) {
+        topBottom = parts[0].replace('px', '');
+        leftRight = parts[1].replace('px', '');
+    } else if (parts.length >= 3) {
+        topBottom = parts[0].replace('px', '');
+        leftRight = parts[1].replace('px', '');
+    }
+
+    updateSliderControl('cusPaddingY', topBottom);
+    updateSliderControl('cusPaddingX', leftRight);
+}
+
+// ===================== HELPER FUNCTIONS =====================
+function updateColorControl(id, value) {
+    const element = document.getElementById(id);
+    if (element && value) {
+        element.value = value;
+        const hexInput = document.getElementById(`${id}Hex`);
+        if (hexInput) hexInput.value = value;
+    }
+}
+
+function updateSliderControl(id, value) {
+    const element = document.getElementById(id);
+    if (element && value) {
+        const numericValue = parseFloat(value);
+        if (!isNaN(numericValue)) {
+            element.value = numericValue;
+            const valueSpan = document.getElementById(`${id}Val`);
+            if (valueSpan) {
+                valueSpan.textContent = numericValue + 'px';
             }
-
-            document.addEventListener('click', (e) => {
-                if (e.target != document.getElementById('cusTextColorHex')) {
-                    updateCustomizerPreview();
-                    generateUpdatedCSSFromControls();
-                    updateCSSProperties();
-                }
-            });
-
-            // Get values from controls
-            const textColor = document.getElementById('cusTextColor').value && document.getElementById('cusTextColorHex').value;
-            const bgColor = document.getElementById('cusBgColor').value && document.getElementById('cusBgColorHex').value;
-            const isTransparent = document.getElementById('cusBgTransparent').checked;
-            const paddingX = document.getElementById('cusPaddingX').value;
-            const paddingY = document.getElementById('cusPaddingY').value;
-            const borderRadius = document.getElementById('cusBorderRadius').value;
-            const fontSize = document.getElementById('cusFontSize').value;
-            const fontWeight = document.getElementById('cusFontWeight').value;
-            const letterSpacing = document.getElementById('cusLetterSpacing').value;
-            const borderWidth = document.getElementById('cusBorderWidth').value;
-            const borderColor = document.getElementById('cusBorderColor').value;
-            const borderStyle = document.getElementById('cusBorderStyle').value;
-            const shadowX = document.getElementById('cusShadowX').value;
-            const shadowY = document.getElementById('cusShadowY').value;
-            const shadowBlur = document.getElementById('cusShadowBlur').value;
-            const shadowColor = document.getElementById('cusShadowColor').value;
-
-            // Prepare background value
-            let background = isTransparent ? 'transparent' : bgColor;
-
-            // Prepare new styles object
-            const newStyles = {
-                color: textColor,
-                background: background,
-                padding: `${paddingY}px ${paddingX}px`,
-                borderRadius: `${borderRadius}px`,
-                fontSize: `${fontSize}px`,
-                fontWeight: fontWeight,
-                letterSpacing: `${letterSpacing}px`
-            };
-
-            // Add border if not none
-            if (borderStyle !== 'none' && borderWidth > 0) {
-                newStyles.border = `${borderWidth}px ${borderStyle} ${borderColor}`;
-            } else {
-                newStyles.border = 'none';
-            }
-
-            // Add shadow if any values are non-zero
-            if (shadowX != 0 || shadowY != 0 || shadowBlur != 0) {
-                newStyles.boxShadow = `${shadowX}px ${shadowY}px ${shadowBlur}px ${shadowColor}`;
-            } else {
-                newStyles.boxShadow = 'none';
-            }
-
-            // Update existing styles with new values
-            let updatedStyles = existingStyles;
-
-            // Preserve important properties
-            const preservedProperties = ['position', 'overflow', 'transition', 'cursor', 'font-family', 'z-index', 'opacity', 'display', 'align-items', 'justify-content', 'text-decoration', 'white-space', 'border-style', 'border-width', 'border-color'];
-
-            preservedProperties.forEach(prop => {
-                const propRegex = new RegExp(`${prop}:\\s*[^;]+;`, 'i');
-                const match = existingStyles.match(propRegex);
-                if (match && !updatedStyles.includes(match[0])) {
-                    updatedStyles += `\n  ${match[0]}`;
-                }
-            });
-
-            // Apply all updates
-            updatedStyles = updateCSSProperties(updatedStyles, newStyles);
-
-            // Clean up
-            updatedStyles = updatedStyles.replace(/\n\s*\n/g, '\n').trim();
-
-            // Reconstruct full CSS
-            const newCSS = `.btn-${currentCustomizerId} {\n${updatedStyles}\n}`;
-
-            // Add any other CSS rules (hover effects, pseudo-elements, etc.)
-            const otherRules = currentCSS.replace(btnSelector, '').trim();
-            if (otherRules) {
-                return newCSS + '\n\n' + otherRules;
-            }
-
-            return newCSS;
         }
+    }
+}
 
-        // ===================== UPDATE PREVIEW FROM CONTROLS =====================
-        function updatePreviewFromControls() {
-            const cssEditor = document.getElementById('cuscssEditor');
-            if (!cssEditor || !currentCustomizerId) return;
+// ===================== UPDATE EXISTING CSS PROPERTIES =====================
+function updateCSSProperties(existingStyles, newStyles) {
+    let updatedStyles = existingStyles;
 
-            let currentCSS = cssEditor.value;
-            const newCSS = generateUpdatedCSSFromControls(currentCSS);
+    // Update color
+    if (newStyles.color !== undefined) {
+        if (updatedStyles.includes('color:')) {
+            updatedStyles = updatedStyles.replace(/color:\s*[^;]+;/, `color: ${newStyles.color};`);
+        } else {
+            updatedStyles += `\n  color: ${newStyles.color};`;
+        }
+    }
 
-            cssEditor.value = newCSS;
+    // Update background (supports transparent)
+    if (newStyles.background !== undefined) {
+        if (updatedStyles.includes('background:')) {
+            updatedStyles = updatedStyles.replace(/background:\s*[^;]+;/, `background: ${newStyles.background};`);
+        } else if (updatedStyles.includes('background-color:')) {
+            updatedStyles = updatedStyles.replace(/background-color:\s*[^;]+;/, `background: ${newStyles.background};`);
+        } else {
+            updatedStyles += `\n  background: ${newStyles.background};`;
+        }
+    }
 
-            // Store the updated CSS for this button
-            storedButtonCSS[currentCustomizerId] = newCSS;
+    // Update padding
+    if (newStyles.padding !== undefined) {
+        if (updatedStyles.includes('padding:')) {
+            updatedStyles = updatedStyles.replace(/padding:\s*[^;]+;/, `padding: ${newStyles.padding};`);
+        } else {
+            updatedStyles += `\n  padding: ${newStyles.padding};`;
+        }
+    }
 
+    // Update border-radius
+    if (newStyles.borderRadius !== undefined) {
+        if (updatedStyles.includes('border-radius:')) {
+            updatedStyles = updatedStyles.replace(/border-radius:\s*[^;]+;/, `border-radius: ${newStyles.borderRadius};`);
+        } else {
+            updatedStyles += `\n  border-radius: ${newStyles.borderRadius};`;
+        }
+    }
+
+    // Update font-size
+    if (newStyles.fontSize !== undefined) {
+        if (updatedStyles.includes('font-size:')) {
+            updatedStyles = updatedStyles.replace(/font-size:\s*[^;]+;/, `font-size: ${newStyles.fontSize};`);
+        } else {
+            updatedStyles += `\n  font-size: ${newStyles.fontSize};`;
+        }
+    }
+
+    // Update font-weight
+    if (newStyles.fontWeight !== undefined) {
+        if (updatedStyles.includes('font-weight:')) {
+            updatedStyles = updatedStyles.replace(/font-weight:\s*[^;]+;/, `font-weight: ${newStyles.fontWeight};`);
+        } else {
+            updatedStyles += `\n  font-weight: ${newStyles.fontWeight};`;
+        }
+    }
+
+    // Update letter-spacing
+    if (newStyles.letterSpacing !== undefined) {
+        if (updatedStyles.includes('letter-spacing:')) {
+            updatedStyles = updatedStyles.replace(/letter-spacing:\s*[^;]+;/, `letter-spacing: ${newStyles.letterSpacing};`);
+        } else {
+            updatedStyles += `\n  letter-spacing: ${newStyles.letterSpacing};`;
+        }
+    }
+
+    // Update border
+    if (newStyles.border !== undefined) {
+        if (updatedStyles.includes('border:')) {
+            updatedStyles = updatedStyles.replace(/border:\s*[^;]+;/, `border: ${newStyles.border};`);
+        } else {
+            updatedStyles += `\n  border: ${newStyles.border};`;
+        }
+    } else if (newStyles.border === 'none') {
+        if (updatedStyles.includes('border:')) {
+            updatedStyles = updatedStyles.replace(/border:\s*[^;]+;/, '');
+        }
+    }
+
+    // Update box-shadow
+    if (newStyles.boxShadow !== undefined) {
+        if (updatedStyles.includes('box-shadow:')) {
+            updatedStyles = updatedStyles.replace(/box-shadow:\s*[^;]+;/, `box-shadow: ${newStyles.boxShadow};`);
+        } else {
+            updatedStyles += `\n  box-shadow: ${newStyles.boxShadow};`;
+        }
+    } else if (newStyles.boxShadow === 'none') {
+        if (updatedStyles.includes('box-shadow:')) {
+            updatedStyles = updatedStyles.replace(/box-shadow:\s*[^;]+;/, '');
+        }
+    }
+
+    return updatedStyles;
+}
+
+// ===================== GENERATE UPDATED CSS FROM CONTROLS =====================
+function generateUpdatedCSSFromControls(currentCSS) {
+    // Extract existing styles block
+    const btnSelector = new RegExp(`\\.btn-${currentCustomizerId}\\s*{([^}]+)}`, 'i');
+    const btnMatch = currentCSS.match(btnSelector);
+
+    let existingStyles = '';
+    if (btnMatch) {
+        existingStyles = btnMatch[1];
+    }
+
+    document.addEventListener('click', (e) => {
+        if (e.target != document.getElementById('cusTextColorHex')) {
             updateCustomizerPreview();
-
-            console.log('✅ Updated CSS with transparent background support');
+            generateUpdatedCSSFromControls();
+            updateCSSProperties();
         }
+    });
 
-        // ===================== LIVE PREVIEW UPDATE =====================
-        function updateCustomizerPreview() {
-            const html = document.getElementById('cushtmlEditor')?.value || '';
-            const css = document.getElementById('cuscssEditor')?.value || '';
-            const js = document.getElementById('cusjsEditor')?.value || '';
+    // Get values from controls
+    const textColor = document.getElementById('cusTextColor').value && document.getElementById('cusTextColorHex').value;
+    const bgColor = document.getElementById('cusBgColor').value && document.getElementById('cusBgColorHex').value;
+    const isTransparent = document.getElementById('cusBgTransparent').checked;
+    const paddingX = document.getElementById('cusPaddingX').value;
+    const paddingY = document.getElementById('cusPaddingY').value;
+    const borderRadius = document.getElementById('cusBorderRadius').value;
+    const fontSize = document.getElementById('cusFontSize').value;
+    const fontWeight = document.getElementById('cusFontWeight').value;
+    const letterSpacing = document.getElementById('cusLetterSpacing').value;
+    const borderWidth = document.getElementById('cusBorderWidth').value;
+    const borderColor = document.getElementById('cusBorderColor').value;
+    const borderStyle = document.getElementById('cusBorderStyle').value;
+    const shadowX = document.getElementById('cusShadowX').value;
+    const shadowY = document.getElementById('cusShadowY').value;
+    const shadowBlur = document.getElementById('cusShadowBlur').value;
+    const shadowColor = document.getElementById('cusShadowColor').value;
 
-            const iframe = document.getElementById('cusliveFrame');
-            if (!iframe) return;
+    // Prepare background value
+    let background = isTransparent ? 'transparent' : bgColor;
 
-            const safeHtml = html.replace(/<\/script>/gi, '<\\/script>');
-            const safeCss = css.replace(/<\/style>/gi, '<\\/style>');
-            const safeJs = js.replace(/<\/script>/gi, '<\\/script>');
+    // Prepare new styles object
+    const newStyles = {
+        color: textColor,
+        background: background,
+        padding: `${paddingY}px ${paddingX}px`,
+        borderRadius: `${borderRadius}px`,
+        fontSize: `${fontSize}px`,
+        fontWeight: fontWeight,
+        letterSpacing: `${letterSpacing}px`
+    };
 
-            const doc = `<!DOCTYPE html>
+    // Add border if not none
+    if (borderStyle !== 'none' && borderWidth > 0) {
+        newStyles.border = `${borderWidth}px ${borderStyle} ${borderColor}`;
+    } else {
+        newStyles.border = 'none';
+    }
+
+    // Add shadow if any values are non-zero
+    if (shadowX != 0 || shadowY != 0 || shadowBlur != 0) {
+        newStyles.boxShadow = `${shadowX}px ${shadowY}px ${shadowBlur}px ${shadowColor}`;
+    } else {
+        newStyles.boxShadow = 'none';
+    }
+
+    // Update existing styles with new values
+    let updatedStyles = existingStyles;
+
+    // Preserve important properties
+    const preservedProperties = ['position', 'overflow', 'transition', 'cursor', 'font-family', 'z-index', 'opacity', 'display', 'align-items', 'justify-content', 'text-decoration', 'white-space', 'border-style', 'border-width', 'border-color'];
+
+    preservedProperties.forEach(prop => {
+        const propRegex = new RegExp(`${prop}:\\s*[^;]+;`, 'i');
+        const match = existingStyles.match(propRegex);
+        if (match && !updatedStyles.includes(match[0])) {
+            updatedStyles += `\n  ${match[0]}`;
+        }
+    });
+
+    // Apply all updates
+    updatedStyles = updateCSSProperties(updatedStyles, newStyles);
+
+    // Clean up
+    updatedStyles = updatedStyles.replace(/\n\s*\n/g, '\n').trim();
+
+    // Reconstruct full CSS
+    const newCSS = `.btn-${currentCustomizerId} {\n${updatedStyles}\n}`;
+
+    // Add any other CSS rules (hover effects, pseudo-elements, etc.)
+    const otherRules = currentCSS.replace(btnSelector, '').trim();
+    if (otherRules) {
+        return newCSS + '\n\n' + otherRules;
+    }
+
+    return newCSS;
+}
+
+// ===================== UPDATE PREVIEW FROM CONTROLS =====================
+function updatePreviewFromControls() {
+    const cssEditor = document.getElementById('cuscssEditor');
+    if (!cssEditor || !currentCustomizerId) return;
+
+    let currentCSS = cssEditor.value;
+    const newCSS = generateUpdatedCSSFromControls(currentCSS);
+
+    cssEditor.value = newCSS;
+
+    // Store the updated CSS for this button
+    storedButtonCSS[currentCustomizerId] = newCSS;
+
+    updateCustomizerPreview();
+
+    console.log('✅ Updated CSS with transparent background support');
+}
+
+// ===================== LIVE PREVIEW UPDATE =====================
+function updateCustomizerPreview() {
+    const html = document.getElementById('cushtmlEditor')?.value || '';
+    const css = document.getElementById('cuscssEditor')?.value || '';
+    const js = document.getElementById('cusjsEditor')?.value || '';
+
+    const iframe = document.getElementById('cusliveFrame');
+    if (!iframe) return;
+
+    const safeHtml = html.replace(/<\/script>/gi, '<\\/script>');
+    const safeCss = css.replace(/<\/style>/gi, '<\\/style>');
+    const safeJs = js.replace(/<\/script>/gi, '<\\/script>');
+
+    const doc = `<!DOCTYPE html>
   <html>
   <head>
   <meta charset="UTF-8">
@@ -7207,525 +7207,525 @@ function closeAddGallery() {
   </body>
   </html>`;
 
-            iframe.srcdoc = doc;
+    iframe.srcdoc = doc;
+}
+
+function debouncedPreviewUpdate() {
+    clearTimeout(customizerUpdateTimer);
+    customizerUpdateTimer = setTimeout(() => {
+        updateCustomizerPreview();
+    }, 10);
+}
+
+// ===================== RESET, EXPORT, COPY =====================
+function resetToOriginal() {
+    if (originalButtonData) {
+        const htmlEditor = document.getElementById('cushtmlEditor');
+        const cssEditor = document.getElementById('cuscssEditor');
+        const jsEditor = document.getElementById('cusjsEditor');
+
+        if (htmlEditor) htmlEditor.value = originalButtonData.html;
+        if (cssEditor) cssEditor.value = originalButtonData.css;
+        if (jsEditor) jsEditor.value = originalButtonData.js;
+
+        // Restore stored CSS
+        if (currentCustomizerId) {
+            storedButtonCSS[currentCustomizerId] = originalButtonData.css;
         }
 
-        function debouncedPreviewUpdate() {
-            clearTimeout(customizerUpdateTimer);
-            customizerUpdateTimer = setTimeout(() => {
-                updateCustomizerPreview();
-            }, 10);
+        parseCSSAndUpdateControls(originalButtonData.css);
+        updateCustomizerPreview();
+
+        console.log(`✅ Reset to original CSS for button ${currentCustomizerId}`);
+    }
+}
+
+function exportCSS() {
+    const css = document.getElementById('cuscssEditor')?.value || '';
+    const blob = new Blob([css], { type: 'text/css' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `button-${currentCustomizerId}.css`;
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+function copyFullCode() {
+    const html = document.getElementById('cushtmlEditor')?.value || '';
+    const css = document.getElementById('cuscssEditor')?.value || '';
+    const js = document.getElementById('cusjsEditor')?.value || '';
+    const fullCode = `<!-- HTML -->\n${html}\n\n<!-- CSS -->\n<style>\n${css}\n</style>\n\n<script>\n${js}\n</script>`;
+
+    navigator.clipboard.writeText(fullCode).then(() => {
+        const confirm = document.getElementById('cuscopyConfirm');
+        if (confirm) {
+            confirm.classList.add('show');
+            setTimeout(() => confirm.classList.remove('show'), 2000);
         }
+    });
+}
 
-        // ===================== RESET, EXPORT, COPY =====================
-        function resetToOriginal() {
-            if (originalButtonData) {
-                const htmlEditor = document.getElementById('cushtmlEditor');
-                const cssEditor = document.getElementById('cuscssEditor');
-                const jsEditor = document.getElementById('cusjsEditor');
+// ===================== GET STORED CSS =====================
+function getStoredCSS(buttonId) {
+    return storedButtonCSS[buttonId] || null;
+}
 
-                if (htmlEditor) htmlEditor.value = originalButtonData.html;
-                if (cssEditor) cssEditor.value = originalButtonData.css;
-                if (jsEditor) jsEditor.value = originalButtonData.js;
+function getAllStoredCSS() {
+    return storedButtonCSS;
+}
 
-                // Restore stored CSS
-                if (currentCustomizerId) {
-                    storedButtonCSS[currentCustomizerId] = originalButtonData.css;
-                }
+function clearStoredCSS(buttonId) {
+    if (buttonId) {
+        delete storedButtonCSS[buttonId];
+    } else {
+        storedButtonCSS = {};
+    }
+    console.log('Stored CSS cleared');
+}
 
-                parseCSSAndUpdateControls(originalButtonData.css);
-                updateCustomizerPreview();
+// ===================== SETUP VISUAL CONTROLS =====================
+function setupVisualControls() {
+    const controls = [
+        'cusTextColor', 'cusBgColor', 'cusBgTransparent', 'cusPaddingX', 'cusPaddingY',
+        'cusBorderRadius', 'cusFontSize', 'cusFontWeight', 'cusLetterSpacing',
+        'cusBorderWidth', 'cusBorderColor', 'cusBorderStyle',
+        'cusShadowX', 'cusShadowY', 'cusShadowBlur', 'cusShadowColor'
+    ];
 
-                console.log(`✅ Reset to original CSS for button ${currentCustomizerId}`);
-            }
-        }
-
-        function exportCSS() {
-            const css = document.getElementById('cuscssEditor')?.value || '';
-            const blob = new Blob([css], { type: 'text/css' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `button-${currentCustomizerId}.css`;
-            a.click();
-            URL.revokeObjectURL(url);
-        }
-
-        function copyFullCode() {
-            const html = document.getElementById('cushtmlEditor')?.value || '';
-            const css = document.getElementById('cuscssEditor')?.value || '';
-            const js = document.getElementById('cusjsEditor')?.value || '';
-            const fullCode = `<!-- HTML -->\n${html}\n\n<!-- CSS -->\n<style>\n${css}\n</style>\n\n<script>\n${js}\n</script>`;
-
-            navigator.clipboard.writeText(fullCode).then(() => {
-                const confirm = document.getElementById('cuscopyConfirm');
-                if (confirm) {
-                    confirm.classList.add('show');
-                    setTimeout(() => confirm.classList.remove('show'), 2000);
-                }
-            });
-        }
-
-        // ===================== GET STORED CSS =====================
-        function getStoredCSS(buttonId) {
-            return storedButtonCSS[buttonId] || null;
-        }
-
-        function getAllStoredCSS() {
-            return storedButtonCSS;
-        }
-
-        function clearStoredCSS(buttonId) {
-            if (buttonId) {
-                delete storedButtonCSS[buttonId];
-            } else {
-                storedButtonCSS = {};
-            }
-            console.log('Stored CSS cleared');
-        }
-
-        // ===================== SETUP VISUAL CONTROLS =====================
-        function setupVisualControls() {
-            const controls = [
-                'cusTextColor', 'cusBgColor', 'cusBgTransparent', 'cusPaddingX', 'cusPaddingY',
-                'cusBorderRadius', 'cusFontSize', 'cusFontWeight', 'cusLetterSpacing',
-                'cusBorderWidth', 'cusBorderColor', 'cusBorderStyle',
-                'cusShadowX', 'cusShadowY', 'cusShadowBlur', 'cusShadowColor'
-            ];
-
-            controls.forEach(controlId => {
-                const element = document.getElementById(controlId);
-                if (element) {
-                    element.addEventListener('input', () => {
-                        // Special handling for transparent checkbox
-                        if (controlId === 'cusBgTransparent') {
-                            const bgColorInput = document.getElementById('cusBgColor');
-                            const bgColorHex = document.getElementById('cusBgColorHex');
-                            if (element.checked) {
-                                bgColorInput.disabled = true;
-                                bgColorHex.disabled = true;
-                            } else {
-                                bgColorInput.disabled = false;
-                                bgColorHex.disabled = false;
-                            }
-                        }
-                        updatePreviewFromControls();
-                    });
-                }
-            });
-
-
-            // Setup slider value displays
-            const sliders = ['cusPaddingX', 'cusPaddingY', 'cusBorderRadius', 'cusFontSize', 'cusLetterSpacing', 'cusBorderWidth', 'cusShadowX', 'cusShadowY', 'cusShadowBlur'];
-            sliders.forEach(sliderId => {
-                const slider = document.getElementById(sliderId);
-                const valueSpan = document.getElementById(`${sliderId}Val`);
-                if (slider && valueSpan) {
-                    slider.addEventListener('input', () => {
-                        valueSpan.textContent = slider.value + 'px';
-                    });
-                }
-            });
-
-            // Setup color picker sync with hex inputs
-            const colorPickers = ['cusTextColor', 'cusBgColor', 'cusBorderColor', 'cusShadowColor'];
-            colorPickers.forEach(pickerId => {
-                const picker = document.getElementById(pickerId);
-                const hexInput = document.getElementById(`${pickerId}Hex`);
-                if (picker && hexInput) {
-                    picker.addEventListener('input', () => {
-                        hexInput.value = picker.value;
-                    });
-                    hexInput.addEventListener('input', () => {
-                        if (/^#[0-9A-F]{6}$/i.test(hexInput.value)) {
-                            picker.value = hexInput.value;
-                        }
-                    });
-                }
-            });
-        }
-
-        // ===================== INITIALIZE CUSTOMIZER =====================
-        function initAdvancedCustomizer() {
-            setupVisualControls();
-
-            // Setup customizer button click handler
-            document.addEventListener('click', (e) => {
-                const btn = e.target.closest('.cuscopy-btn');
-                if (!btn) return;
-                e.preventDefault();
-                const id = parseInt(btn.dataset.id);
-                if (id && BUTTON_DATA[id]) {
-                    cusopenModal(id);
-                }
-            });
-
-            // Setup close button
-            const closeBtn = document.getElementById('cusmodalClose');
-            if (closeBtn) {
-                closeBtn.addEventListener('click', cuscloseModal);
-            }
-
-            // Setup overlay click
-            const overlay = document.getElementById('cusmodalOverlay');
-            if (overlay) {
-                overlay.addEventListener('click', (e) => {
-                    if (e.target === overlay) cuscloseModal();
-                });
-            }
-
-            // Setup reset button
-            const resetBtn = document.getElementById('cusresetBtn');
-            if (resetBtn) resetBtn.addEventListener('click', resetToOriginal);
-
-            // Setup export button
-            const exportBtn = document.getElementById('cusmodalExportBtn');
-            if (exportBtn) exportBtn.addEventListener('click', exportCSS);
-
-            // Setup copy button
-            const copyBtn = document.getElementById('cusmodalCopyBtn');
-            if (copyBtn) copyBtn.addEventListener('click', copyFullCode);
-
-            // Setup refresh button
-            const refreshBtn = document.getElementById('cuspreviewRefresh');
-            if (refreshBtn) refreshBtn.addEventListener('click', updateCustomizerPreview);
-
-            // Setup tab switching
-            const tabBtns = document.querySelectorAll('.custab-btn');
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    cusswitchTab(btn.dataset.tab);
-                });
-            });
-
-            // Setup editor changes
-            const editors = ['cushtmlEditor', 'cuscssEditor', 'cusjsEditor'];
-            editors.forEach(editorId => {
-                const editor = document.getElementById(editorId);
-                if (editor) {
-                    editor.addEventListener('input', debouncedPreviewUpdate);
-                }
-            });
-
-            // Escape key to close
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    const overlay = document.getElementById('cusmodalOverlay');
-                    if (overlay && overlay.classList.contains('open')) {
-                        cuscloseModal();
+    controls.forEach(controlId => {
+        const element = document.getElementById(controlId);
+        if (element) {
+            element.addEventListener('input', () => {
+                // Special handling for transparent checkbox
+                if (controlId === 'cusBgTransparent') {
+                    const bgColorInput = document.getElementById('cusBgColor');
+                    const bgColorHex = document.getElementById('cusBgColorHex');
+                    if (element.checked) {
+                        bgColorInput.disabled = true;
+                        bgColorHex.disabled = true;
+                    } else {
+                        bgColorInput.disabled = false;
+                        bgColorHex.disabled = false;
                     }
                 }
-            });
-
-            console.log('✅ Customizer initialized - with transparent background support');
-        }
-
-        // Initialize on DOM load
-        document.addEventListener('DOMContentLoaded', () => {
-            initAdvancedCustomizer();
-        });
-
-
-
-
-        // ===============More BTN ===================
-
-        // let morebtnOperner1 = document.getElementById('morebtnOperner1');
-        // let morebtnOperner2 = document.getElementById('morebtnOperner2');
-        // let morebtnOverlay1 = document.getElementById('morebtnOverlay1');
-
-        // morebtnOperner1.addEventListener('click', function () {
-        //     morebtnOverlay1.style.display = 'flex';
-        // });
-        // morebtnCloser.addEventListener('click', function () {
-        //     morebtnOverlay1.style.display = 'none';
-        // });
-
-
-
-        const moreBtnOverlay = document.getElementById('moreBtnOverlay');
-        const btnGridAll = document.querySelectorAll('.moreBtnGrid');
-        const btnGrid1 = document.getElementById('btnGrid1');
-        const btnGrid2 = document.getElementById('btnGrid2');
-        const btnGrid3 = document.getElementById('btnGrid3');
-        const btnGrid4 = document.getElementById('btnGrid4');
-        const btnGrid5 = document.getElementById('btnGrid5');
-        const btnGrid6 = document.getElementById('btnGrid6');
-        const btnGrid7 = document.getElementById('btnGrid7');
-        const btnGrid8 = document.getElementById('btnGrid8');
-        const btnGrid9 = document.getElementById('btnGrid9');
-        const btnGrid10 = document.getElementById('btnGrid10');
-        const btnGrid11 = document.getElementById('btnGrid11');
-        const btnGrid12 = document.getElementById('btnGrid12');
-        const btnGrid13 = document.getElementById('btnGrid13');
-        const btnGrid14 = document.getElementById('btnGrid14');
-        const btnGrid15 = document.getElementById('btnGrid15');
-        const btnGrid16 = document.getElementById('btnGrid16');
-        const btnGrid17 = document.getElementById('btnGrid17');
-        const btnGrid18 = document.getElementById('btnGrid18');
-        const btnGrid19 = document.getElementById('btnGrid19');
-        const btnGrid20 = document.getElementById('btnGrid20');
-        const btnGrid21 = document.getElementById('btnGrid21');
-        const btnGrid22 = document.getElementById('btnGrid22');
-        const btnGrid23 = document.getElementById('btnGrid23');
-        const btnGrid24 = document.getElementById('btnGrid24');
-        const btnGrid25 = document.getElementById('btnGrid25');
-        const btnGrid26 = document.getElementById('btnGrid26');
-        const btnGrid27 = document.getElementById('btnGrid27');
-        const btnGrid28 = document.getElementById('btnGrid28');
-        const btnGrid29 = document.getElementById('btnGrid29');
-        const btnGrid30 = document.getElementById('btnGrid30');
-        const btnGrid31 = document.getElementById('btnGrid31');
-        const btnGrid32 = document.getElementById('btnGrid32');
-        const btnGrid33 = document.getElementById('btnGrid33');
-        const btnGrid34 = document.getElementById('btnGrid34');
-        const btnGrid35 = document.getElementById('btnGrid35');
-        const btnGrid36 = document.getElementById('btnGrid36');
-        const btnGrid37 = document.getElementById('btnGrid37');
-        const btnGrid38 = document.getElementById('btnGrid38');
-        const btnGrid39 = document.getElementById('btnGrid39');
-        const btnGrid40 = document.getElementById('btnGrid40');
-        const btnGrid41 = document.getElementById('btnGrid41');
-        const btnGrid42 = document.getElementById('btnGrid42');
-        const btnGrid43 = document.getElementById('btnGrid43');
-        const btnGrid44 = document.getElementById('btnGrid44');
-        const btnGrid45 = document.getElementById('btnGrid45');
-        const btnGrid46 = document.getElementById('btnGrid46');
-        const btnGrid47 = document.getElementById('btnGrid47');
-        const btnGrid48 = document.getElementById('btnGrid48');
-        const btnGrid49 = document.getElementById('btnGrid49');
-        const btnGrid50 = document.getElementById('btnGrid50');
-        const btnGridElse = document.getElementById('btnGridElse');
-        const morebtnCloser = document.getElementById('morebtnClose');
-
-        btnGridAll.forEach(btnGridAll => {
-            btnGridAll.style.display = 'none';
-        });
-
-        function moreGridDisplayNone() {
-            btnGridAll.forEach(btnGridAll => {
-                btnGridAll.style.display = 'none';
+                updatePreviewFromControls();
             });
         }
+    });
 
-        function OpenMoreBtn() {
-            moreBtnOverlay.style.display = 'flex';
+
+    // Setup slider value displays
+    const sliders = ['cusPaddingX', 'cusPaddingY', 'cusBorderRadius', 'cusFontSize', 'cusLetterSpacing', 'cusBorderWidth', 'cusShadowX', 'cusShadowY', 'cusShadowBlur'];
+    sliders.forEach(sliderId => {
+        const slider = document.getElementById(sliderId);
+        const valueSpan = document.getElementById(`${sliderId}Val`);
+        if (slider && valueSpan) {
+            slider.addEventListener('input', () => {
+                valueSpan.textContent = slider.value + 'px';
+            });
         }
+    });
 
-        morebtnCloser.addEventListener('click', function () {
-            moreBtnOverlay.style.display = 'none';
-        });
-
-        function morebtn_close() {
-            moreBtnOverlay.style.display = 'none';
-        }
-        moreBtnOverlay.addEventListener('click', (e) => {
-            if (e.target === moreBtnOverlay) morebtn_close();
-        });
-
-
-        document.addEventListener('click', (e) => {
-            const btn = e.target.closest('.more-btn-opener');
-            if (!btn) return;
-            if (btn.dataset.id == 1) {
-                moreGridDisplayNone();
-                btnGrid1.style.display = 'grid';
-            } else if (btn.dataset.id == 2) {
-                moreGridDisplayNone();
-                btnGrid2.style.display = 'grid';
-            } else if (btn.dataset.id == 3) {
-                moreGridDisplayNone();
-                btnGrid3.style.display = 'grid';
-            } else if (btn.dataset.id == 4) {
-                moreGridDisplayNone();
-                btnGrid4.style.display = 'grid';
-            } else if (btn.dataset.id == 5) {
-                moreGridDisplayNone();
-                btnGrid5.style.display = 'grid';
-            } else if (btn.dataset.id == 6) {
-                moreGridDisplayNone();
-                btnGrid6.style.display = 'grid';
-            } else if (btn.dataset.id == 7) {
-                moreGridDisplayNone();
-                btnGrid7.style.display = 'grid';
-            } else if (btn.dataset.id == 8) {
-                moreGridDisplayNone();
-                btnGrid8.style.display = 'grid';
-            } else if (btn.dataset.id == 9) {
-                moreGridDisplayNone();
-                btnGrid9.style.display = 'grid';
-            } else if (btn.dataset.id == 10) {
-                moreGridDisplayNone();
-                btnGrid10.style.display = 'grid';
-            } else if (btn.dataset.id == 11) {
-                moreGridDisplayNone();
-                btnGrid11.style.display = 'grid';
-            } else if (btn.dataset.id == 12) {
-                moreGridDisplayNone();
-                btnGrid12.style.display = 'grid';
-            } else if (btn.dataset.id == 13) {
-                moreGridDisplayNone();
-                btnGrid13.style.display = 'grid';
-            } else if (btn.dataset.id == 14) {
-                moreGridDisplayNone();
-                btnGrid14.style.display = 'grid';
-            } else if (btn.dataset.id == 15) {
-                moreGridDisplayNone();
-                btnGrid15.style.display = 'grid';
-            } else if (btn.dataset.id == 16) {
-                moreGridDisplayNone();
-                btnGrid16.style.display = 'grid';
-            } else if (btn.dataset.id == 17) {
-                moreGridDisplayNone();
-                btnGrid17.style.display = 'grid';
-            } else if (btn.dataset.id == 18) {
-                moreGridDisplayNone();
-                btnGrid18.style.display = 'grid';
-            } else if (btn.dataset.id == 19) {
-                moreGridDisplayNone();
-                btnGrid19.style.display = 'grid';
-            } else if (btn.dataset.id == 20) {
-                moreGridDisplayNone();
-                btnGrid20.style.display = 'grid';
-            } else if (btn.dataset.id == 21) {
-                moreGridDisplayNone();
-                btnGrid21.style.display = 'grid';
-            } else if (btn.dataset.id == 22) {
-                moreGridDisplayNone();
-                btnGrid22.style.display = 'grid';
-            } else if (btn.dataset.id == 23) {
-                moreGridDisplayNone();
-                btnGrid23.style.display = 'grid';
-            } else if (btn.dataset.id == 24) {
-                moreGridDisplayNone();
-                btnGrid24.style.display = 'grid';
-            } else if (btn.dataset.id == 25) {
-                moreGridDisplayNone();
-                btnGrid25.style.display = 'grid';
-            } else if (btn.dataset.id == 26) {
-                moreGridDisplayNone();
-                btnGrid26.style.display = 'grid';
-            } else if (btn.dataset.id == 27) {
-                moreGridDisplayNone();
-                btnGrid27.style.display = 'grid';
-            } else if (btn.dataset.id == 28) {
-                moreGridDisplayNone();
-                btnGrid28.style.display = 'grid';
-            } else if (btn.dataset.id == 29) {
-                moreGridDisplayNone();
-                btnGrid29.style.display = 'grid';
-            } else if (btn.dataset.id == 30) {
-                moreGridDisplayNone();
-                btnGrid30.style.display = 'grid';
-            } else if (btn.dataset.id == 31) {
-                moreGridDisplayNone();
-                btnGrid31.style.display = 'grid';
-            } else if (btn.dataset.id == 32) {
-                moreGridDisplayNone();
-                btnGrid32.style.display = 'grid';
-            } else if (btn.dataset.id == 33) {
-                moreGridDisplayNone();
-                btnGrid33.style.display = 'grid';
-            } else if (btn.dataset.id == 34) {
-                moreGridDisplayNone();
-                btnGrid34.style.display = 'grid';
-            } else if (btn.dataset.id == 35) {
-                moreGridDisplayNone();
-                btnGrid35.style.display = 'grid';
-            } else if (btn.dataset.id == 36) {
-                moreGridDisplayNone();
-                btnGrid36.style.display = 'grid';
-            } else if (btn.dataset.id == 37) {
-                moreGridDisplayNone();
-                btnGrid37.style.display = 'grid';
-            } else if (btn.dataset.id == 38) {
-                moreGridDisplayNone();
-                btnGrid38.style.display = 'grid';
-            } else if (btn.dataset.id == 39) {
-                moreGridDisplayNone();
-                btnGrid39.style.display = 'grid';
-            } else if (btn.dataset.id == 40) {
-                moreGridDisplayNone();
-                btnGrid40.style.display = 'grid';
-            } else if (btn.dataset.id == 41) {
-                moreGridDisplayNone();
-                btnGrid41.style.display = 'grid';
-            } else if (btn.dataset.id == 42) {
-                moreGridDisplayNone();
-                btnGrid42.style.display = 'grid';
-            } else if (btn.dataset.id == 43) {
-                moreGridDisplayNone();
-                btnGrid43.style.display = 'grid';
-            } else if (btn.dataset.id == 44) {
-                moreGridDisplayNone();
-                btnGrid44.style.display = 'grid';
-            } else if (btn.dataset.id == 45) {
-                moreGridDisplayNone();
-                btnGrid45.style.display = 'grid';
-            } else if (btn.dataset.id == 46) {
-                moreGridDisplayNone();
-                btnGrid46.style.display = 'grid';
-            } else if (btn.dataset.id == 47) {
-                moreGridDisplayNone();
-                btnGrid47.style.display = 'grid';
-            } else if (btn.dataset.id == 48) {
-                moreGridDisplayNone();
-                btnGrid48.style.display = 'grid';
-            } else if (btn.dataset.id == 49) {
-                moreGridDisplayNone();
-                btnGrid49.style.display = 'grid';
-            } else if (btn.dataset.id == 50) {
-                moreGridDisplayNone();
-                btnGrid50.style.display = 'grid';
-            } else {
-                moreGridDisplayNone();
-                btnGridElse.style.display = 'grid';
-            }
-        });
-
-        // ===============More BTN ===================
-
-        // =================Check Buttons=============
-
-
-        console.log('%cButtonVault 🎨 Ready!', 'color:#6c63ff;font-size:1.2rem;font-weight:700;');
-        console.log('%c50 premium buttons loaded ✦', 'color:#43e97b;font-size:0.9rem;');
-
-        // ===========================NOW========================
-        // ===========================NOW========================
-
-
-        const LabManager = {
-            overlay: document.getElementById('checkOverlay'),
-            viewport: document.getElementById('btnOverlay'),
-            input: document.getElementById('checkInput'),
-            previewDot: document.getElementById('colorPreview'),
-
-            // Central function to update all background visuals
-            setSurface: (value) => {
-                // Update Input and Dot
-                LabManager.input.value = value;
-                LabManager.previewDot.style.background = value;
-
-                // Update Viewport Background
-                LabManager.viewport.style.background = value;
-
-                // Update Iframe Internal Background (via transition)
-                const frame = LabManager.viewport.querySelector('iframe');
-                if (frame) {
-                    frame.style.background = 'transparent'; // Let the viewport handle the color
+    // Setup color picker sync with hex inputs
+    const colorPickers = ['cusTextColor', 'cusBgColor', 'cusBorderColor', 'cusShadowColor'];
+    colorPickers.forEach(pickerId => {
+        const picker = document.getElementById(pickerId);
+        const hexInput = document.getElementById(`${pickerId}Hex`);
+        if (picker && hexInput) {
+            picker.addEventListener('input', () => {
+                hexInput.value = picker.value;
+            });
+            hexInput.addEventListener('input', () => {
+                if (/^#[0-9A-F]{6}$/i.test(hexInput.value)) {
+                    picker.value = hexInput.value;
                 }
-            },
+            });
+        }
+    });
+}
 
-            open: (buttonId) => {
-                const data = BUTTON_DATA[buttonId];
-                if (!data) return;
+// ===================== INITIALIZE CUSTOMIZER =====================
+function initAdvancedCustomizer() {
+    setupVisualControls();
 
-                // Create the Simulation Iframe
-                const iframe = document.createElement('iframe');
-                iframe.style.cssText = "width:100%; height:100%; border:none; background:transparent;";
+    // Setup customizer button click handler
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.cuscopy-btn');
+        if (!btn) return;
+        e.preventDefault();
+        const id = parseInt(btn.dataset.id);
+        if (id && BUTTON_DATA[id]) {
+            cusopenModal(id);
+        }
+    });
 
-                const htmlContent = `
+    // Setup close button
+    const closeBtn = document.getElementById('cusmodalClose');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', cuscloseModal);
+    }
+
+    // Setup overlay click
+    const overlay = document.getElementById('cusmodalOverlay');
+    if (overlay) {
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) cuscloseModal();
+        });
+    }
+
+    // Setup reset button
+    const resetBtn = document.getElementById('cusresetBtn');
+    if (resetBtn) resetBtn.addEventListener('click', resetToOriginal);
+
+    // Setup export button
+    const exportBtn = document.getElementById('cusmodalExportBtn');
+    if (exportBtn) exportBtn.addEventListener('click', exportCSS);
+
+    // Setup copy button
+    const copyBtn = document.getElementById('cusmodalCopyBtn');
+    if (copyBtn) copyBtn.addEventListener('click', copyFullCode);
+
+    // Setup refresh button
+    const refreshBtn = document.getElementById('cuspreviewRefresh');
+    if (refreshBtn) refreshBtn.addEventListener('click', updateCustomizerPreview);
+
+    // Setup tab switching
+    const tabBtns = document.querySelectorAll('.custab-btn');
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            cusswitchTab(btn.dataset.tab);
+        });
+    });
+
+    // Setup editor changes
+    const editors = ['cushtmlEditor', 'cuscssEditor', 'cusjsEditor'];
+    editors.forEach(editorId => {
+        const editor = document.getElementById(editorId);
+        if (editor) {
+            editor.addEventListener('input', debouncedPreviewUpdate);
+        }
+    });
+
+    // Escape key to close
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const overlay = document.getElementById('cusmodalOverlay');
+            if (overlay && overlay.classList.contains('open')) {
+                cuscloseModal();
+            }
+        }
+    });
+
+    console.log('✅ Customizer initialized - with transparent background support');
+}
+
+// Initialize on DOM load
+document.addEventListener('DOMContentLoaded', () => {
+    initAdvancedCustomizer();
+});
+
+
+
+
+// ===============More BTN ===================
+
+// let morebtnOperner1 = document.getElementById('morebtnOperner1');
+// let morebtnOperner2 = document.getElementById('morebtnOperner2');
+// let morebtnOverlay1 = document.getElementById('morebtnOverlay1');
+
+// morebtnOperner1.addEventListener('click', function () {
+//     morebtnOverlay1.style.display = 'flex';
+// });
+// morebtnCloser.addEventListener('click', function () {
+//     morebtnOverlay1.style.display = 'none';
+// });
+
+
+
+const moreBtnOverlay = document.getElementById('moreBtnOverlay');
+const btnGridAll = document.querySelectorAll('.moreBtnGrid');
+const btnGrid1 = document.getElementById('btnGrid1');
+const btnGrid2 = document.getElementById('btnGrid2');
+const btnGrid3 = document.getElementById('btnGrid3');
+const btnGrid4 = document.getElementById('btnGrid4');
+const btnGrid5 = document.getElementById('btnGrid5');
+const btnGrid6 = document.getElementById('btnGrid6');
+const btnGrid7 = document.getElementById('btnGrid7');
+const btnGrid8 = document.getElementById('btnGrid8');
+const btnGrid9 = document.getElementById('btnGrid9');
+const btnGrid10 = document.getElementById('btnGrid10');
+const btnGrid11 = document.getElementById('btnGrid11');
+const btnGrid12 = document.getElementById('btnGrid12');
+const btnGrid13 = document.getElementById('btnGrid13');
+const btnGrid14 = document.getElementById('btnGrid14');
+const btnGrid15 = document.getElementById('btnGrid15');
+const btnGrid16 = document.getElementById('btnGrid16');
+const btnGrid17 = document.getElementById('btnGrid17');
+const btnGrid18 = document.getElementById('btnGrid18');
+const btnGrid19 = document.getElementById('btnGrid19');
+const btnGrid20 = document.getElementById('btnGrid20');
+const btnGrid21 = document.getElementById('btnGrid21');
+const btnGrid22 = document.getElementById('btnGrid22');
+const btnGrid23 = document.getElementById('btnGrid23');
+const btnGrid24 = document.getElementById('btnGrid24');
+const btnGrid25 = document.getElementById('btnGrid25');
+const btnGrid26 = document.getElementById('btnGrid26');
+const btnGrid27 = document.getElementById('btnGrid27');
+const btnGrid28 = document.getElementById('btnGrid28');
+const btnGrid29 = document.getElementById('btnGrid29');
+const btnGrid30 = document.getElementById('btnGrid30');
+const btnGrid31 = document.getElementById('btnGrid31');
+const btnGrid32 = document.getElementById('btnGrid32');
+const btnGrid33 = document.getElementById('btnGrid33');
+const btnGrid34 = document.getElementById('btnGrid34');
+const btnGrid35 = document.getElementById('btnGrid35');
+const btnGrid36 = document.getElementById('btnGrid36');
+const btnGrid37 = document.getElementById('btnGrid37');
+const btnGrid38 = document.getElementById('btnGrid38');
+const btnGrid39 = document.getElementById('btnGrid39');
+const btnGrid40 = document.getElementById('btnGrid40');
+const btnGrid41 = document.getElementById('btnGrid41');
+const btnGrid42 = document.getElementById('btnGrid42');
+const btnGrid43 = document.getElementById('btnGrid43');
+const btnGrid44 = document.getElementById('btnGrid44');
+const btnGrid45 = document.getElementById('btnGrid45');
+const btnGrid46 = document.getElementById('btnGrid46');
+const btnGrid47 = document.getElementById('btnGrid47');
+const btnGrid48 = document.getElementById('btnGrid48');
+const btnGrid49 = document.getElementById('btnGrid49');
+const btnGrid50 = document.getElementById('btnGrid50');
+const btnGridElse = document.getElementById('btnGridElse');
+const morebtnCloser = document.getElementById('morebtnClose');
+
+btnGridAll.forEach(btnGridAll => {
+    btnGridAll.style.display = 'none';
+});
+
+function moreGridDisplayNone() {
+    btnGridAll.forEach(btnGridAll => {
+        btnGridAll.style.display = 'none';
+    });
+}
+
+function OpenMoreBtn() {
+    moreBtnOverlay.style.display = 'flex';
+}
+
+morebtnCloser.addEventListener('click', function () {
+    moreBtnOverlay.style.display = 'none';
+});
+
+function morebtn_close() {
+    moreBtnOverlay.style.display = 'none';
+}
+moreBtnOverlay.addEventListener('click', (e) => {
+    if (e.target === moreBtnOverlay) morebtn_close();
+});
+
+
+document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.more-btn-opener');
+    if (!btn) return;
+    if (btn.dataset.id == 1) {
+        moreGridDisplayNone();
+        btnGrid1.style.display = 'grid';
+    } else if (btn.dataset.id == 2) {
+        moreGridDisplayNone();
+        btnGrid2.style.display = 'grid';
+    } else if (btn.dataset.id == 3) {
+        moreGridDisplayNone();
+        btnGrid3.style.display = 'grid';
+    } else if (btn.dataset.id == 4) {
+        moreGridDisplayNone();
+        btnGrid4.style.display = 'grid';
+    } else if (btn.dataset.id == 5) {
+        moreGridDisplayNone();
+        btnGrid5.style.display = 'grid';
+    } else if (btn.dataset.id == 6) {
+        moreGridDisplayNone();
+        btnGrid6.style.display = 'grid';
+    } else if (btn.dataset.id == 7) {
+        moreGridDisplayNone();
+        btnGrid7.style.display = 'grid';
+    } else if (btn.dataset.id == 8) {
+        moreGridDisplayNone();
+        btnGrid8.style.display = 'grid';
+    } else if (btn.dataset.id == 9) {
+        moreGridDisplayNone();
+        btnGrid9.style.display = 'grid';
+    } else if (btn.dataset.id == 10) {
+        moreGridDisplayNone();
+        btnGrid10.style.display = 'grid';
+    } else if (btn.dataset.id == 11) {
+        moreGridDisplayNone();
+        btnGrid11.style.display = 'grid';
+    } else if (btn.dataset.id == 12) {
+        moreGridDisplayNone();
+        btnGrid12.style.display = 'grid';
+    } else if (btn.dataset.id == 13) {
+        moreGridDisplayNone();
+        btnGrid13.style.display = 'grid';
+    } else if (btn.dataset.id == 14) {
+        moreGridDisplayNone();
+        btnGrid14.style.display = 'grid';
+    } else if (btn.dataset.id == 15) {
+        moreGridDisplayNone();
+        btnGrid15.style.display = 'grid';
+    } else if (btn.dataset.id == 16) {
+        moreGridDisplayNone();
+        btnGrid16.style.display = 'grid';
+    } else if (btn.dataset.id == 17) {
+        moreGridDisplayNone();
+        btnGrid17.style.display = 'grid';
+    } else if (btn.dataset.id == 18) {
+        moreGridDisplayNone();
+        btnGrid18.style.display = 'grid';
+    } else if (btn.dataset.id == 19) {
+        moreGridDisplayNone();
+        btnGrid19.style.display = 'grid';
+    } else if (btn.dataset.id == 20) {
+        moreGridDisplayNone();
+        btnGrid20.style.display = 'grid';
+    } else if (btn.dataset.id == 21) {
+        moreGridDisplayNone();
+        btnGrid21.style.display = 'grid';
+    } else if (btn.dataset.id == 22) {
+        moreGridDisplayNone();
+        btnGrid22.style.display = 'grid';
+    } else if (btn.dataset.id == 23) {
+        moreGridDisplayNone();
+        btnGrid23.style.display = 'grid';
+    } else if (btn.dataset.id == 24) {
+        moreGridDisplayNone();
+        btnGrid24.style.display = 'grid';
+    } else if (btn.dataset.id == 25) {
+        moreGridDisplayNone();
+        btnGrid25.style.display = 'grid';
+    } else if (btn.dataset.id == 26) {
+        moreGridDisplayNone();
+        btnGrid26.style.display = 'grid';
+    } else if (btn.dataset.id == 27) {
+        moreGridDisplayNone();
+        btnGrid27.style.display = 'grid';
+    } else if (btn.dataset.id == 28) {
+        moreGridDisplayNone();
+        btnGrid28.style.display = 'grid';
+    } else if (btn.dataset.id == 29) {
+        moreGridDisplayNone();
+        btnGrid29.style.display = 'grid';
+    } else if (btn.dataset.id == 30) {
+        moreGridDisplayNone();
+        btnGrid30.style.display = 'grid';
+    } else if (btn.dataset.id == 31) {
+        moreGridDisplayNone();
+        btnGrid31.style.display = 'grid';
+    } else if (btn.dataset.id == 32) {
+        moreGridDisplayNone();
+        btnGrid32.style.display = 'grid';
+    } else if (btn.dataset.id == 33) {
+        moreGridDisplayNone();
+        btnGrid33.style.display = 'grid';
+    } else if (btn.dataset.id == 34) {
+        moreGridDisplayNone();
+        btnGrid34.style.display = 'grid';
+    } else if (btn.dataset.id == 35) {
+        moreGridDisplayNone();
+        btnGrid35.style.display = 'grid';
+    } else if (btn.dataset.id == 36) {
+        moreGridDisplayNone();
+        btnGrid36.style.display = 'grid';
+    } else if (btn.dataset.id == 37) {
+        moreGridDisplayNone();
+        btnGrid37.style.display = 'grid';
+    } else if (btn.dataset.id == 38) {
+        moreGridDisplayNone();
+        btnGrid38.style.display = 'grid';
+    } else if (btn.dataset.id == 39) {
+        moreGridDisplayNone();
+        btnGrid39.style.display = 'grid';
+    } else if (btn.dataset.id == 40) {
+        moreGridDisplayNone();
+        btnGrid40.style.display = 'grid';
+    } else if (btn.dataset.id == 41) {
+        moreGridDisplayNone();
+        btnGrid41.style.display = 'grid';
+    } else if (btn.dataset.id == 42) {
+        moreGridDisplayNone();
+        btnGrid42.style.display = 'grid';
+    } else if (btn.dataset.id == 43) {
+        moreGridDisplayNone();
+        btnGrid43.style.display = 'grid';
+    } else if (btn.dataset.id == 44) {
+        moreGridDisplayNone();
+        btnGrid44.style.display = 'grid';
+    } else if (btn.dataset.id == 45) {
+        moreGridDisplayNone();
+        btnGrid45.style.display = 'grid';
+    } else if (btn.dataset.id == 46) {
+        moreGridDisplayNone();
+        btnGrid46.style.display = 'grid';
+    } else if (btn.dataset.id == 47) {
+        moreGridDisplayNone();
+        btnGrid47.style.display = 'grid';
+    } else if (btn.dataset.id == 48) {
+        moreGridDisplayNone();
+        btnGrid48.style.display = 'grid';
+    } else if (btn.dataset.id == 49) {
+        moreGridDisplayNone();
+        btnGrid49.style.display = 'grid';
+    } else if (btn.dataset.id == 50) {
+        moreGridDisplayNone();
+        btnGrid50.style.display = 'grid';
+    } else {
+        moreGridDisplayNone();
+        btnGridElse.style.display = 'grid';
+    }
+});
+
+// ===============More BTN ===================
+
+// =================Check Buttons=============
+
+
+console.log('%cButtonVault 🎨 Ready!', 'color:#6c63ff;font-size:1.2rem;font-weight:700;');
+console.log('%c50 premium buttons loaded ✦', 'color:#43e97b;font-size:0.9rem;');
+
+// ===========================NOW========================
+// ===========================NOW========================
+
+
+const LabManager = {
+    overlay: document.getElementById('checkOverlay'),
+    viewport: document.getElementById('btnOverlay'),
+    input: document.getElementById('checkInput'),
+    previewDot: document.getElementById('colorPreview'),
+
+    // Central function to update all background visuals
+    setSurface: (value) => {
+        // Update Input and Dot
+        LabManager.input.value = value;
+        LabManager.previewDot.style.background = value;
+
+        // Update Viewport Background
+        LabManager.viewport.style.background = value;
+
+        // Update Iframe Internal Background (via transition)
+        const frame = LabManager.viewport.querySelector('iframe');
+        if (frame) {
+            frame.style.background = 'transparent'; // Let the viewport handle the color
+        }
+    },
+
+    open: (buttonId) => {
+        const data = BUTTON_DATA[buttonId];
+        if (!data) return;
+
+        // Create the Simulation Iframe
+        const iframe = document.createElement('iframe');
+        iframe.style.cssText = "width:100%; height:100%; border:none; background:transparent;";
+
+        const htmlContent = `
             <style>
                 body { 
                     margin:0; min-height:100vh; display:flex; 
@@ -7738,161 +7738,360 @@ function closeAddGallery() {
             <script>${data.js}<\/script>
         `;
 
-                iframe.srcdoc = htmlContent;
+        iframe.srcdoc = htmlContent;
 
-                LabManager.viewport.innerHTML = '';
-                LabManager.viewport.appendChild(iframe);
-                LabManager.overlay.style.display = 'flex';
+        LabManager.viewport.innerHTML = '';
+        LabManager.viewport.appendChild(iframe);
+        LabManager.overlay.style.display = 'flex';
 
-                // Apply current surface
-                LabManager.setSurface(LabManager.input.value);
-            },
+        // Apply current surface
+        LabManager.setSurface(LabManager.input.value);
+    },
 
-            close: () => {
-                LabManager.overlay.style.display = 'none';
-                LabManager.viewport.innerHTML = '<div class="viewport-hint">Simulation Ended</div>';
-            }
+    close: () => {
+        LabManager.overlay.style.display = 'none';
+        LabManager.viewport.innerHTML = '<div class="viewport-hint">Simulation Ended</div>';
+    }
+};
+
+// --- Event Listeners ---
+
+// 1. Listen for clicks on the tokens
+document.querySelectorAll('.token').forEach(btn => {
+    btn.addEventListener('click', () => LabManager.setSurface(btn.dataset.value));
+});
+
+// 2. Listen for manual typing
+LabManager.input.addEventListener('input', (e) => LabManager.setSurface(e.target.value));
+
+// 3. Close actions
+document.getElementById('checkClose').onclick = LabManager.close;
+LabManager.overlay.onclick = (e) => { if (e.target === LabManager.overlay) LabManager.close(); };
+
+// 4. Trigger from your grid (assuming btnGrid exists)
+document.getElementById('btnGrid').addEventListener('click', (e) => {
+    const trigger = e.target.closest('.check-btn-opener');
+    if (trigger) LabManager.open(trigger.dataset.id);
+});
+
+// ===========================NOW========================
+
+// ── Send to AI Workflow ────────────────────────────────────────
+async function sendToWorkflow() {
+    const HTML = document.getElementById('addhtmlCode').value.trim();
+    const CSS = document.getElementById('addcssCode').value.trim();
+    const JS = document.getElementById('addjsCode').value.trim();
+
+    // ── Validation ─────────────────────────────────────────────────
+    if (!HTML && !CSS && !JS) {
+        alert('Please enter at least HTML, CSS, or JS code before Publishing.');
+        return;
+    }
+
+    if (HTML) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(HTML, 'text/html');
+        const hasButton = doc.querySelector('button, input[type="button"], input[type="submit"], a');
+        if (!hasButton) {
+            alert('⚠️ Your HTML must contain at least one <button> or <a> tag.');
+            document.getElementById('addhtmlCode').style.borderColor = '#ff6584';
+            setTimeout(() => document.getElementById('addhtmlCode').style.borderColor = 'var(--border)', 2000);
+            return;
+        }
+    }
+
+    const btn = document.getElementById('sendToAIBtn');
+    const panel = document.getElementById('aiResponsePanel');
+    const output = document.getElementById('aiOutput');
+    const statusText = document.getElementById('aiStatusText');
+    const dot = document.getElementById('aiDot');
+    const cards = document.getElementById('aiResponseCards');
+
+    // ── Show Panel & Loading State ──────────────────────────────────
+    panel.classList.add('visible');
+    btn.disabled = true;
+    btn.textContent = '⏳ Sending...';
+    output.className = 'ai-output loading';
+    output.textContent = '⚡ Uploading Button';
+    statusText.textContent = 'Sending...';
+    statusText.className = 'ai-status-text loading';
+    dot.className = 'ai-dot active';
+    cards.innerHTML = '';
+
+    try {
+        const res = await fetch('https://dci.app.n8n.cloud/webhook/receive-data', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ HTML, CSS, JS })
+        });
+
+        if (!res.ok) throw new Error(`Server error: ${res.status}`);
+
+        const data = await res.json();
+
+        // ── Clean response strings ───────────────────────────────────
+        const clean = (str) => {
+            if (typeof str !== 'string') return str;
+            str = str.trim();
+            if (str.startsWith('"') && str.endsWith('"')) str = str.slice(1, -1);
+            return str
+                .replace(/\\n/g, '\n')
+                .replace(/\\t/g, '\t')
+                .replace(/\\"/g, '"')
+                .replace(/\\\\/g, '\\');
         };
 
-        // --- Event Listeners ---
+        // ── Success ─────────────────────────────────────────────────
+        output.className = 'ai-output has-data';
+        output.textContent = JSON.stringify(data, null, 2);
+        statusText.textContent = '✅ Saved to Vault!';
+        statusText.className = 'ai-status-text success';
+        dot.className = 'ai-dot active';
 
-        // 1. Listen for clicks on the tokens
-        document.querySelectorAll('.token').forEach(btn => {
-            btn.addEventListener('click', () => LabManager.setSurface(btn.dataset.value));
-        });
-
-        // 2. Listen for manual typing
-        LabManager.input.addEventListener('input', (e) => LabManager.setSurface(e.target.value));
-
-        // 3. Close actions
-        document.getElementById('checkClose').onclick = LabManager.close;
-        LabManager.overlay.onclick = (e) => { if (e.target === LabManager.overlay) LabManager.close(); };
-
-        // 4. Trigger from your grid (assuming btnGrid exists)
-        document.getElementById('btnGrid').addEventListener('click', (e) => {
-            const trigger = e.target.closest('.check-btn-opener');
-            if (trigger) LabManager.open(trigger.dataset.id);
-        });
-
-        // ===========================NOW========================
-
-        // ── Send to AI Workflow ────────────────────────────────────────
-        async function sendToWorkflow() {
-            const HTML = document.getElementById('addhtmlCode').value.trim();
-            const CSS = document.getElementById('addcssCode').value.trim();
-            const JS = document.getElementById('addjsCode').value.trim();
-
-            // ── Validation ─────────────────────────────────────────────────
-            if (!HTML && !CSS && !JS) {
-                alert('Please enter at least HTML, CSS, or JS code before Publishing.');
-                return;
-            }
-
-            if (HTML) {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(HTML, 'text/html');
-                const hasButton = doc.querySelector('button, input[type="button"], input[type="submit"], a');
-                if (!hasButton) {
-                    alert('⚠️ Your HTML must contain at least one <button> or <a> tag.');
-                    document.getElementById('addhtmlCode').style.borderColor = '#ff6584';
-                    setTimeout(() => document.getElementById('addhtmlCode').style.borderColor = 'var(--border)', 2000);
-                    return;
-                }
-            }
-
-            const btn = document.getElementById('sendToAIBtn');
-            const panel = document.getElementById('aiResponsePanel');
-            const output = document.getElementById('aiOutput');
-            const statusText = document.getElementById('aiStatusText');
-            const dot = document.getElementById('aiDot');
-            const cards = document.getElementById('aiResponseCards');
-
-            // ── Show Panel & Loading State ──────────────────────────────────
-            panel.classList.add('visible');
-            btn.disabled = true;
-            btn.textContent = '⏳ Sending...';
-            output.className = 'ai-output loading';
-            output.textContent = '⚡ Uploading Button';
-            statusText.textContent = 'Sending...';
-            statusText.className = 'ai-status-text loading';
-            dot.className = 'ai-dot active';
-            cards.innerHTML = '';
-
-            try {
-                const res = await fetch('https://dci.app.n8n.cloud/webhook/receive-data', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ HTML, CSS, JS })
-                });
-
-                if (!res.ok) throw new Error(`Server error: ${res.status}`);
-
-                const data = await res.json();
-
-                // ── Clean response strings ───────────────────────────────────
-                const clean = (str) => {
-                    if (typeof str !== 'string') return str;
-                    str = str.trim();
-                    if (str.startsWith('"') && str.endsWith('"')) str = str.slice(1, -1);
-                    return str
-                        .replace(/\\n/g, '\n')
-                        .replace(/\\t/g, '\t')
-                        .replace(/\\"/g, '"')
-                        .replace(/\\\\/g, '\\');
-                };
-
-                // ── Success ─────────────────────────────────────────────────
-                output.className = 'ai-output has-data';
-                output.textContent = JSON.stringify(data, null, 2);
-                statusText.textContent = '✅ Saved to Vault!';
-                statusText.className = 'ai-status-text success';
-                dot.className = 'ai-dot active';
-
-                // ── Render Response Cards ────────────────────────────────────
-                cards.innerHTML = '';
-                if (typeof data === 'object' && !Array.isArray(data)) {
-                    Object.entries(data).forEach(([key, value]) => {
-                        const card = document.createElement('div');
-                        card.className = 'ai-card';
-                        const displayValue = typeof value === 'object'
-                            ? JSON.stringify(value, null, 2)
-                            : clean(String(value));
-                        card.innerHTML = `
+        // ── Render Response Cards ────────────────────────────────────
+        cards.innerHTML = '';
+        if (typeof data === 'object' && !Array.isArray(data)) {
+            Object.entries(data).forEach(([key, value]) => {
+                const card = document.createElement('div');
+                card.className = 'ai-card';
+                const displayValue = typeof value === 'object'
+                    ? JSON.stringify(value, null, 2)
+                    : clean(String(value));
+                card.innerHTML = `
           <div class="ai-card-label">${key}</div>
           <div class="ai-card-value">${displayValue.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
         `;
-                        cards.appendChild(card);
-                    });
-                }
+                cards.appendChild(card);
+            });
+        }
 
-                // ── Show Thanks Overlay ──────────────────────────────────────
-                const thanks = document.getElementById('thanksOverlay');
-                if (thanks) {
-                    thanks.style.display = 'flex';
-                    setTimeout(() => thanks.style.display = 'none', 2400);
-                }
+        // ── Show Thanks Overlay ──────────────────────────────────────
+        const thanks = document.getElementById('thanksOverlay');
+        if (thanks) {
+            thanks.style.display = 'flex';
+            setTimeout(() => thanks.style.display = 'none', 2400);
+        }
 
-                // ── Reset Editor ─────────────────────────────────────────────
-                resetEditor();
+        // ── Reset Editor ─────────────────────────────────────────────
+        resetEditor();
 
-            } catch (err) {
-                output.className = 'ai-output has-error';
-                output.textContent = `❌ Error: ${err.message}`;
-                statusText.textContent = '❌ Request failed';
-                statusText.className = 'ai-status-text error';
-                dot.className = 'ai-dot error';
-                console.error('sendToWorkflow error:', err);
-            } finally {
-                btn.disabled = false;
-                btn.textContent = '⚡ Send to AI';
+    } catch (err) {
+        output.className = 'ai-output has-error';
+        output.textContent = `❌ Error: ${err.message}`;
+        statusText.textContent = '❌ Request failed';
+        statusText.className = 'ai-status-text error';
+        dot.className = 'ai-dot error';
+        console.error('sendToWorkflow error:', err);
+    } finally {
+        btn.disabled = false;
+        btn.textContent = '⚡ Send to AI';
+    }
+}
+
+// ── Close AI response panel ────────────────────────────────────
+function closeAIResponse() {
+    document.getElementById('aiResponsePanel').classList.remove('visible');
+    document.getElementById('aiOutput').className = 'ai-output';
+    document.getElementById('aiStatusText').className = 'ai-status-text';
+    document.getElementById('aiDot').className = 'ai-dot';
+    document.getElementById('aiResponseCards').innerHTML = '';
+}
+
+// AI-Assistant
+
+const chatToggle = document.getElementById("chatToggle");
+const chatBox = document.getElementById("chatBox");
+const closeChat = document.getElementById("closeChat");
+
+chatToggle.onclick = () => {
+    chatBox.classList.toggle("active");
+};
+
+closeChat.onclick = () => {
+    chatBox.classList.remove("active");
+};
+
+const messages = document.getElementById("chatMessages");
+const inputMessage = document.getElementById("userMessage");
+
+function addMessage(type, text) {
+    const msg = document.createElement("div");
+    msg.className = `bv-message ${type}`;
+
+    // If the message is from the AI, process it for structured code blocks
+    if (type === "ai") {
+        msg.appendChild(parseMessageText(text));
+    } else {
+        // Keep standard text escaping for user safety
+        msg.textContent = text;
+    }
+
+    messages.appendChild(msg);
+    messages.scrollTop = messages.scrollHeight;
+}
+
+// --- HELPER PARSER MODULES ---
+
+function parseMessageText(text) {
+    const wrapper = document.createDocumentFragment();
+
+    // 1. Fallback / support for regular Markdown code blocks ``` if the AI falls back to them
+    if (text.includes("```")) {
+        const parts = text.split(/(```[\s\S]*?```)/g);
+        parts.forEach(part => {
+            if (part.startsWith("```")) {
+                const match = part.match(/```(html|css|javascript|js|json)?([\s\S]*?)```/i);
+                const lang = match ? (match[1] || "CODE") : "CODE";
+                const codeText = match ? match[2] : part.replace(/```/g, "");
+                wrapper.appendChild(createCodeBlockElement(lang.toUpperCase(), codeText));
+            } else {
+                if (part.trim()) wrapper.appendChild(createTextElement(part));
             }
-        }
+        });
+        return wrapper;
+    }
 
-        // ── Close AI response panel ────────────────────────────────────
-        function closeAIResponse() {
-            document.getElementById('aiResponsePanel').classList.remove('visible');
-            document.getElementById('aiOutput').className = 'ai-output';
-            document.getElementById('aiStatusText').className = 'ai-status-text';
-            document.getElementById('aiDot').className = 'ai-dot';
-            document.getElementById('aiResponseCards').innerHTML = '';
-        }
+    // 2. Main Parser tailored to your n8n configuration rules (HTML:, CSS:, JavaScript:)
+    const labelRegex = /(HTML:|CSS:|JavaScript:|JS:)/gi;
+    if (labelRegex.test(text)) {
+        const parts = text.split(labelRegex);
+        let activeLabel = null;
+
+        parts.forEach(part => {
+            if (labelRegex.test(part)) {
+                activeLabel = part.replace(":", "").trim().toUpperCase();
+            } else {
+                if (activeLabel && part.trim().length > 0) {
+                    wrapper.appendChild(createCodeBlockElement(activeLabel, part));
+                    activeLabel = null; // Clean out active state
+                } else if (part.trim().length > 0) {
+                    wrapper.appendChild(createTextElement(part));
+                }
+            }
+        });
+        return wrapper;
+    }
+
+    // 3. Fallback for completely normal structural conversational text
+    wrapper.appendChild(createTextElement(text));
+    return wrapper;
+}
+
+function createTextElement(text) {
+    const div = document.createElement("div");
+    div.className = "bv-text-segment";
+    // Formats paragraphs gracefully without crashing styles
+    div.innerHTML = text.trim().replace(/\n\n/g, "</p><p>").replace(/\n/g, "<br>");
+    return div;
+}
+
+function createCodeBlockElement(lang, code) {
+    const container = document.createElement("div");
+    container.className = "bv-code-block-container";
+
+    const header = document.createElement("div");
+    header.className = "bv-code-block-header";
+    header.innerHTML = `
+        <span class="bv-code-lang">${lang}</span>
+        <button class="bv-copy-btn">Copy</button>
+    `;
+
+    const pre = document.createElement("pre");
+    const codeElement = document.createElement("code");
+    codeElement.textContent = code.trim(); // Protects code output from executing as raw browser HTML (XSS Guard)
+
+    // Bind modern clipboard functionality directly to the dynamic button
+    const copyBtn = header.querySelector(".bv-copy-btn");
+    copyBtn.addEventListener("click", () => {
+        navigator.clipboard.writeText(code.trim());
+        copyBtn.textContent = "Copied!";
+        copyBtn.classList.add("copied");
+        setTimeout(() => {
+            copyBtn.textContent = "Copy";
+            copyBtn.classList.remove("copied");
+        }, 2000);
+    });
+
+    pre.appendChild(codeElement);
+    container.appendChild(header);
+    container.appendChild(pre);
+
+    return container;
+}
+
+async function sendMessage() {
+
+    const text = inputMessage.value.trim();
+
+    if (!text) return;
+
+    addMessage("user", text);
+
+    inputMessage.value = "";
+
+    const typing = document.createElement("div");
+
+    typing.className = "bv-message ai";
+
+    typing.innerHTML = `
+        <div class="typing">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    `;
+
+    messages.appendChild(typing);
+
+    messages.scrollTop = messages.scrollHeight;
+
+    try {
+
+        const response = await fetch(
+            "https://dci.app.n8n.cloud/webhook/chat-data",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    message: text
+                })
+            }
+        );
+        console.log('Chat response received:', text);
+
+        const data = await response.json();
+
+        typing.remove();
+
+        addMessage(
+            "ai",
+            data.reply || "No response received."
+        );
+
+    } catch (error) {
+
+        typing.remove();
+
+        addMessage(
+            "ai",
+            "Sorry, I couldn't connect to the AI server."
+        );
+        console.log('Chat error:', error);
+    }
+}
+
+document
+    .getElementById("sendMessage")
+    .addEventListener("click", sendMessage);
+
+inputMessage.addEventListener("keydown", e => {
+
+    if (e.key === "Enter" && !e.shiftKey) {
+
+        e.preventDefault();
+
+        sendMessage();
+    }
+});
