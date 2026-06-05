@@ -3263,15 +3263,59 @@
         </section>
     </div>
     <div class="cursorDiv" id="cursorDiv"></div>
-    <script src="js/script.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
     <script type="module">
         import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
         createChat({
             webhookUrl: 'https://dci.app.n8n.cloud/webhook/c074ca03-6373-432e-989e-0919257ced08/chat'
         });
-    </script>
+    </script> -->
+    <div class="bv-chat-toggle" id="chatToggle">
+        <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path
+                d="M8 10H16M8 14H13M12 22L8.8 18.8H5C3.9 18.8 3 17.9 3 16.8V6C3 4.9 3.9 4 5 4H19C20.1 4 21 4.9 21 6V16.8C21 17.9 20.1 18.8 19 18.8H15.2L12 22Z"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+    </div>
+
+    <div class="bv-chat-container" id="chatBox">
+
+        <div class="bv-chat-header">
+            <div class="bv-ai-info">
+                <div class="bv-ai-avatar">
+                    BV
+                </div>
+
+                <div>
+                    <h3>Button Vault AI</h3>
+                    <span>Online</span>
+                </div>
+            </div>
+
+            <button id="closeChat">✕</button>
+        </div>
+
+        <div class="bv-chat-messages" id="chatMessages">
+
+            <div class="bv-message ai">
+                Hello 👋
+                <br>
+                How can I help you today?
+            </div>
+
+        </div>
+
+        <div class="bv-chat-input">
+            <textarea id="userMessage" placeholder="Ask Button Vault AI..." rows="1"></textarea>
+
+            <button id="sendMessage">
+                ➜
+            </button>
+        </div>
+
+    </div>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
